@@ -98,6 +98,7 @@ input {
 	--cal-scale: calc(tan(atan2(var(--cal-scale-numerator), var(--cal-scale-denominator))));
 	transform: scale(calc(var(--cal-scale) * 1.1));
 	min-width: max-content;
+	height: 0; /* if the height was not zero, then the extra size would mess up the scale transformation on some screen sizes*/
 }
 
 @media screen and (max-width: 35rem) {
