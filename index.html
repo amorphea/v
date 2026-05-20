@@ -295,9 +295,9 @@
 					this.endTime = endDetails && endDetails.hh + ":" + endDetails.mm;
 					this.validRsvpDate = rsvpDetails && rsvpDetails.yyyy + "-" + rsvpDetails.MM + "-" + rsvpDetails.dd;
 
-					const startDateObj = startDetails && new Date(+startDetails.yyyy, +startDetails.MM - 1, +startDetails.dd, +startDetails.hh, +startDetails.mm);
-					const endDateObj = endDetails && new Date(+endDetails.yyyy, +endDetails.MM - 1, +endDetails.dd, +endDetails.hh, +endDetails.mm);
-					const rsvpDateObj = rsvpDetails && new Date(+rsvpDetails.yyyy, +rsvpDetails.MM - 1, +rsvpDetails.dd, +rsvpDetails.hh, +rsvpDetails.mm);
+					const startDateObj = startDetails && new Date(+startDetails.yyyy, +startDetails.MM - 1 || 0, +startDetails.dd || 0, +startDetails.hh || 0, +startDetails.mm || 0);
+					const endDateObj = endDetails && new Date(+endDetails.yyyy, +endDetails.MM - 1 || 0, +endDetails.dd || 0, +endDetails.hh || 0, +endDetails.mm || 0);
+					const rsvpDateObj = rsvpDetails && new Date(+rsvpDetails.yyyy, +rsvpDetails.MM - 1 || 0, +rsvpDetails.dd || 0, +rsvpDetails.hh || 0, +rsvpDetails.mm || 0);
 
 					this.multiYear = startDetails && endDetails && (startDetails.yyyy !== endDetails.yyyy);
 					this.rsvpMultiYear = (rsvpDetails && startDetails && rsvpDetails.yyyy !== startDetails.yyyy) || (rsvpDetails && endDetails && rsvpDetails.yyyy !== endDetails.yyyy);
