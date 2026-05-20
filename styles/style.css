@@ -51,15 +51,6 @@ input {
 	align-items: center;
 	padding: 3%;
 }
-@media screen and (max-width: 35rem) {
-	.event-display {
-		width: calc(min(100cqw, 100svh, 38em));
-		height: calc(min(100cqw, 100svh, 38em));
-	}
-	.event-square {
-		width: 100%;
-	}
-}
 .event-square > * {
 	display: flex;
 	justify-content: center;
@@ -107,6 +98,19 @@ input {
 	--cal-scale: calc(tan(atan2(var(--cal-scale-numerator), var(--cal-scale-denominator))));
 	transform: scale(calc(var(--cal-scale) * 1.1));
 	min-width: max-content;
+}
+
+@media screen and (max-width: 35rem) {
+	.event-display {
+		width: calc(min(100cqw, 100svh, 38em));
+		height: calc(min(100cqw, 100svh, 38em));
+	}
+	.event-square {
+		width: 100%;
+	}
+	.calendar-buttons {
+		transform: scale(calc(var(--cal-scale) * 1.1 * (1 / 0.8)));
+	}
 }
 
 .section-edit {
