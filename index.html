@@ -563,6 +563,17 @@
 						let offset2 = printTimeZone(timeZone, "longOffset", "en-GB", date2);
 						return offset1 === offset2;
 					},
+					dateTimeStringToUTCString(datetimeString, timeZone) {
+						// Converts a 'wall clock' date time string plus a timezone to a UTC time
+						// The time zone specifies a region/city (e.g. Australia/Hobart), which could be in either daylight-savings-time or standard-time
+						// The first attempt gets an approximation of the timezone to use, by pretending the 'wall clock' time is already in UTC (by appending 'Z')
+						// The second attempt uses this approximate timezone to get the correct timezone
+						// Finally, as a third attempt, a date is returned using the correct timezone
+						// It might technically only need 2 attempts total, I'm not sure. I've tested it out across daylight-savings boundaries and it seems to work OK, so I don't wanna break anything
+						let attempt1 = printTimeZone(timeZone, "longOffset", "fr-FR", new Date(datetimeString + "Z"));
+						let attempt2 = printTimeZone(timeZone, "longOffset", "fr-FR", new Date(datetimeString + attempt1.replace("UTC", "")));
+						return new Date(datetimeString + attempt2.replace("UTC", ""));
+					},
 				},
 				computed: {
 					eventString() {
