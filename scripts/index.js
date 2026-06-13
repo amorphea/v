@@ -124,7 +124,7 @@ const urlDisplayComponent = {
 const app = Vue.createApp({
   components: {
     UrlDisplay: urlDisplayComponent,
-    'v-select', VueSelect.VueSelect,
+    'v-select': VueSelect.VueSelect,
   },
   data() {
     return {
