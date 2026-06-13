@@ -19,6 +19,7 @@ class Event {
       asdfasdf: Vue.computed(() => this.state.title + " bazbazbaz")
     });*/
 
+    // TODO: This seems to work! Make the whole Event class use this style. Then it's probably possible to just initialize the Event in data rather than needing setup(). Might still use setup() anyway now though for more flexibility in future
     const evt = Vue.reactive({
       title: title,
       location: location,
