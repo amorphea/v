@@ -1,6 +1,5 @@
 "use strict";
 
-<script>
 class EventUrlInfo {
   constructor(urlBase, urlHash) {
     this.urlBase = urlBase;
