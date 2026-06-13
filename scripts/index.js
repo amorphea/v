@@ -82,7 +82,7 @@ class Event {
     this.whimsicalStartTime = startDateObj && (this.startOnTheHour ? whimsicalMinutelessTimeFormatter.format(startDateObj) : whimsicalMinutefulTimeFormatter.format(startDateObj));
     this.whimsicalEndTime   = endDateObj   && (this.endOnTheHour   ? whimsicalMinutelessTimeFormatter.format(endDateObj)   : whimsicalMinutefulTimeFormatter.format(endDateObj));
 
-    
+    this.asdf = computed(() => this.title + "asdf");
 
     this.rsvpString = (
       ((this.rsvp || this.rsvpDate) && "RSVP ")
@@ -142,6 +142,8 @@ class TimeZoneUtils {
     return new Date(datetimeString + attempt2.replace("UTC", "").replace("\u2212","-"));
   }
 }
+
+const eventComponent
 
 const urlDisplayComponent = {
   template: "#url-display",
