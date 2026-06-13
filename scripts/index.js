@@ -128,7 +128,7 @@ const app = Vue.createApp({
   },
   data() {
     return {
-      event: new Event("", "", "", "", "", "", "", "", "", this.randomInt(0,999), ""),
+      event: new Event("", "", "", "", this.getLocalTimeZone(), "", "", "", "", this.randomInt(0,999), ""),
       urlBase: this.getUrlBase(),
       urlHash: window.location.hash.replace(/^#/, ''),
       urlHashLoaded: false,
