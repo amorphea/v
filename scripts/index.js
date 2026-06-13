@@ -136,8 +136,8 @@ class TimeZoneUtils {
     // Finally (third attempt) a date is returned using the correct timezone-offset
     // Note: It might technically only need 2 attempts total, I'm not sure. I've tested it out across daylight-savings boundaries and it seems to work OK, so I don't wanna break anything
     let attempt1 = this.printTimeZone(timeZone, "longOffset", "fr-FR", new Date(datetimeString + "Z"));
-    let attempt2 = this.printTimeZone(timeZone, "longOffset", "fr-FR", new Date(datetimeString + attempt1.replace("UTC", "")));
-    return new Date(datetimeString + attempt2.replace("UTC", ""));
+    let attempt2 = this.printTimeZone(timeZone, "longOffset", "fr-FR", new Date(datetimeString + attempt1.replace("UTC", "").replace("\u2212","-")));
+    return new Date(datetimeString + attempt2.replace("UTC", "").replace("\u2212","-"));
   }
 }
 
