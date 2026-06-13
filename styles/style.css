@@ -187,9 +187,8 @@ input {
 	color: #982c61;
 }
 
-.url-stats, .input-extra-details {
+.url-stats, .timezone-details {
     display: flex;
-	flex-direction: row;
 	flex-wrap: wrap;
 	justify-content: center;
 	align-items: center;
@@ -197,7 +196,13 @@ input {
 	font-size: 0.8em;
 	margin-block-end: 0.5em;
 }
-.url-stats .compatibility-heading, .input-extra-details .input-extra-details-heading {
+.url-stats {
+	flex-direction: row;
+}
+.timezone-details {
+	flex-direction: column;
+}
+.url-stats .compatibility-heading, .timezone-details .timezone-details-heading {
 	text-transform: uppercase;
 	font-size: 0.8em;
 	font-weight: bold;
