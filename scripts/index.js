@@ -13,15 +13,28 @@ class EventUrlInfo {
 
 class Event {
   constructor(title, location, startDatetime, endDatetime, timezone, rsvp, rsvpDate, imageUrl, theme, rng, description) {
-    this.state = Vue.reactive({
+    /*this.state = Vue.reactive({
       title: title,
       location: location,
       asdfasdf: Vue.computed(() => this.state.title + " bazbazbaz")
+    });*/
+
+    const evt = Vue.reactive({
+      startDatetime: startDatetime,
+      endDatetime: endDatetime,
+      timezone: timezone,
+      rsvp: rsvp,
+      rsvpDate: rsvpDate,
+      imageUrl: imageUrl,
+      theme: theme,
+      rng: rng,
+      description: description,
+      asdfasdf: Vue.computed(() => evt.title + " bazbazbaz")
     });
+
+    return evt;
     
-    //this.title = title;
-    this.location = location;
-    this.startDatetime = startDatetime;
+    /*this.startDatetime = startDatetime;
     this.endDatetime = endDatetime;
     this.timezone = timezone;
     this.rsvp = rsvp;
@@ -29,7 +42,7 @@ class Event {
     this.imageUrl = imageUrl;
     this.theme = theme;
     this.rng = rng;
-    this.description = description;
+    this.description = description;*/
 
     const startDetails = startDatetime?.match(/(?<yyyy>\d\d\d\d)-(?<MM>\d\d)-(?<dd>\d\d)T?(?<hh>\d\d)?:?(?<mm>\d\d)?/)?.groups;
     const endDetails = endDatetime?.match(/(?<yyyy>\d\d\d\d)-(?<MM>\d\d)-(?<dd>\d\d)T?(?<hh>\d\d)?:?(?<mm>\d\d)?/)?.groups;
@@ -100,10 +113,13 @@ class Event {
     );
   }
 
-  get title() { return this.state.title; }
+  /*get title() { return this.state.title; }
   set title(x) { this.state.title = x; }
+
+  get location() { return this.state.location; }
+  set location(x) { this.state.location = x; }
   
-  get asdfasdf() { return this.state.asdfasdf; }
+  get asdfasdf() { return this.state.asdfasdf; }*/
 
   utcStartDateObj() { return this.startDatetime && this.timezone && TimeZoneUtils.combineDatetimeAndTimezoneAsUTC(this.startDatetime, this.timezone); }
   utcEndDateObj() { return this.endDatetime && this.timezone && TimeZoneUtils.combineDatetimeAndTimezoneAsUTC(this.endDatetime, this.timezone); }
