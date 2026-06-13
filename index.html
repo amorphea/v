@@ -8,6 +8,7 @@
 		<link rel="stylesheet" href="dependencies/reset.css?v=1.0">
 		<link rel="stylesheet" href="dependencies/sakura-custom.css?v=1.0" type="text/css">
 		<link rel="stylesheet" href="dependencies/chota-grid.css?v=1.0">
+		<link rel="stylesheet" href="https://unpkg.com/vue-select@beta/dist/vue-select.css">
 		<link rel="stylesheet" href="styles/style.css?v=1.1">
 		<!--<link rel="icon" href="favicon.ico" type="image/x-icon">-->
 	</head>
@@ -116,6 +117,7 @@
 							<div class="col">
 								<label for="timezone">Timezone</label>
 		  						<input type="text" id="timezone" name="timezone" v-model="event.timezone" placeholder="ACDT">
+								<v-select :options="['aaaa', 'bbbbb', 'ccccccc']"></v-select>
 							</div>
 						</div>
 						<div class="row">
@@ -255,6 +257,7 @@
 		</template>
 		<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 		<script src="https://unpkg.com/vue-async-computed@4.0.1"></script>
+		<script src="https://unpkg.com/vue-select@beta"></script>
 		<script src="https://cdn.jsdelivr.net/npm/add-to-calendar-button@2" async defer></script>
 		<script src="dependencies/UniBinary.js"></script>
 		<script src="dependencies/compress.js"></script>
