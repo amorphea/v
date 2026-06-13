@@ -82,8 +82,8 @@ class Event {
     this.whimsicalStartTime = startDateObj && (this.startOnTheHour ? whimsicalMinutelessTimeFormatter.format(startDateObj) : whimsicalMinutefulTimeFormatter.format(startDateObj));
     this.whimsicalEndTime   = endDateObj   && (this.endOnTheHour   ? whimsicalMinutelessTimeFormatter.format(endDateObj)   : whimsicalMinutefulTimeFormatter.format(endDateObj));
 
-    this.utcStartDateObj = TimeZoneUtils.combineDatetimeAndTimezoneAsUTC(startDatetime, timezone);
-    this.utcEndDateObj = TimeZoneUtils.combineDatetimeAndTimezoneAsUTC(endDatetime, timezone);
+    this.utcStartDateObj = startDatetime && timezone && TimeZoneUtils.combineDatetimeAndTimezoneAsUTC(startDatetime, timezone);
+    this.utcEndDateObj = endDatetime && timezone && TimeZoneUtils.combineDatetimeAndTimezoneAsUTC(endDatetime, timezone);
 
     this.rsvpString = (
       ((this.rsvp || this.rsvpDate) && "RSVP ")
