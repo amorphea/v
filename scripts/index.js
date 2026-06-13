@@ -173,10 +173,24 @@ const urlDisplayComponent = {
   }
 };
 
+/*const eventSquareComponent = {
+  template: "#event-square",
+  components: {},
+  props: 
+}*/
+
 const app = Vue.createApp({
   components: {
     UrlDisplay: urlDisplayComponent,
     'v-select': window['vue-select'],
+  },
+  setup() {
+    const state = reactive({
+      event2: new Event("", "", "", "", TimeZoneUtils.getLocalTimeZone(), "", "", "", "", 5, ""),
+      computedTitle: computed(() => state.event2.title + " foo")
+    })
+    
+    return { state }
   },
   data() {
     return {
