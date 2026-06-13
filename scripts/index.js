@@ -187,7 +187,7 @@ const app = Vue.createApp({
   },
   setup() {
     const state = Vue.reactive({
-      event2: new Event("testingtesting", "", "", "", TimeZoneUtils.getLocalTimeZone(), "", "", "", "", 5, Vue.computed(() => state.event2.title + " bar"), state),
+      event2: new Event("testingtesting", "", "", "", TimeZoneUtils.getLocalTimeZone(), "", "", "", "", 5, Vue.computed(() => state.event2.title + " bar"), Vue.computed(() => state)),
       computedTitle: Vue.computed(() => state.event2.title + " foo")
     })
     
