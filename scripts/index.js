@@ -85,6 +85,15 @@ class Event {
     this.utcStartDateObj = startDatetime && timezone && TimeZoneUtils.combineDatetimeAndTimezoneAsUTC(startDatetime, timezone);
     this.utcEndDateObj = endDatetime && timezone && TimeZoneUtils.combineDatetimeAndTimezoneAsUTC(endDatetime, timezone);
 
+    this.startTimeZoneOffset = this.utcStartDateObj && TimeZoneUtils.printTimeZone(timezone, 'longOffset', undefined, this.utcStartDateObj);
+    this.endTimeZoneOffset = this.utcEndDateObj && TimeZoneUtils.printTimeZone(timezone, 'longOffset', undefined, this.utcEndDateObj);
+
+    this.startDateTimeUTC = this.utcStartDateObj && new Intl.DateTimeFormat(undefined, {timeZone: 'UTC', dateStyle: 'short', timeStyle: 'long'}).format(this.utcStartDateObj);
+    this.endDateTimeUTC = this.utcEndDateObj && new Intl.DateTimeFormat(undefined, {timeZone: 'UTC', dateStyle: 'short', timeStyle: 'long'}).format(this.utcEndDateObj);
+
+    this.startDateTimeWithOffset = this.utcStartDateObj && new Intl.DateTimeFormat(undefined, {timeZone: timezone, dateStyle: 'short', timeStyle: 'long'}).format(this.utcStartDateObj);
+    this.endDateTimeWithOffset = this.utcEndDateObj && new Intl.DateTimeFormat(undefined, {timeZone: timezone, dateStyle: 'short', timeStyle: 'long'}).format(this.utcEndDateObj);
+
     this.rsvpString = (
       ((this.rsvp || this.rsvpDate) && "RSVP ")
       + (this.rsvp && "to " + this.rsvp)
