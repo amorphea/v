@@ -20,6 +20,8 @@ class Event {
     });*/
 
     const evt = Vue.reactive({
+      title: title,
+      location: location,
       startDatetime: startDatetime,
       endDatetime: endDatetime,
       timezone: timezone,
