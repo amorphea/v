@@ -92,17 +92,17 @@ class Event {
     );
   }
 
-  utcStartDateObj() { return startDatetime && timezone && TimeZoneUtils.combineDatetimeAndTimezoneAsUTC(startDatetime, timezone); }
-  utcEndDateObj() { return endDatetime && timezone && TimeZoneUtils.combineDatetimeAndTimezoneAsUTC(endDatetime, timezone); }
+  utcStartDateObj() { return this.startDatetime && this.timezone && TimeZoneUtils.combineDatetimeAndTimezoneAsUTC(this.startDatetime, this.timezone); }
+  utcEndDateObj() { return this.endDatetime && this.timezone && TimeZoneUtils.combineDatetimeAndTimezoneAsUTC(this.endDatetime, this.timezone); }
 
-  startTimeZoneOffset() { return this.utcStartDateObj() && TimeZoneUtils.printTimeZone(timezone, 'longOffset', undefined, this.utcStartDateObj()); }
-  endTimeZoneOffset() { return this.utcEndDateObj() && TimeZoneUtils.printTimeZone(timezone, 'longOffset', undefined, this.utcEndDateObj()); }
+  startTimeZoneOffset() { return this.utcStartDateObj() && TimeZoneUtils.printTimeZone(this.timezone, 'longOffset', undefined, this.utcStartDateObj()); }
+  endTimeZoneOffset() { return this.utcEndDateObj() && TimeZoneUtils.printTimeZone(this.timezone, 'longOffset', undefined, this.utcEndDateObj()); }
 
   startDateTimeUTC() { return this.utcStartDateObj() && new Intl.DateTimeFormat(undefined, {timeZone: 'UTC', dateStyle: 'short', timeStyle: 'long'}).format(this.utcStartDateObj()); }
   endDateTimeUTC() { return this.utcEndDateObj() && new Intl.DateTimeFormat(undefined, {timeZone: 'UTC', dateStyle: 'short', timeStyle: 'long'}).format(this.utcEndDateObj()); }
 
-  startDateTimeWithOffset() { return this.utcStartDateObj() && new Intl.DateTimeFormat(undefined, {timeZone: timezone, dateStyle: 'short', timeStyle: 'long'}).format(this.utcStartDateObj()); }
-  endDateTimeWithOffset() { return this.utcEndDateObj() && new Intl.DateTimeFormat(undefined, {timeZone: timezone, dateStyle: 'short', timeStyle: 'long'}).format(this.utcEndDateObj()); }
+  startDateTimeWithOffset() { return this.utcStartDateObj() && new Intl.DateTimeFormat(undefined, {timeZone: this.timezone, dateStyle: 'short', timeStyle: 'long'}).format(this.utcStartDateObj()); }
+  endDateTimeWithOffset() { return this.utcEndDateObj() && new Intl.DateTimeFormat(undefined, {timeZone: this.timezone, dateStyle: 'short', timeStyle: 'long'}).format(this.utcEndDateObj()); }
 }
 
 class TimeZoneUtils {
