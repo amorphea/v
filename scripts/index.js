@@ -132,7 +132,8 @@ const app = Vue.createApp({
       urlBase: this.getUrlBase(),
       urlHash: window.location.hash.replace(/^#/, ''),
       urlHashLoaded: false,
-      urlHashLoadFailed: false
+      urlHashLoadFailed: false,
+      possibleTimezones: Intl.supportedValuesOf('timeZone'),
     };
   },
   methods: {
