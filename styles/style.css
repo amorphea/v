@@ -187,7 +187,7 @@ input {
 	color: #982c61;
 }
 
-.url-stats {
+.url-stats, .input-extra-details {
     display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
@@ -197,7 +197,7 @@ input {
 	font-size: 0.8em;
 	margin-block-end: 0.5em;
 }
-.url-stats .compatibility-heading {
+.url-stats .compatibility-heading, .input-extra-details .input-extra-details-heading {
 	text-transform: uppercase;
 	font-size: 0.8em;
 	font-weight: bold;
