@@ -143,8 +143,6 @@ class TimeZoneUtils {
   }
 }
 
-const eventComponent
-
 const urlDisplayComponent = {
   template: "#url-display",
   components: {
