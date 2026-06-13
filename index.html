@@ -122,7 +122,7 @@
 								<div class="timezone-details">
 									<div class="timezone-details-heading">Event runs from:</div>
 									<div><span v-text="(event.startDateTimeUTC() + event.asdf) || '\u2014'"></span> to <span v-text="(event.endDateTimeUTC() + state.event2.title + state.computedTitle) || '\u2014'"></span></div>
-									<div><span v-text="event.startDateTimeWithOffset() || '\u2014'"></span> to <span v-text="event.endDateTimeWithOffset() || '\u2014'"></span></div>
+									<div><span v-text="event.startDateTimeWithOffset() + state.event2.description || '\u2014'"></span> to <span v-text="event.endDateTimeWithOffset() || '\u2014'"></span></div>
 								</div>
 							</div>
 						</div>
