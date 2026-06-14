@@ -33,7 +33,7 @@ class Event {
     const rsvpDetails = Vue.computed(() => this.state.rsvpDate?.match(/(?<yyyy>\d\d\d\d)-(?<MM>\d\d)-(?<dd>\d\d)T?(?<hh>\d\d)?:?(?<mm>\d\d)?/)?.groups);
 
     this.startDate = Vue.computed(() => startDetails && startDetails.yyyy + "-" + startDetails.MM + "-" + startDetails.dd);
-    this.endDate = Vue.computed(() => endDetails && endDetails.yyyy + "-" + endDetails.MM + "-" + endDetails.dd);
+    this.endDate = Vue.computed(() => { debugger; return endDetails && endDetails.yyyy + "-" + endDetails.MM + "-" + endDetails.dd; });
     this.startTime = Vue.computed(() => startDetails && startDetails.hh + ":" + startDetails.mm);
     this.endTime = Vue.computed(() => endDetails && endDetails.hh + ":" + endDetails.mm);
     this.validRsvpDate = Vue.computed(() => rsvpDetails && rsvpDetails.yyyy + "-" + rsvpDetails.MM + "-" + rsvpDetails.dd);
