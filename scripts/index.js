@@ -28,39 +28,6 @@ class Event {
       asdfasdf: Vue.computed(() => this.state.title + " bazbazbaz")
     });
 
-    /*// nah scrap this. I do want the return object to be of type Event
-    // TODO: This seems to work! Make the whole Event class use this style. Then it's probably possible to just initialize the Event in data rather than needing setup(). Might still use setup() anyway now though for more flexibility in future
-    const evt = Vue.reactive({
-      title: title,
-      location: location,
-      startDatetime: startDatetime,
-      endDatetime: endDatetime,
-      timezone: timezone,
-      rsvp: rsvp,
-      rsvpDate: rsvpDate,
-      imageUrl: imageUrl,
-      theme: theme,
-      rng: rng,
-      description: description,
-      asdfasdf: Vue.computed(() => evt.title + " bazbazbaz"),
-      startDateTimeUTC: function() { return "aaaa" },
-      endDateTimeUTC: function() { return "bbbb" },
-      startDateTimeWithOffset: function() { return "cccc" },
-      endDateTimeWithOffset: function() { return "dddd" },
-    });
-
-    return evt;*/
-    
-    /*this.startDatetime = startDatetime;
-    this.endDatetime = endDatetime;
-    this.timezone = timezone;
-    this.rsvp = rsvp;
-    this.rsvpDate = rsvpDate;
-    this.imageUrl = imageUrl;
-    this.theme = theme;
-    this.rng = rng;
-    this.description = description;*/
-
     const startDetails = Vue.computed(() => this.state.startDatetime?.match(/(?<yyyy>\d\d\d\d)-(?<MM>\d\d)-(?<dd>\d\d)T?(?<hh>\d\d)?:?(?<mm>\d\d)?/)?.groups);
     const endDetails = Vue.computed(() => this.state.endDatetime?.match(/(?<yyyy>\d\d\d\d)-(?<MM>\d\d)-(?<dd>\d\d)T?(?<hh>\d\d)?:?(?<mm>\d\d)?/)?.groups);
     const rsvpDetails = Vue.computed(() => this.state.rsvpDate?.match(/(?<yyyy>\d\d\d\d)-(?<MM>\d\d)-(?<dd>\d\d)T?(?<hh>\d\d)?:?(?<mm>\d\d)?/)?.groups);
@@ -99,7 +66,7 @@ class Event {
     this.endShortWeekday = Vue.computed(() => endDateObj && shortWeekdayFormatter.format(endDateObj));
     this.startLongWeekday = Vue.computed(() => startDateObj && longWeekdayFormatter.format(startDateObj));
     this.endLongWeekday = Vue.computed(() => endDateObj && longWeekdayFormatter.format(endDateObj));
-    
+
     this.lessThanAWeek = Vue.computed(() => (endDateObj - startDateObj) < 1000 * 60 * 60 * 24 * 6);
 
     this.startYearlessDate = Vue.computed(() => startDateObj && yearlessDateFormatter.format(startDateObj));
@@ -112,9 +79,9 @@ class Event {
     const minutefulTimeFormatter = new Intl.DateTimeFormat(undefined, { hour: "numeric", minute: "2-digit", hour12: true });
     const whimsicalMinutelessTimeFormatter = new Intl.DateTimeFormat(undefined, { hour: "numeric", hour12: true, dayPeriod: "long" });
     const whimsicalMinutefulTimeFormatter = new Intl.DateTimeFormat(undefined, { hour: "numeric", minute: "2-digit", hour12: true, dayPeriod: "long" });
-    
+
     this.shortStartTime     = Vue.computed(() => startDateObj && (this.startOnTheHour ?          minutelessTimeFormatter.format(startDateObj) :          minutefulTimeFormatter.format(startDateObj)));
-    this.shortEndTime       = Vue.computed(() => endDateObj   && (this.endOnTheHour   ?          minutelessTimeFormatter.format(endDateObj)   :          minutefulTimeFormatter.format(endDateObj)));
+    this.shortEndTime       = Vue.computed(() => endDateObj && endDetails && endDetails.yyyy && (this.endOnTheHour   ?          minutelessTimeFormatter.format(endDateObj)   :          minutefulTimeFormatter.format(endDateObj)));
     this.whimsicalStartTime = Vue.computed(() => startDateObj && (this.startOnTheHour ? whimsicalMinutelessTimeFormatter.format(startDateObj) : whimsicalMinutefulTimeFormatter.format(startDateObj)));
     this.whimsicalEndTime   = Vue.computed(() => endDateObj   && (this.endOnTheHour   ? whimsicalMinutelessTimeFormatter.format(endDateObj)   : whimsicalMinutefulTimeFormatter.format(endDateObj)));
 
@@ -128,6 +95,18 @@ class Event {
       + (this.rsvp && this.rsvpDate && " ")
       + (this.rsvpDate && "by " + (this.rsvpMultiYear ? yearfulDateFormatter.format(rsvpDateObj) : yearlessDateFormatter.format(rsvpDateObj)))
     ));
+
+    this.utcStartDateObj = Vue.computed(() => this.startDatetime && this.timezone && TimeZoneUtils.combineDatetimeAndTimezoneAsUTC(this.startDatetime, this.timezone));
+    this.utcEndDateObj = Vue.computed(() => this.endDatetime && this.timezone && TimeZoneUtils.combineDatetimeAndTimezoneAsUTC(this.endDatetime, this.timezone));
+
+    this.startTimeZoneOffset = Vue.computed(() => return this.utcStartDateObj && TimeZoneUtils.printTimeZone(this.timezone, 'longOffset', undefined, this.utcStartDateObj));
+    this.endTimeZoneOffset = Vue.computed(() => return this.utcEndDateObj && TimeZoneUtils.printTimeZone(this.timezone, 'longOffset', undefined, this.utcEndDateObj));
+
+    this.startDateTimeUTC = Vue.computed(() => return this.utcStartDateObj && new Intl.DateTimeFormat(undefined, {timeZone: 'UTC', dateStyle: 'short', timeStyle: 'long'}).format(this.utcStartDateObj));
+    this.endDateTimeUTC = Vue.computed(() => return this.utcEndDateObj && new Intl.DateTimeFormat(undefined, {timeZone: 'UTC', dateStyle: 'short', timeStyle: 'long'}).format(this.utcEndDateObj));
+
+    this.startDateTimeWithOffset = Vue.computed(() => return this.utcStartDateObj && new Intl.DateTimeFormat(undefined, {timeZone: this.timezone, dateStyle: 'short', timeStyle: 'long'}).format(this.utcStartDateObj));
+    this.endDateTimeWithOffset = Vue.computed(() => return this.utcEndDateObj && new Intl.DateTimeFormat(undefined, {timeZone: this.timezone, dateStyle: 'short', timeStyle: 'long'}).format(this.utcEndDateObj));
   }
 
   get title() { return this.state.title; }
@@ -162,20 +141,8 @@ class Event {
 
   get description() { return this.state.description; }
   set description(x) { this.state.description = x; }
-  
+
   get asdfasdf() { return this.state.asdfasdf; }
-
-  utcStartDateObj() { return this.startDatetime && this.timezone && TimeZoneUtils.combineDatetimeAndTimezoneAsUTC(this.startDatetime, this.timezone); }
-  utcEndDateObj() { return this.endDatetime && this.timezone && TimeZoneUtils.combineDatetimeAndTimezoneAsUTC(this.endDatetime, this.timezone); }
-
-  startTimeZoneOffset() { return this.utcStartDateObj() && TimeZoneUtils.printTimeZone(this.timezone, 'longOffset', undefined, this.utcStartDateObj()); }
-  endTimeZoneOffset() { return this.utcEndDateObj() && TimeZoneUtils.printTimeZone(this.timezone, 'longOffset', undefined, this.utcEndDateObj()); }
-
-  startDateTimeUTC() { return this.utcStartDateObj() && new Intl.DateTimeFormat(undefined, {timeZone: 'UTC', dateStyle: 'short', timeStyle: 'long'}).format(this.utcStartDateObj()); }
-  endDateTimeUTC() { return this.utcEndDateObj() && new Intl.DateTimeFormat(undefined, {timeZone: 'UTC', dateStyle: 'short', timeStyle: 'long'}).format(this.utcEndDateObj()); }
-
-  startDateTimeWithOffset() { return this.utcStartDateObj() && new Intl.DateTimeFormat(undefined, {timeZone: this.timezone, dateStyle: 'short', timeStyle: 'long'}).format(this.utcStartDateObj()); }
-  endDateTimeWithOffset() { return this.utcEndDateObj() && new Intl.DateTimeFormat(undefined, {timeZone: this.timezone, dateStyle: 'short', timeStyle: 'long'}).format(this.utcEndDateObj()); }
 }
 
 class TimeZoneUtils {
