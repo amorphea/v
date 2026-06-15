@@ -197,7 +197,7 @@ textarea {
 	width: 100%;
 }
 
-.button, button,
+/*.button, button,
 input[type=submit],
 input[type=reset],
 input[type=button],
@@ -239,7 +239,7 @@ input[type=button]:focus-visible,
 input[type=file]:focus-visible {
 	outline-style: solid;
 	outline-width: 2px;
-}
+}*/
 
 textarea, select, input {
 	color: #4a4a4a;
