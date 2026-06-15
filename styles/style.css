@@ -121,6 +121,17 @@ input {
 	padding-inline: 13px;
 }
 
+/* copy the form input styling from sakura.css and apply this to search-and-select boxes too */
+.search-and-select-box .vs__dropdown-toggle {
+	color: #4a4a4a;
+    padding: 4px 1px 6px 1px;
+    background-color: #f1f1f1;
+    border: 1px solid #f1f1f1;
+    border-radius: 4px;
+    box-shadow: none;
+    box-sizing: border-box;
+}
+
 .links-list {
 	display: flex;
 	flex-direction: column;
