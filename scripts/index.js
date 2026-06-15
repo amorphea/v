@@ -56,7 +56,7 @@ class Event {
     );
     addWriteableComputed(
       'endDatetime',
-      () => s.endDate + (s.endTime ? "T" + s.startTime : ""),
+      () => s.endDate + (s.endTime ? "T" + s.endTime : ""),
       newValue => { s.endDate = newValue?.match(/(\d\d\d\d-\d\d-\d\d)/); s.endTime = newValue?.match(/(\d\d:\d\d)/); }
     );
 
