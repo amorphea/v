@@ -150,7 +150,7 @@ input {
 }
 /* don't try to wrap overflow for long timezone names, just clip instead */
 .search-and-select-box .vs__selected-options {
-	overflow: clip;
+	overflow: auto;
 }
 .search-and-select-box .vs__selected {
 	max-width: 0;
