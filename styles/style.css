@@ -219,6 +219,7 @@ input {
 	min-width: 1.5625rem;
 	width: 1.5625rem;
 	height: 1.5625rem;
+	cursor: pointer;
 }
 .url-preview-row .copy-button svg {
 	height: 1.5625rem;
