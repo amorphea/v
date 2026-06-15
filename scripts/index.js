@@ -39,14 +39,22 @@ class Event {
       });
     }
 
+    function addWritableComputed(name, getter, setter) {
+      s[name] = Vue.computed({ get: getter, set: setter });
+      Object.defineProperty(t, name, {
+        get() { return s[name]; },
+        set(newValue) { s[name] = newValue; }
+      });
+    }
+
     s.startDetails = Vue.computed(() => s.startDatetime?.match(/(?<yyyy>\d\d\d\d)-(?<MM>\d\d)-(?<dd>\d\d)T?(?<hh>\d\d)?:?(?<mm>\d\d)?/)?.groups);
     s.endDetails = Vue.computed(() => s.endDatetime?.match(/(?<yyyy>\d\d\d\d)-(?<MM>\d\d)-(?<dd>\d\d)T?(?<hh>\d\d)?:?(?<mm>\d\d)?/)?.groups);
     s.rsvpDetails = Vue.computed(() => s.rsvpDate?.match(/(?<yyyy>\d\d\d\d)-(?<MM>\d\d)-(?<dd>\d\d)T?(?<hh>\d\d)?:?(?<mm>\d\d)?/)?.groups);
 
-    addComputed('startDate', () => s.startDetails && s.startDetails.yyyy + "-" + s.startDetails.MM + "-" + s.startDetails.dd);
-    addComputed('endDate', () => s.endDetails && s.endDetails.yyyy + "-" + s.endDetails.MM + "-" + s.endDetails.dd);
-    addComputed('startTime', () => s.startDetails && s.startDetails.hh + ":" + s.startDetails.mm);
-    addComputed('endTime', () => s.endDetails && s.endDetails.hh + ":" + s.endDetails.mm);
+    addWritableComputed('startDate', () => s.startDetails && s.startDetails.yyyy + "-" + s.startDetails.MM + "-" + s.startDetails.dd, newValue => { s.startDatetime = newValue + "T" + s.startTime });
+    addWritableComputed('endDate', () => s.endDetails && s.endDetails.yyyy + "-" + s.endDetails.MM + "-" + s.endDetails.dd, newValue => { s.endDatetime = newValue + "T" + s.endTime });
+    addWritableComputed('startTime', () => s.startDetails && s.startDetails.hh + ":" + s.startDetails.mm, newValue => { s.startDatetime = s.startDate + "T" + newValue });
+    addWritableComputed('endTime', () => s.endDetails && s.endDetails.hh + ":" + s.endDetails.mm, newValue => { s.endDatetime = s.endDate + "T" + newValue });
     addComputed('validRsvpDate', () => s.rsvpDetails && s.rsvpDetails.yyyy + "-" + s.rsvpDetails.MM + "-" + s.rsvpDetails.dd);
 
     s.startDateObj = Vue.computed(() => s.startDetails && new Date(+s.startDetails.yyyy, +s.startDetails.MM - 1 || 0, +s.startDetails.dd || 0, +s.startDetails.hh || 0, +s.startDetails.mm || 0));
