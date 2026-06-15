@@ -121,6 +121,34 @@ input {
 	padding-inline: 13px;
 }
 
+.time-input-clearable {
+	display: flex;
+	flex-direction: row;
+	gap: 0.8em;
+}
+.time-input-clearable button {
+	padding: 5px 5px;
+	display: inline-flex;
+	text-align: center;
+	text-decoration: none;
+	white-space: nowrap;
+	background-color: #1d7484;
+	color: #f9f9f9;
+	border-radius: 1px;
+	border: 1px solid #1d7484;
+	cursor: pointer;
+	box-sizing: border-box;
+}
+.time-input-clearable button:hover {
+	background-color: #982c61;
+	color: #f9f9f9;
+	outline: 0;
+}
+.time-input-clearable button:focus-visible {
+	outline-style: solid;
+	outline-width: 2px;
+}
+
 .timezone-row .col {
 	margin-bottom: 0;
 }
