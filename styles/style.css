@@ -154,6 +154,7 @@ input {
 }
 .search-and-select-box .vs__selected {
 	max-width: 0;
+	white-space: nowrap;
 }
 
 .links-list {
