@@ -149,6 +149,10 @@ input {
 	outline-style: solid;
 	outline-width: 2px;
 }
+.time-input-clearable svg.icon-x {
+	height: 1.8em;
+    width: 1.8em;
+}
 
 .timezone-row .col {
 	margin-bottom: 0;
