@@ -121,8 +121,8 @@
 								<v-select id="timezone" name="timezone" v-model="event.timezone" :options="possibleTimezones"></v-select>
 								<div class="timezone-details">
 									<div class="timezone-details-heading">Event runs from:</div>
-									<div><span v-text="(event.startDateTimeUTC() + state.event2.asdf) || '\u2014'"></span> to <span v-text="(event.endDateTimeUTC() + state.event2.title + state.computedTitle) || '\u2014'"></span></div>
-									<div><span v-text="event.startDateTimeWithOffset() + state.event2.description || '\u2014'"></span> to <span v-text="event.endDateTimeWithOffset() + state.event2.asdfasdf + event.asdfasdf || '\u2014'"></span></div>
+									<div><span v-text="(event.startDateTimeUTC + state.event2.asdf) || '\u2014'"></span> to <span v-text="(event.endDateTimeUTC + state.event2.title + state.computedTitle) || '\u2014'"></span></div>
+									<div><span v-text="event.startDateTimeWithOffset + state.event2.description || '\u2014'"></span> to <span v-text="event.endDateTimeWithOffset + state.event2.asdfasdf + event.asdfasdf || '\u2014'"></span></div>
 								</div>
 							</div>
 						</div>
