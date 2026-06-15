@@ -237,7 +237,11 @@ input {
 	text-transform: uppercase;
 	font-size: 0.8em;
 	font-weight: bold;
+}
+.timezone-details .timezone-details-heading {
 	padding-bottom: 1em;
+	width: 100%;
+    text-align: center;
 }
 .timezone-details .timezone-details-body {
 	display: flex;
