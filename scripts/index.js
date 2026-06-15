@@ -51,12 +51,12 @@ class Event {
 
     addWriteableComputed(
       'startDatetime',
-      () => s.startDate && (s.startTime ? "T" + s.startTime),
+      () => s.startDate + (s.startTime ? "T" + s.startTime : ""),
       newValue => { s.startDate = newValue?.match(/(\d\d\d\d-\d\d-\d\d)/); s.startTime = newValue?.match(/\d\d:\d\d)/); }
     );
     addWriteableComputed(
       'endDatetime',
-      () => s.endDate && (s.endTime ? "T" + s.startTime),
+      () => s.endDate + (s.endTime ? "T" + s.startTime : ""),
       newValue => { s.endDate = newValue?.match(/(\d\d\d\d-\d\d-\d\d)/); s.endTime = newValue?.match(/\d\d:\d\d)/); }
     );
 
