@@ -118,7 +118,7 @@ class Event {
     addComputed('endTimeZoneOffset', () => s.utcEndDateObj && TimeZoneUtils.printTimeZone(s.timezone, 'longOffset', undefined, s.utcEndDateObj));
 
     const utcDateFormatter = new Intl.DateTimeFormat(undefined, {timeZone: 'UTC', dateStyle: 'short', timeStyle: 'long'});
-    const offsetDateFormatter = new Intl.DateTimeFormat(undefined, {timeZone: timezone, dateStyle: 'short', timeStyle: 'long'})
+    const offsetDateFormatter = new Intl.DateTimeFormat(undefined, {timeZone: s.timezone, dateStyle: 'short', timeStyle: 'long'})
     
     addComputed('startDateTimeUTC', () => s.utcStartDateObj && utcDateFormatter.format(s.utcStartDateObj));
     addComputed('endDateTimeUTC', () => s.utcEndDateObj && utcDateFormatter.format(s.utcEndDateObj));
