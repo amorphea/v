@@ -131,7 +131,7 @@ input {
     box-shadow: none;
     box-sizing: border-box;
 }
-.search-and-select-box .vs__dropdown-toggle:focus {
+.search-and-select-box .vs__dropdown-toggle:focus-within {
 	border: 1px solid #1d7484;
 	outline: 0;
 }
