@@ -124,6 +124,8 @@ class Event {
       + (s.rsvpDate && "by " + (s.rsvpMultiYear ? yearfulDateFormatter.format(s.rsvpDateObj) : yearlessDateFormatter.format(s.rsvpDateObj)))
     ));
 
+    addComputed('prettyTimezone', () => s.timezone?.replace(/\//g, '\u203A')?.replace(/_/g, ' '));
+
     s.utcStartDateObj = Vue.computed(() => s.startDate && s.startTime && s.timezone && TimeZoneUtils.combineDatetimeAndTimezoneAsUTC(s.startDatetime, s.timezone));
     s.utcEndDateObj = Vue.computed(() => s.endDate && s.endTime && s.timezone && TimeZoneUtils.combineDatetimeAndTimezoneAsUTC(s.endDatetime, s.timezone));
 
