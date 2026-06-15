@@ -126,7 +126,7 @@
 						<div class="row timezone-row">
 							<div class="col">
 								<label for="timezone">Timezone</label>
-								<v-select id="timezone" name="timezone" class="search-and-select-box" v-model="event.timezone" :options="possibleTimezones"></v-select>
+								<v-select id="timezone" name="timezone" class="search-and-select-box" v-model="event.prettyTimezone" :options="possiblePrettyTimezones"></v-select>
 								<details class="timezone-details">
 									<summary class="timezone-details-heading">Details</summary>
 									<div class="timezone-details-body">
