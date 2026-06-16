@@ -214,6 +214,9 @@ input {
 	height: 1.3em;
     width: 1.3em;
 }
+.timezone-details-heading {
+	margin-top: 0.8rem;
+}
 
 .theme-rng-regenerable {
 	display: flex;
