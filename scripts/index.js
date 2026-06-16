@@ -133,8 +133,8 @@ class Event {
     s.utcStartDateObj = Vue.computed(() => s.startDate && s.startTime && s.timezone && TimeZoneUtils.combineDatetimeAndTimezoneAsUTC(s.startDatetime, s.timezone));
     s.utcEndDateObj = Vue.computed(() => s.endDate && s.endTime && s.timezone && TimeZoneUtils.combineDatetimeAndTimezoneAsUTC(s.endDatetime, s.timezone));
 
-    addComputed('startTimeZoneOffset', () => s.utcStartDateObj && TimeZoneUtils.printTimeZone(s.timezone, 'longOffset', undefined, s.utcStartDateObj));
-    addComputed('endTimeZoneOffset', () => s.utcEndDateObj && TimeZoneUtils.printTimeZone(s.timezone, 'longOffset', undefined, s.utcEndDateObj));
+    addComputed('startTimezoneOffset', () => s.utcStartDateObj && TimeZoneUtils.printTimeZone(s.timezone, 'longOffset', undefined, s.utcStartDateObj));
+    addComputed('endTimezoneOffset', () => s.utcEndDateObj && TimeZoneUtils.printTimeZone(s.timezone, 'longOffset', undefined, s.utcEndDateObj));
 
     const utcDateFormatter = new Intl.DateTimeFormat(undefined, {timeZone: 'UTC', dateStyle: 'short', timeStyle: 'long'});
     
@@ -307,6 +307,10 @@ const app = Vue.createApp({
       const match = datetime?.match(/\d\d\d\d-\d\d-\d\d/);
       return match && match[0]?.replace(/-/g, '') || '';
     },
+    formatTime(time) {
+      const match = time?.match(/\d\d:\d\d/);
+      return match && match[0]?.replace(/:/g, '') || '';
+    },
     formatDatetime(datetime) {
       const match = datetime?.match(/\d\d\d\d-\d\d-\d\dT\d\d:\d\d/);
       return match && match[0]?.replace(/\D/g, '') || '';
@@ -371,17 +375,29 @@ const app = Vue.createApp({
       if (!!groups.hh !== !!groups.mm) return null; // time is partly present - fail fast by returning null
       return { date: date, time: time };
     },
+    parseDate(datestr) {
+      if (!datestr) return null;
+      const match = datestr.match(/^(?<yyyy>\d\d\d\d)(?<MM>\d\d)(?<dd>\d\d)$/);
+      if (!match) return null;
+      const groups = match.groups;
+      const date = (groups.yyyy && groups.MM && groups.dd) ? (groups.yyyy + "-" + groups.MM + "-" + groups.dd) : null;
+      return date;
+    },
+    parseTime(timestr) {
+      if (!datestr) return null;
+      const match = datestr.match(/^(?<hh>\d\d)(?<mm>\d\d)$/);
+      if (!match) return null;
+      const groups = match.groups;
+      const time = (groups.hh && groups.mm) ? (groups.hh + ":" + groups.mm) : null;
+      return time;
+    },
     randomInt(min, max) { // returns a number inclusive of min and max
       return Math.floor(Math.random() * (max + 1 - min) + min);
     },
     getUrlBase() {
       return (window.location.host + window.location.pathname).replace(/[\/\\]+$/,'');
     },
-    parseEventString(str) {
-      if (!str) return null;
-      const arr = str.split("|");
-      if (arr.length < 3) return null; // require at least a title, location, and start time
-
+    parseEventString_old(str) {
       const themeMatch = arr[7] && arr[7].match(/^(?<theme>[a-zA-Z]+)(?<rng>[0-9][0-9][0-9])$/);
       const theme = themeMatch && themeMatch.groups.theme?.toLowerCase();
       const rng = Number(themeMatch && themeMatch.groups.rng || this.randomInt(0,999));
@@ -409,11 +425,57 @@ const app = Vue.createApp({
         this.unescapeEventStringPart(arr[8]) || "" // description
       )
     },
+    parseEventString(str) {
+      if (!str) return null;
+      const arr = str.split("|");
+      if (arr.length < 3) return null; // require at least a title, location, and start time
+
+      if (arr.length === 7) return this.parseEventString_old(str); // temporary backwards compatibility to update existing event strings
+      
+      const themeMatch = arr[9] && arr[9].match(/^(?<theme>[a-zA-Z]+)(?<rng>[0-9][0-9][0-9])$/);
+      const theme = themeMatch && themeMatch.groups.theme?.toLowerCase();
+      const rng = Number(themeMatch && themeMatch.groups.rng || this.randomInt(0,999));
+
+      // Reject this event string if there are malformed dates or times (it has probably been parsed wrong, i.e. we should have used unibinDecode)
+      // Don't reject if the dates/times are absent entirely; that's OK
+      const startDate = this.parseDate(arr[2]);
+      const startTime = this.parseTime(arr[3]);
+      const endDate = this.parseDate(arr[4]);
+      const endTime = this.parseTime(arr[5]);
+      if (arr[2] && !startDate) return null;
+      if (arr[3] && !startTime) return null;
+      if (arr[4] && !endDate) return null;
+      if (arr[5] && !endTime) return null;
+      
+      return new Event(
+        this.unescapeEventStringPart(arr[0]) || "", // title
+        this.unescapeEventStringPart(arr[1]) || "", // location
+        startDate || "", // startDate
+        startTime || "", // startTime
+        endDate || "", // endDate
+        endTime || "", // endTime
+        this.unescapeEventStringPart(arr[4]) || "", // timezone
+        this.unescapeEventStringPart(arr[5]) || "", // rsvp
+        this.parseDatetime(arr[6])?.date || "", // rsvpDate
+        !theme ? this.unescapeEventStringPart(arr[7]) : "", // imageUrl
+        theme || "", // theme
+        rng, // rng
+        this.unescapeEventStringPart(arr[8]) || "" // description
+      )
+    },
     async loadEventFromUrlHash(urlHash) {
+      // There are several ways the event string might be encoded in the url hash
+      // It may or may not use unibin encoding
+      // It may or may not be compressed
+      // It may or may not have been URI encoded by the user's software when copy-pasting it between browsers/etc
+      // We loop through all possibilities and try each one, to (hopefully) find a combination that can successfully decode the event
+      
       for (const decompress of [false, true]) {
         for (const unibinDecode of [false, true]) {
           if (!unibinDecode && decompress) continue; // this combination never occurs in practice; skip this loop iteration
           for (const uriDecode of [false, true]) {
+            console.log("Trying decoder combination - decompress: " decompress + ", unibinDecode:" + unibinDecode + ", uriDecode:" + uriDecode + ")");
+            
             let str = urlHash;
             try { if (uriDecode) str = decodeURIComponent(str); }
             catch { continue; }
@@ -421,7 +483,7 @@ const app = Vue.createApp({
             if (unibinDecode && decompress) str = await this.decodeAndDecompress(str);
 
             const evt = this.parseEventString(str);
-            console.log(decompress + ", " + unibinDecode + ", " + uriDecode + ":");
+            console.log("Parsed event:");
             console.log(evt);
             
             if (evt) {
@@ -440,8 +502,10 @@ const app = Vue.createApp({
       return (
         this.escapeEventStringPart(this.event.title) + "|" +
         this.escapeEventStringPart(this.event.location) + "|" +
-        this.formatDatetime(this.event.startDatetime) + "|" +
-        this.formatDatetime(this.event.endDatetime) + "|" +
+        this.formatDate(this.event.startDate) + "|" +
+        this.formatTime(this.event.startTime) + "|" +
+        this.formatDate(this.event.endDate) + "|" +
+        this.formatTime(this.event.endTime) + "|" +
         this.escapeEventStringPart(this.event.timezone) + "|" +
         this.escapeEventStringPart(this.event.rsvp) + "|" +
         this.formatDate(this.event.rsvpDate) + "|" +
