@@ -384,8 +384,8 @@ const app = Vue.createApp({
       return date;
     },
     parseTime(timestr) {
-      if (!datestr) return null;
-      const match = datestr.match(/^(?<hh>\d\d)(?<mm>\d\d)$/);
+      if (!timestr) return null;
+      const match = timestr.match(/^(?<hh>\d\d)(?<mm>\d\d)$/);
       if (!match) return null;
       const groups = match.groups;
       const time = (groups.hh && groups.mm) ? (groups.hh + ":" + groups.mm) : null;
