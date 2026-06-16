@@ -176,7 +176,6 @@ input {
 	max-height: 0px;
 	overflow: hidden;
 	transition: max-height .25s ease-in-out;
-	justify-content: start;
 }
 .timezone-details-toggle:checked + .timezone-details-toggle-label + .timezone-details {
   max-height: 100vh;
@@ -288,7 +287,6 @@ input {
 
 .url-stats, .timezone-details {
     display: flex;
-	flex-wrap: wrap;
 	align-items: center;
 	gap: 0.3125rem;
 	font-size: 0.8em;
@@ -297,6 +295,7 @@ input {
 .url-stats {
 	flex-direction: row;
 	justify-content: center;
+	flex-wrap: wrap;
 }
 .timezone-details {
 	flex-direction: column;
