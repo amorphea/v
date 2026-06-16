@@ -248,13 +248,14 @@ input {
 	flex-direction: row;
 	justify-content: flex-start;
 	align-items: center;
-	gap: 0.4rem;
 }
 .url-preview-row {
     flex-wrap: nowrap;
+	gap: 0.8rem;
 }
 .url-preview {
 	flex-grow: 1;
+	gap: 0.4rem;
 	padding: 0.6rem;
 	background-color: #f1f1f1;
 	overflow-x: scroll;
@@ -291,9 +292,9 @@ input {
 }
 .url-preview-row .icon-button.copy-button {
     height: stretch;
-	width: calc(2em + 1.2rem + 20px);
-    min-width: calc(2em + 1.2rem + 20px);
-	max-width: calc(2em + 1.2rem + 20px);
+	width: calc(2em + 12px);
+	min-width: calc(2em + 12px);
+	max-width: calc(2em + 12px);
 }
 .url-preview-row .copy-button svg {
 	height: 1.5rem;
