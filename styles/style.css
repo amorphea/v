@@ -126,7 +126,7 @@ input {
 	flex-direction: row;
 	gap: 0.8em;
 }
-.time-input-clearable button {
+.time-input-clearable button, .timezone-details-toggle-label {
 	padding: 5px 5px;
 	display: inline-flex;
 	background-color: #f1f1f1;
@@ -140,22 +140,45 @@ input {
     align-items: center;
     justify-content: center;
 }
-.time-input-clearable button:hover {
+.time-input-clearable button:hover, .timezone-details-toggle-label:hover {
 	background-color: #982c61;
 	color: #f9f9f9;
 	outline: 0;
 }
-.time-input-clearable button:focus-visible {
+.time-input-clearable button:focus-visible, .timezone-details-toggle-label:focus-visible {
 	outline-style: solid;
 	outline-width: 2px;
 }
-.time-input-clearable svg.icon-x {
+.time-input-clearable svg.icon-x, .timezone-details-toggle-label svg.icon-info {
 	height: 1.8em;
     width: 1.8em;
 }
 
-.timezone-row .col {
-	margin-bottom: 0;
+.timezone-input-collapsible {
+	display: grid;
+	gap: 0.8em;
+	
+	grid-template-areas: 
+	    "input toggle"
+	    "details details";
+}
+.timezone-input-collapsible .search-and-select-box {
+	grid-area: input;
+}
+.timezone-details-toggle {
+	display: none;
+}
+.timezone-details-toggle-label {
+	grid-area: toggle;
+}
+.timezone-details {
+	grid-area: details;
+	max-height: 0px;
+	overflow: hidden;
+	transition: max-height .25s ease-in-out;
+}
+.timezone-details-toggle:checked + .timezone-details-toggle-label + .timezone-details {
+  max-height: 100vh;
 }
 
 /* copy the form input styling from sakura.css and apply this to search-and-select boxes too */
