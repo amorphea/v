@@ -150,16 +150,16 @@
 		  						<input type="date" id="rsvp-date" name="rsvp-date" v-model="event.rsvpDate" placeholder="2026-01-01">
 							</div>
 						</div>
-						<div class="row">
-							<div class="col">
+						<div class="row background-inputs">
+							<div class="col image-url">
 								<label for="image-url">Image URL</label>
 		  						<input type="url" id="image-url" name="image-url" v-model="event.imageUrl" placeholder="https://example.com/event-poster.png">
 							</div>
-							<div class="col">
+							<div class="col theme">
 								<label for="theme">Theme</label>
 								<v-select id="theme" name="theme" class="search-and-select-box" v-model="event.theme" :options="possibleThemes"></v-select>
 							</div>
-							<div class="col">
+							<div class="col rng">
 								<label for="rng">RNG</label>
 								<div class="theme-rng-regenerable">
 		  							<input type="date" class="date-nopicker" :max="new Date().toISOString().match(/\d\d\d\d-\d\d-\d\d/)[0]" id="rng" name="rng" v-model="event.rng">
