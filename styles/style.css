@@ -183,8 +183,15 @@ input {
 .timezone-input-collapsible .search-and-select-box {
 	grid-area: input;
 }
-.timezone-details-toggle {
-	display: none;
+.timezone-details-toggle { / * hide the original checkbox (the label is shown instead). don't use 'display: none' or 'visibility: hidden' as those also make it get skipped when tabbing with a keyboard */
+    grid-area: toggle;
+    height: 10px;
+    width: 10px;
+    opacity: 0;
+}
+.timezone-details-toggle:focus-visible + .timezone-details-toggle-label { /* outline the label whenever anyone tabs to the original checkbox */
+	border: 1px solid #1d7484;
+    outline: 0;
 }
 .timezone-details-toggle-label {
 	grid-area: toggle;
