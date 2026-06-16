@@ -126,15 +126,15 @@ class Event {
 
     addWriteableComputed(
       'prettyTimezone',
-      () => TimeZoneUtils.toPrettyTimezone(s.timezone),
-      (newValue) => s.timezone = TimeZoneUtils.fromPrettyTimezone(newValue)
+      () => DateUtils.toPrettyTimezone(s.timezone),
+      (newValue) => s.timezone = DateUtils.fromPrettyTimezone(newValue)
     );
 
-    s.utcStartDateObj = Vue.computed(() => s.startDate && s.startTime && s.timezone && TimeZoneUtils.combineDatetimeAndTimezoneAsUTC(s.startDatetime, s.timezone));
-    s.utcEndDateObj = Vue.computed(() => s.endDate && s.endTime && s.timezone && TimeZoneUtils.combineDatetimeAndTimezoneAsUTC(s.endDatetime, s.timezone));
+    s.utcStartDateObj = Vue.computed(() => s.startDate && s.startTime && s.timezone && DateUtils.combineDatetimeAndTimezoneAsUTC(s.startDatetime, s.timezone));
+    s.utcEndDateObj = Vue.computed(() => s.endDate && s.endTime && s.timezone && DateUtils.combineDatetimeAndTimezoneAsUTC(s.endDatetime, s.timezone));
 
-    addComputed('startTimezoneOffset', () => s.utcStartDateObj && TimeZoneUtils.printTimeZone(s.timezone, 'longOffset', undefined, s.utcStartDateObj));
-    addComputed('endTimezoneOffset', () => s.utcEndDateObj && TimeZoneUtils.printTimeZone(s.timezone, 'longOffset', undefined, s.utcEndDateObj));
+    addComputed('startTimezoneOffset', () => s.utcStartDateObj && DateUtils.printTimeZone(s.timezone, 'longOffset', undefined, s.utcStartDateObj));
+    addComputed('endTimezoneOffset', () => s.utcEndDateObj && DateUtils.printTimeZone(s.timezone, 'longOffset', undefined, s.utcEndDateObj));
 
     const utcDateFormatter = new Intl.DateTimeFormat(undefined, {timeZone: 'UTC', dateStyle: 'short', timeStyle: 'long'});
     
@@ -191,7 +191,7 @@ class Event {
   }
 }
 
-class TimeZoneUtils {
+class DateUtils {
   static getLocalTimeZone() {
     // Returns e.g. Australia/Hobart
     return new Intl.DateTimeFormat().resolvedOptions().timeZone;
@@ -234,6 +234,10 @@ class TimeZoneUtils {
   }
   static fromPrettyTimezone(timezone) {
     return timezone?.replace(/ \u203A /g, '\/')?.replace(/ /g, '_');
+  }
+
+  static getTodaysDateString() {
+    return new Date().toISOString().match(/\d\d\d\d-\d\d-\d\d/)[0];
   }
 }
 
@@ -283,7 +287,7 @@ const app = Vue.createApp({
   },
   data() {
     return {
-      event: new Event("", "", "", "", "", "", TimeZoneUtils.getLocalTimeZone(), "", "", "", "", new Date().toISOString().match(/\d\d\d\d-\d\d-\d\d/)[0], ""),
+      event: new Event("", "", "", "", "", "", DateUtils.getLocalTimeZone(), "", "", "", "", DateUtils.getTodaysDateString(), ""),
       urlBase: this.getUrlBase(),
       urlHash: window.location.hash.replace(/^#/, ''),
       urlHashLoaded: false,
@@ -408,7 +412,7 @@ const app = Vue.createApp({
     parseEventString_old(arr) {
       const themeMatch = arr[7] && arr[7].match(/^(?<theme>[a-zA-Z]+)(?<rng>[0-9][0-9][0-9])$/);
       const theme = themeMatch && themeMatch.groups.theme?.toLowerCase();
-      const rng = Number(themeMatch && themeMatch.groups.rng || this.randomInt(0,999));
+      const rng = themeMatch && themeMatch.groups.rng && this.parseDate(themeMatch.groups.rng) || DateUtils.getTodaysDateString();
 
       // Reject this event string if there are malformed dates (it has probably been parsed wrong, i.e. we should have used unibinDecode)
       // Don't reject if the dates are absent entirely
@@ -440,9 +444,9 @@ const app = Vue.createApp({
 
       if (arr.length === 9) return this.parseEventString_old(arr); // temporary backwards compatibility to update existing event strings
       
-      const themeMatch = arr[9] && arr[9].match(/^(?<theme>[a-zA-Z]+)(?<rng>[0-9][0-9][0-9])$/);
+      const themeMatch = arr[9] && arr[9].match(/^(?<theme>[a-zA-Z]+)(?<rng>\d\d\d\d\d\d\d\d)$/);
       const theme = themeMatch && themeMatch.groups.theme?.toLowerCase();
-      const rng = Number(themeMatch && themeMatch.groups.rng || this.randomInt(0,999));
+      const rng = themeMatch && themeMatch.groups.rng && this.parseDate(themeMatch.groups.rng) || DateUtils.getTodaysDateString();
 
       // Reject this event string if there are malformed dates or times (it has probably been parsed wrong, i.e. we should have used unibinDecode)
       // Don't reject if the dates/times are absent entirely; that's OK
@@ -525,7 +529,7 @@ const app = Vue.createApp({
     eventUrl() { return new EventUrlInfo(this.urlBase, this.eventString) },
     eventUrlEncoded() { return new EventUrlInfo(this.urlBase, this.eventStringEncoded) },
     possiblePrettyTimezones() {
-      return this.possibleTimezones.map(x => TimeZoneUtils.toPrettyTimezone(x))
+      return this.possibleTimezones.map(x => DateUtils.toPrettyTimezone(x))
     }
   },
   asyncComputed: {
