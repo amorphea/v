@@ -273,6 +273,7 @@ const app = Vue.createApp({
     'v-select': window['vue-select'],
     IconX: { template: "#icon-x" },
     IconInfo: { template: "#icon-info" },
+    IconRepeat: { template: "#icon-repeat" },
   },
   data() {
     return {
@@ -282,6 +283,7 @@ const app = Vue.createApp({
       urlHashLoaded: false,
       urlHashLoadFailed: false,
       possibleTimezones: Intl.supportedValuesOf('timeZone'),
+      possibleThemes: ['nature', 'nightclub']
     };
   },
   methods: {
