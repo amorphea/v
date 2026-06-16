@@ -289,18 +289,31 @@ input {
 	padding: 0;
 }
 .url-preview-row .copy-button {
-	background-color: transparent;
+    background-color: #f1f1f1;
 	border: none;
+    border-radius: 4px;
 	color: #4a4a4a;
 	padding: 0;
-	min-width: 1.5625rem;
-	width: 1.5625rem;
-	height: 1.5625rem;
+	height: stretch;
+    width: 3.2em;
+    min-width: 3.2em;
 	cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.url-preview-row .copy-button:hover {
+	background-color: #982c61;
+	color: #f9f9f9;
+	outline: 0;
+}
+.url-preview-row .copy-button:focus-visible {
+	outline-style: solid;
+	outline-width: 2px;
 }
 .url-preview-row .copy-button svg {
-	height: 1.5625rem;
-	width: 1.5625rem;
+	height: 1.5rem;
+	width: 1.5rem;
 }
 .url-preview-row .copy-button svg.copied {
 	color: #982c61;
