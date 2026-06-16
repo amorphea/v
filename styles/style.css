@@ -157,7 +157,7 @@ input {
 .timezone-input-collapsible {
 	display: grid;
 	gap: 0.8em;
-	
+	grid-template-columns: 1fr min-content;
 	grid-template-areas: 
 	    "input toggle"
 	    "details details";
@@ -176,6 +176,7 @@ input {
 	max-height: 0px;
 	overflow: hidden;
 	transition: max-height .25s ease-in-out;
+	justify-content: start;
 }
 .timezone-details-toggle:checked + .timezone-details-toggle-label + .timezone-details {
   max-height: 100vh;
@@ -288,7 +289,6 @@ input {
 .url-stats, .timezone-details {
     display: flex;
 	flex-wrap: wrap;
-	justify-content: center;
 	align-items: center;
 	gap: 0.3125rem;
 	font-size: 0.8em;
@@ -296,9 +296,11 @@ input {
 }
 .url-stats {
 	flex-direction: row;
+	justify-content: center;
 }
 .timezone-details {
 	flex-direction: column;
+	justify-content: start;
 }
 .url-stats .compatibility-heading, .timezone-details .timezone-details-heading {
 	text-transform: uppercase;
