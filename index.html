@@ -58,7 +58,7 @@
 								<div v-if="event.multiDay && event.allDay && !event.lessThanAWeek && event.multiYear" v-text="event.startShortWeekday + ' ' + event.startYearfulDate + ' \u2013 ' + event.endShortWeekday + ' ' + event.endYearfulDate"></div>
 							</div>
 							<div class="timezone" v-if="event.timezone">
-								<div>Timezone: <span v-text="event.prettyTimezone"></span></div>
+								<div><span v-text="event.startTimezoneOffset"></span> (<span v-text="event.prettyTimezone"></span>)</div>
 							</div>
 							<div class="rsvp">
 								<div v-text="event.rsvpString"></div>
