@@ -220,12 +220,23 @@ input {
 	flex-direction: row;
 	gap: 0.8em;
 }
+.theme-rng-regenerable input[type="date"] {
+	width: min-content;
+}
 .theme-rng-regenerable button.icon-button {
 	margin-bottom: 10px;
 }
 .theme-rng-regenerable svg.icon-repeat {
 	height: 1.3em;
     width: 1.3em;
+}
+
+/* attempt to hide the native date picker. this only works on some platforms,
+ * so other platforms will still show the date picker (this is the best we can do) */
+.date-nopicker::-webkit-inner-spin-button,
+.date-nopicker::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
 }
 
 /* copy the form input styling from sakura.css and apply this to search-and-select boxes too */
