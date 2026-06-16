@@ -272,6 +272,7 @@ const app = Vue.createApp({
     UrlDisplay: urlDisplayComponent,
     'v-select': window['vue-select'],
     IconX: { template: "#icon-x" },
+    IconInfo: { template: "#icon-info" },
   },
   data() {
     return {
