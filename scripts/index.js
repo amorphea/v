@@ -535,7 +535,7 @@ const app = Vue.createApp({
       return this.possibleTimezones.map(x => DateUtils.toPrettyTimezone(x))
     },
     themeInfo() {
-      return this.event.theme && ThemesDB.getTheme(this.event.theme);
+      return this.event.theme && ThemesDB.getTheme(this.event.theme) || null;
     },
     themeAppearance() {
       return this.themeInfo?.chooseAppearance(this.event.rng);
