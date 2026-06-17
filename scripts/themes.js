@@ -2,8 +2,15 @@
 
 class ThemesDB {
   static #themeLog = [
-    ThemesDB.#logEntry('2026-01-01', 'nature', null, ['Roboto', 'https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap']),
-    ThemesDB.#logEntry('2026-01-01', 'nightclub', null, ['Roboto', 'https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap']),
+    ThemesDB.#logEntry('2026-01-01', 'nature', null, ['Life Savers', 'https://fonts.googleapis.com/css2?family=Life+Savers:wght@400;700;800&display=swap']),
+    ThemesDB.#logEntry('2026-01-01', 'nature', null, ['Mystery Quest', 'https://fonts.googleapis.com/css2?family=Mystery+Quest&display=swap" rel="stylesheet']),
+    ThemesDB.#logEntry('2026-01-01', 'nature', null, ['Bubblegum Sans', 'https://fonts.googleapis.com/css2?family=Bubblegum+Sans&display=swap" rel="stylesheet" rel="stylesheet']),
+    ThemesDB.#logEntry('2026-01-01', 'nature', null, ['Felipa', 'https://fonts.googleapis.com/css2?family=Felipa&display=swap" rel="stylesheet']),
+    ThemesDB.#logEntry('2026-01-01', 'nature', null, ['Underdog', 'https://fonts.googleapis.com/css2?family=Underdog&display=swap" rel="stylesheet']),
+    ThemesDB.#logEntry('2026-01-01', 'nature', null, ['Lavishly Yours', 'https://fonts.googleapis.com/css2?family=Lavishly+Yours&display=swap" rel="stylesheet']),
+    ThemesDB.#logEntry('2026-01-01', 'nature', null, ['Cabin Sketch', 'https://fonts.googleapis.com/css2?family=Cabin+Sketch:wght@400;700&display=swap" rel="stylesheet']),
+    ThemesDB.#logEntry('2026-01-01', 'nature', null, ['Fredericka the Great', 'https://fonts.googleapis.com/css2?family=Fredericka+the+Great&display=swap" rel="stylesheet']),
+    ThemesDB.#logEntry('2026-01-01', 'nightclub', null, ['Limelight', 'https://fonts.googleapis.com/css2?family=Limelight&display=swap']),
     ThemesDB.#logEntry('2026-01-01', 'nature', ['https://picsum.photos/id/28/1000', ''], null),
     ThemesDB.#logEntry('2026-01-01', 'nature', ['https://picsum.photos/id/118/1000', ''], null),
     ThemesDB.#logEntry('2026-01-01', 'nature', ['https://picsum.photos/id/128/1000', 'color: white; text-shadow: 0 0.2cqw 2cqw hsl(0deg 0% 0% / 0.2), 0 0.4cqw 4cqw hsl(0deg 0% 0% / 0.3), 0 2cqw 8cqw hsl(0deg 0% 0% / 0.3);'], null),
