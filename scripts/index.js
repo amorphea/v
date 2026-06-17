@@ -541,7 +541,7 @@ const app = Vue.createApp({
       return this.themeInfo?.chooseAppearance(this.event.rng);
     },
     eventSquareStyle() {
-      return (this.themeAppearance?.font ? "font-family: '" + this.themeAppearance.font[0] : "';") + (this.themeAppearance?.image ? "background-image: url('" + this.themeAppearance.image + "');");
+      return (this.themeAppearance?.font ? "font-family: '" + this.themeAppearance.font[0] + "';" : "") + (this.themeAppearance?.image ? "background-image: url('" + this.themeAppearance.image + "');" : "");
     }
   },
   asyncComputed: {
