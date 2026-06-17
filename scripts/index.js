@@ -540,6 +540,9 @@ const app = Vue.createApp({
     themeAppearance() {
       return this.themeInfo?.chooseAppearance(this.event.rng);
     },
+    eventSquareStyle() {
+      return (this.themeAppearance?.font ? "font-family: '" + this.themeAppearance.font[0] : "';") + (this.themeAppearance?.image ? "background-image: url('" + this.themeAppearance.image + "');");
+    }
   },
   asyncComputed: {
     async eventStringCompressedEncoded() { return await this.compressAndEncode(this.eventString); },
