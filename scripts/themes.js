@@ -5,6 +5,10 @@ class ThemesDB {
     ThemesDB.#logEntry('2026-01-01', 'nature', null, ['Roboto', 'https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap']),
     ThemesDB.#logEntry('2026-01-01', 'nightclub', null, ['Roboto', 'https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap']),
     ThemesDB.#logEntry('2026-01-01', 'nature', 'https://picsum.photos/id/28/1000', null),
+    ThemesDB.#logEntry('2026-01-01', 'nature', 'https://picsum.photos/id/118/1000', null),
+    ThemesDB.#logEntry('2026-01-01', 'nature', 'https://picsum.photos/id/128/1000', null),
+    ThemesDB.#logEntry('2026-01-01', 'nature', 'https://picsum.photos/id/127/1000?blur=5', null),
+    ThemesDB.#logEntry('2026-01-01', 'nature', 'https://picsum.photos/id/159/1000', null),
     ThemesDB.#logEntry('2026-01-01', 'nightclub', 'https://picsum.photos/id/117/1000', null),
   ];
 
