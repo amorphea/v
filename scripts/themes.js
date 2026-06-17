@@ -1,25 +1,35 @@
 "use strict";
 
 class ThemesDB {
+  static #themeLog = [
+    logEntry('2026-06-17', 'nature', null, ['Roboto', 'https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap']),
+    logEntry('2026-06-17', 'nightclub', null, ['Roboto', 'https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap']),
+  ];
+
+  static #possibleThemes = null;
+
+  static #logEntry(date, name, image, font) {
+    return { date, name, image, font };
+  }
+  
   static getPossibleThemes() {
-    return ['nature', 'nightclub'];
+    // get all distinct theme names. See https://stackoverflow.com/a/33121880
+    return ThemesDB.#possibleThemes || (ThemesDB.#possibleThemes = [...new Set(themeLog.map(x => x.name))]);
   }
 
   static getTheme(name) {
-    switch(name) {
-      case 'nature': return new Theme('nature', [], []);
-      case 'nightclub': return new Theme('nightclub', [], []);
-      default:
-        return new Theme('default', [], []);
-    }
+    const themeInfo = ThemesDB.#themeLog.filter(x => x.name === name);
+    const fonts = themeInfo.filter(x => x.font).map(x => x.font);
+    const images = themeInfo.filter(x => x.image).map(x => x.font);
+    return new Theme(name, images, fonts);
   }
 }
 
 class Theme {
-  constructor(name, backgrounds, fonts) {
+  constructor(name, images, fonts) {
     this.state = Vue.reactive({
       name: name,
-      backgrounds: backgrounds,
+      images: images,
       fonts: fonts,
     });
 
