@@ -333,9 +333,9 @@ const app = Vue.createApp({
     formatTheme(theme, rng) {
       if (!theme) return "";
       if (!rng) return "";
-      if (rng < 0 || rng > 999) return "";
+      if (!/\d\d\d\d-\d\d-\d\d/.test(rng)) return "";
       if (!/^[a-zA-Z\-]+$/.test(theme)) return "";
-      return theme.toLowerCase() + rng;
+      return theme.toLowerCase() + this.formatDate(rng);
     },
     escapeEventStringPart(str) {
       // Unfriendly characters are escaped in the same way as a URI except using '~' rather than '%'.
