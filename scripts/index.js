@@ -35,9 +35,7 @@ class Event {
     function addComputed(name, func) {
       s[name] = Vue.computed(func);
       Object.defineProperty(t, name, {
-        get() {
-          return s[name];
-        },
+        get() { return s[name]; },
       });
     }
 
