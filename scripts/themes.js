@@ -14,7 +14,7 @@ class ThemesDB {
   
   static getPossibleThemes() {
     // get all distinct theme names. See https://stackoverflow.com/a/33121880
-    return ThemesDB.#possibleThemes || (ThemesDB.#possibleThemes = [...new Set(themeLog.map(x => x.name))]);
+    return ThemesDB.#possibleThemes || (ThemesDB.#possibleThemes = [...new Set(ThemesDB.#themeLog.map(x => x.name))]);
   }
 
   static getTheme(name) {
