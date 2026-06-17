@@ -33,7 +33,7 @@ class Theme {
   }
 
   chooseAppearance(seedDate) {
-    if (!/\d\d\d\d-\d\d-\d\d/.test('2026-04-10')) return null;
+    if (!/\d\d\d\d-\d\d-\d\d/.test(seedDate)) return null;
     
     const rng = new DeterministicRandom(seedDate);
     
