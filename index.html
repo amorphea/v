@@ -17,7 +17,7 @@
 	<body>
 		<div id="app">
 			<teleport to="head">
-				<link :href="themeAppearance.font[1]" rel="stylesheet">
+				<link :href="themeAppearance?.font[1]" rel="stylesheet">
 			</teleport>
 			<main>
 				<section v-if="urlHash" class="section-event-display">
