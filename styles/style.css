@@ -63,6 +63,15 @@ input {
 	background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
+	box-shadow:
+		0 0.2cqw 0.2cqw hsl(0deg 0% 0% / 0.08),
+		0 0.4cqw 0.4cqw hsl(0deg 0% 0% / 0.08),
+		0 0.8cqw 0.8cqw hsl(0deg 0% 0% / 0.08),
+		0 1.6cqw 1.6cqw hsl(0deg 0% 0% / 0.08),
+		0 2.0cqw 3.2cqw hsl(0deg 0% 0% / 0.1),
+		0 4.0cqw 6.4cqw hsl(0deg 0% 0% / 0.1),
+		0 6.0cqw 12.8cqw hsl(0deg 0% 0% / 0.1),
+		0 8.0cqw 25.6cqw hsl(0deg 0% 0% / 0.15);
 }
 .event-square > * {
 	display: flex;
