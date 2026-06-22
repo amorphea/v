@@ -251,6 +251,10 @@ input {
 }
 .floating-regenerate-button {
 	position: fixed;
+	bottom: 1rem;
+    left: 1rem;
+    aspect-ratio: 1;
+    margin: 0;
 }
 
 /* attempt to hide the native date picker. this only works on some platforms,
