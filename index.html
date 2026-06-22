@@ -96,7 +96,7 @@
 						</div>
 					</div>
 				</section>
-				<links-section v-if="urlHash"></links-section>
+				<links-section v-if="urlHash" event-url="eventUrl" event-url-smallest-encoded="eventUrlSmallestEncoded"></links-section>
 				<section class="section-edit">
 					<details>
 						<summary v-if="urlHash" class="h1" v-cloak>Edit</summary>
@@ -184,7 +184,7 @@
 						</form>
 					</details>
 				</section>
-				<links-section v-if="!urlHash"></links-section>
+				<links-section v-if="!urlHash" event-url="eventUrl" event-url-smallest-encoded="eventUrlSmallestEncoded"></links-section>
 				<section class="section-faq">
 					<details>
 						<summary class="h1">FAQ</summary>
