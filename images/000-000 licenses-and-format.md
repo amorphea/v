@@ -5,7 +5,7 @@ relevant legal documents**
 **Images are named according to the following format:**\
 `<group>-<number> <author>-<year> <license> <size>.<format>`
 
-Everyone who contributes images should choose a unique `<group` number, and then number all images
+Everyone who contributes images should choose a unique `<group>` number, and then number all images
 images they contribute using `<number>`. AI generated images should not be contributed. Each image
 should be attributed to an `<author>` (and a `<year>`) who produced the image. Images should generally
 be 1080 pixels tall by 1080 pixels wide (i.e. `<size>` = `1080`), and should generally be in `.jpg`
