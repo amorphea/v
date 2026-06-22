@@ -280,8 +280,8 @@ const linksSectionComponent = {
     UrlDisplay: urlDisplayComponent,
   },
   props: {
-    eventUrl: String,
-    eventUrlSmallestEncoded: String,
+    eventUrl: EventUrlInfo,
+    eventUrlSmallestEncoded: EventUrlInfo,
   },
 };
 
