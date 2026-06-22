@@ -244,6 +244,17 @@ class DateUtils {
   }
 }
 
+const linksSectionComponent = {
+  template: "#links-section",
+  components: {
+    IconClipboard: { template: "#url-display" },
+  },
+  props: {
+    eventUrl: String,
+    eventUrlSmallestEncoded: String,
+  },
+};
+
 const urlDisplayComponent = {
   template: "#url-display",
   components: {
@@ -282,7 +293,7 @@ const urlDisplayComponent = {
 
 const app = Vue.createApp({
   components: {
-    UrlDisplay: urlDisplayComponent,
+    UrlDisplay: linksSectionComponent,
     'v-select': window['vue-select'],
     IconX: { template: "#icon-x" },
     IconInfo: { template: "#icon-info" },
