@@ -278,7 +278,7 @@ const linksSectionComponent = {
   template: "#links-section",
   components: {
     UrlDisplay: urlDisplayComponent,
-    IconInfo: { template: "#icon-info" },
+    IconChevronRight: { template: "#icon-chevron-right" },
   },
   props: {
     eventUrl: EventUrlInfo,
@@ -299,6 +299,7 @@ const app = Vue.createApp({
     IconX: { template: "#icon-x" },
     IconInfo: { template: "#icon-info" },
     IconRepeat: { template: "#icon-repeat" },
+    IconChevronRight: { template: "#icon-chevron-right" },
   },
   data() {
     return {
