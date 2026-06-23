@@ -539,23 +539,28 @@ input {
 	display: flex;
 	flex-direction: row;
 	flex-wrap: nowrap;
+	align-items: center;
+}
+.footer-content .footer-text {
+	flex-grow: 1;
 }
 .footer-content .footer-icon {
 	display: flex;
 	padding: 0;
 	margin: 0;
-	width: 4rem;
-	min-width: 4rem;
-	max-width: 4rem;
-	height: 4rem;
-	min-height: 4rem;
-	max-height: 4rem;
+	flex-basis: auto;
+	width: 5rem;
+	min-width: 5rem;
+	max-width: 5rem;
+	height: 5rem;
+	min-height: 5rem;
+	max-height: 5rem;
 	box-sizing: border-box;
 	align-items: center;
     justify-content: center;
 }
 .footer-content .footer-icon svg {
-	border-radius: 6px;
-	height: 1.5rem;
-	width: 1.5rem;
+	border-radius: 0.5rem;
+    height: calc((325 / 512) * 4rem);
+    width: calc((512 / 512) * 4rem);
 }
