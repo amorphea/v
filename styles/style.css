@@ -333,7 +333,7 @@ input {
 	transition: transform 0.25s ease-out, visibility 0.25s;
 }
 .section-collapsible.section-edit .section-heading-toggle:checked + .section-heading-toggle-label + .section-collapse button.icon-button.floating-regenerate-button {
-	display: flex;
+	visibility: visible;
 	transform: none;
 }
 .theme-rng-regenerable svg.bi-arrow-repeat {
