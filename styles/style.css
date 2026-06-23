@@ -8,6 +8,11 @@ body {
 	scrollbar-color: #a57bb0 #f1f1f1;
 }
 
+main {
+	max-width: 38em;
+    margin: auto;
+}
+
 textarea { 
 	resize: block;
 	height: 10em;
