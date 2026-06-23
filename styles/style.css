@@ -183,7 +183,7 @@ input {
 .section-collapsible .section-collapse {
 	grid-area: collapse;
 	height: 0;
-	overflow: hidden;
+	overflow: clip;
 	transition: height .25s ease-in-out;
 }
 .section-collapsible .section-heading-toggle:checked + .section-heading-toggle-label + .section-collapse {
@@ -203,8 +203,13 @@ input {
 .section-collapsible.section-links .links-list {
 	grid-area: collapse;
 }
+.section-collapsible.section-links .links-list .url-stats {
+	height: 0;
+    overflow: clip;
+	transition: height .25s ease-in-out;
+}
 .section-collapsible.section-links .section-heading-toggle:checked + .section-heading-toggle-label + .links-list .url-stats {
-	background-color: red; /* test value */
+	height: auto;
 }
 
 .section-edit {
@@ -282,7 +287,7 @@ input {
 .timezone-details {
 	grid-area: details;
 	height: 0;
-	overflow: hidden;
+	overflow: clip;
 	transition: height .25s ease-in-out;
 	margin-block-end: 10px;
 }
