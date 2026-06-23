@@ -9,7 +9,7 @@ body {
 }
 
 .main {
-	margin-block-end: 3rem; /* for some reason this works in ".main {}" but not in "main {}". no idea why */
+	margin-block-end: 5rem; /* for some reason this works in ".main {}" but not in "main {}". no idea why */
 }
 
 main, .footer-content {
