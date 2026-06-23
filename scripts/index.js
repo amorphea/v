@@ -278,6 +278,7 @@ const linksSectionComponent = {
   template: "#links-section",
   components: {
     UrlDisplay: urlDisplayComponent,
+    IconInfo: { template: "#icon-info" },
   },
   props: {
     eventUrl: EventUrlInfo,
