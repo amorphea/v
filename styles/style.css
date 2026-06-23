@@ -144,8 +144,6 @@ input {
 	line-height: 1.1;
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
 	font-weight: 700;
-	margin-top: 0.5rem;
-	margin-bottom: 0.5rem;
 	overflow-wrap: break-word;
 	word-wrap: break-word;
 	-ms-word-break: break-all;
@@ -156,12 +154,12 @@ input {
 .section-collapsible {
 	display: grid;
 	column-gap: 0.8rem;
-	row-gap: 0.8rem;
+	row-gap: 1rem;
 	grid-template-columns: max-content min-content 1fr;
 	grid-template-areas:
 	    "heading toggle empty"
 	    "collapse collapse collapse";
-	margin-top: 1rem;
+	margin-top: 2rem;
 }
 .section-collapsible .section-heading {
 	grid-area: heading;
@@ -176,9 +174,9 @@ input {
 }
 .section-collapsible .section-heading-toggle-label {
 	grid-area: toggle;
-	width: calc(3em + 12px);
-	min-width: calc(3em + 12px);
-	max-width: calc(3em + 12px);
+	width: 2.35em;
+	min-width: 2.35em;
+	max-width: 2.35em;
 }
 .section-collapsible .section-collapse {
 	grid-area: collapse;
