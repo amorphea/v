@@ -13,6 +13,12 @@ main {
     margin: auto;
 }
 
+footer {
+	background-color: #a57bb0;
+	color: white;
+	font-size: 0.5em;
+}
+
 textarea { 
 	resize: block;
 	height: 10em;
