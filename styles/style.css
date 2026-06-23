@@ -8,8 +8,12 @@ body {
 	scrollbar-color: #a57bb0 #f1f1f1;
 }
 
+main {
+	margin-block-end: 3rem;
+}
+
 main, .footer-content {
-	max-width: 38em;
+	max-width: 42rem;
     margin: auto;
 }
 
