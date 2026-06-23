@@ -25,32 +25,6 @@ footer {
 	padding-bottom: 2rem;
 }
 
-.footer-content {
-	padding-inline: 13px;
-	display: flex;
-	flex-direction: row;
-	flex-wrap: nowrap;
-}
-.footer-content .footer-icon {
-	display: flex;
-	padding: 0;
-	margin: 0;
-	width: 4rem;
-	min-width: 4rem;
-	max-width: 4rem;
-	height: 4rem;
-	min-height: 4rem;
-	max-height: 4rem;
-	box-sizing: border-box;
-	align-items: center;
-    justify-content: center;
-}
-.footer-content .footer-icon svg {
-	border-radius: 6px;
-	height: 1.5rem;
-	width: 1.5rem;
-}
-
 textarea { 
 	resize: block;
 	height: 10em;
@@ -558,4 +532,30 @@ input {
 }
 .section-faq p {
 	font-size: 0.8em;
+}
+
+.footer-content {
+	padding-inline: 13px;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+}
+.footer-content .footer-icon {
+	display: flex;
+	padding: 0;
+	margin: 0;
+	width: 4rem;
+	min-width: 4rem;
+	max-width: 4rem;
+	height: 4rem;
+	min-height: 4rem;
+	max-height: 4rem;
+	box-sizing: border-box;
+	align-items: center;
+    justify-content: center;
+}
+.footer-content .footer-icon svg {
+	border-radius: 6px;
+	height: 1.5rem;
+	width: 1.5rem;
 }
