@@ -118,8 +118,8 @@
 				<links-section v-if="urlHash" :event-url="eventUrl" :event-url-smallest-encoded="eventUrlSmallestEncoded"></links-section>
 				<section class="section-collapsible section-edit">
 					<span v-if="urlHash" class="section-heading" v-cloak>Edit</span>
-					<input v-if="urlHash" id="section-edit-collapse-button" class="section-heading-toggle" type="checkbox" aria-label="Expand or collapse editor" title="Expand/collapse" v-on:keyup.enter="(event) => event.target.checked = !event.target.checked">
-					<label v-if="urlHash" for="section-edit-collapse-button" class="icon-button icon-button-light section-heading-toggle-label">
+					<input v-if="urlHash" id="section-edit-collapse-button" class="section-heading-toggle" type="checkbox" aria-label="Expand or collapse editor" v-on:keyup.enter="(event) => event.target.checked = !event.target.checked">
+					<label v-if="urlHash" for="section-edit-collapse-button" class="icon-button icon-button-light section-heading-toggle-label" title="Expand/collapse">
 						<icon-chevron-right></icon-chevron-right>
 					</label>
 					<span v-if="!urlHash" class="h1">Create Event</span>
@@ -157,8 +157,8 @@
 								<label for="timezone">Timezone</label>
 								<div class="timezone-input-collapsible">
 									<v-select id="timezone" name="timezone" class="search-and-select-box" v-model="event.prettyTimezone" :options="possiblePrettyTimezones"></v-select>
-									<input id="timezone-details-button" class="timezone-details-toggle" type="checkbox" aria-label="Expand or collapse timezone details" title="Expand/collapse timezone details" v-on:keyup.enter="(event) => event.target.checked = !event.target.checked">
-									<label for="timezone-details-button" class="icon-button icon-button-light timezone-details-toggle-label">
+									<input id="timezone-details-button" class="timezone-details-toggle" type="checkbox" aria-label="Expand or collapse timezone details" v-on:keyup.enter="(event) => event.target.checked = !event.target.checked">
+									<label for="timezone-details-button" class="icon-button icon-button-light timezone-details-toggle-label" title="Expand/collapse timezone details">
 										<icon-info></icon-info>
 									</label>
 									<div class="timezone-details">
@@ -208,8 +208,8 @@
 				<links-section v-if="!urlHash" :event-url="eventUrl" :event-url-smallest-encoded="eventUrlSmallestEncoded"></links-section>
 				<section class="section-collapsible section-faq">
 					<span class="section-heading">FAQ</span>
-					<input id="section-faq-collapse-button" class="section-heading-toggle" type="checkbox" aria-label="Expand or collapse frequently asked questions" title="Expand/collapse" v-on:keyup.enter="(event) => event.target.checked = !event.target.checked">
-					<label for="section-faq-collapse-button" class="icon-button icon-button-light section-heading-toggle-label">
+					<input id="section-faq-collapse-button" class="section-heading-toggle" type="checkbox" aria-label="Expand or collapse frequently asked questions" v-on:keyup.enter="(event) => event.target.checked = !event.target.checked">
+					<label for="section-faq-collapse-button" class="icon-button icon-button-light section-heading-toggle-label" title="Expand/collapse">
 						<icon-chevron-right></icon-chevron-right>
 					</label>
 					<div class="section-collapse">
@@ -311,8 +311,8 @@
 		<template id="links-section">
 			<section class="section-collapsible section-links">
 				<span class="section-heading">Links</span>
-				<input id="section-links-collapse-button" class="section-heading-toggle" type="checkbox" v-on:keyup.enter="(event) => event.target.checked = !event.target.checked">
-				<label for="section-links-collapse-button" class="icon-button icon-button-light section-heading-toggle-label">
+				<input id="section-links-collapse-button" class="section-heading-toggle" type="checkbox" aria-label="Expand or collapse link details" v-on:keyup.enter="(event) => event.target.checked = !event.target.checked">
+				<label for="section-links-collapse-button" class="icon-button icon-button-light section-heading-toggle-label" title="Expand/collapse">
 					<icon-chevron-right></icon-chevron-right>
 				</label>
 				<div class="links-list">
