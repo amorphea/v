@@ -1,3 +1,11 @@
+/*
+	By default, the event square is sized dynamically to fit the user's device (both
+	horizontally and vertically). This is great usually, but unhelpful for accessibility,
+	as it makes it impossible to zoom in on the event square (on a desktop device; mobile
+	users can still pinch to zoom). This CSS file can be included programatically to
+	override the default styling and force the event square to use a size based on rem
+	units, so that the user can zoom as normal.
+*/
 .section-event-display {
 	width: 42rem !important;
 	min-width: 42rem !important;
