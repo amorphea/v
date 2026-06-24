@@ -566,7 +566,7 @@ input {
 }
 .footer-content .footer-text a {
 	color: white;
-	border-bottom: none;
+	border-bottom: 1px solid white;
 }
 .footer-content .footer-text a:hover {
 	color: white;
@@ -574,7 +574,7 @@ input {
 }
 .footer-content .footer-text a:visited {
 	color: white;
-	border-bottom: none;
+	border-bottom: 1px solid white;
 }
 .footer-content .footer-icons-area {
 	flex: 0 100 max-content;
