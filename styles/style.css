@@ -583,3 +583,7 @@ input {
 	background: white;
 	border-radius: 10em;
 }
+.footer-content a.footer-icon:hover, .footer-content a.footer-icon:visited {
+	color: inherit;
+    border-bottom: inherit;
+}
