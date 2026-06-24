@@ -563,6 +563,9 @@ input {
 }
 .footer-content .footer-text {
 	flex: 1 1 20rem;
+	display: flex;
+    flex-flow: column nowrap;
+    gap: 1rem;
 }
 .footer-content .footer-text a {
 	color: white;
