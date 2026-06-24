@@ -292,7 +292,7 @@
 						</div>
 						<div class="footer-links">
 							<span><a href="https://github.com/amorphea/v">Source code</a></span>
-							<span><a>Enable zoom</a></span>
+							<span><a v-on:click="zoomMode = !zoomMode" v-text="zoomMode ? 'Disable zoom' : 'Enable zoom'"></a></span>
 							<span>&copy; Copyright 2026 amorphea</span>
 						</div>
 					</div>
