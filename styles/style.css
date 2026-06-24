@@ -587,9 +587,18 @@ input {
 	position: relative;
 }
 .footer-content .footer-links > span:before {
-	content: "•";
-	position: absolute;
-	left: calc(-0.7rem - 0.15em);
+	content: "";
+    position: absolute;
+    background-color: white;
+    border-radius: 1em;
+    width: 0.4rem;
+    height: 0.4rem;
+    left: calc(-0.7rem + -0.2rem);
+	/* vertically center the bullet */
+    margin-top: auto;
+    margin-bottom: auto;
+    top: 50%;
+    bottom: 50%;
 }
 .footer-content .footer-icons-area {
 	flex: 0 100 max-content;
