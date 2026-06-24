@@ -584,6 +584,7 @@ input {
 	align-items: center;
 	align-content: center;
 	justify-content: center;
+	column-gap: 1rem;
 }
 .footer-content .footer-icon {
 	display: flex;
