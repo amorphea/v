@@ -36,26 +36,7 @@
 		<div id="app">
 			<teleport to="head">
 				<link :href="themeAppearance?.font?.url" rel="stylesheet">
-				<style v-if="zoomMode">
-					.section-event-display {
-						width: 42rem !important;
-						min-width: 42rem !important;
-						max-width: 42rem !important;
-					}
-					.event-display {
-						width: calc(min(100cqw, 42rem)) !important;
-						height: calc(min(100cqw, 42rem)) !important;
-					}
-					.event-square {
-						width: 100% !important;
-					}
-					.calendar-buttons-display {
-						height: calc(min(100cqw, 42rem) * 0.2) !important;
-					}
-					.calendar-buttons {
-						transform: scale(calc(var(--cal-scale) * 1.1 * (1 / 0.8))) !important;
-					}
-				</style>
+				<link v-if="zoomMode" href="styles/zoom-mode.css?v=1.0" rel="stylesheet">
 			</teleport>
 			<main class="main">
 				<section v-if="urlHash" class="section-event-display">
