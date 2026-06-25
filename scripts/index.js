@@ -17,59 +17,6 @@
 
 "use strict";
 
-class EventUrlInfo {
-  constructor(urlBase, urlHash) {
-    this.urlBase = urlBase;
-    this.urlHash = urlHash;
-    this.fullUrl = this.urlBase + '#' + this.urlHash;
-    this.charCount = this.fullUrl.length;
-    this.compatibleWithIG = this.charCount <= 245;
-    this.ascii = /^[\x20-\x7E]*$/.test(this.urlHash);
-  }
-}
-
-const urlDisplayComponent = {
-  template: "#url-display",
-  components: {
-    IconClipboard: { template: "#icon-clipboard" },
-    IconClipboardCheck: { template: "#icon-clipboard-check" },
-    IconHash: { template: "#icon-hash" },
-  },
-  props: {
-    url: EventUrlInfo
-  },
-  data() {
-    return {
-      copied: false
-    }
-  },
-  methods: {
-    copyUrlToClipboard() {
-      navigator.clipboard.writeText(this.url.fullUrl);
-      this.copied = true;
-      setTimeout(() => { this.copied = false; }, 2000);
-    },
-    removeNewlinesFromManualCopy() {
-      navigator.clipboard.readText()
-        .then(x => x?.replace(/\r|\n/g, ''))
-        .then(x => navigator.clipboard.writeText(x))
-        .catch(x => {});
-    }
-  }
-};
-
-const linksSectionComponent = {
-  template: "#links-section",
-  components: {
-    UrlDisplay: urlDisplayComponent,
-    IconChevronRight: { template: "#icon-chevron-right" },
-  },
-  props: {
-    eventUrl: EventUrlInfo,
-    eventUrlSmallestEncoded: EventUrlInfo,
-  },
-};
-
 const app = Vue.createApp({
   components: {
     LinksSection: linksSectionComponent,
