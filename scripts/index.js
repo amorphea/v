@@ -85,8 +85,8 @@ class Event {
     //addWriteableComputed('endTime', () => s.endDetails && s.endDetails.hh + ":" + s.endDetails.mm, newValue => { s.endDatetime = s.endDate + "T" + newValue });
     addComputed('validRsvpDate', () => s.rsvpDetails && s.rsvpDetails.yyyy + "-" + s.rsvpDetails.MM + "-" + s.rsvpDetails.dd);
 
-    s.startDateObj = Vue.computed(() => s.startDetails && new Date(+s.startDetails.yyyy, +s.startDetails.MM - 1 || 0, +s.startDetails.dd || 0, +s.startDetails.hh || 0, +s.startDetails.mm || 0));
-    s.endDateObj = Vue.computed(() => s.endDetails && new Date(+s.endDetails.yyyy, +s.endDetails.MM - 1 || 0, +s.endDetails.dd || 0, +s.endDetails.hh || 0, +s.endDetails.mm || 0));
+    addComputed('startDateObj', () => s.startDetails && new Date(+s.startDetails.yyyy, +s.startDetails.MM - 1 || 0, +s.startDetails.dd || 0, +s.startDetails.hh || 0, +s.startDetails.mm || 0));
+    addComputed('endDateObj', () => s.endDetails && new Date(+s.endDetails.yyyy, +s.endDetails.MM - 1 || 0, +s.endDetails.dd || 0, +s.endDetails.hh || 0, +s.endDetails.mm || 0));
     s.rsvpDateObj = Vue.computed(() => s.rsvpDetails && new Date(+s.rsvpDetails.yyyy, +s.rsvpDetails.MM - 1 || 0, +s.rsvpDetails.dd || 0, +s.rsvpDetails.hh || 23, +s.rsvpDetails.mm || 59));
 
     addComputed('multiYear', () => s.startDetails && s.endDetails && (s.startDetails.yyyy !== s.endDetails.yyyy));
