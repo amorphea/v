@@ -212,6 +212,8 @@ class Event {
 }
 
 class DateUtils {
+  // Just use Intl library, not Temporal, as browser support for Temporal isn't good enough yet
+  
   static getLocalTimeZone() {
     // Returns e.g. Australia/Hobart
     return new Intl.DateTimeFormat().resolvedOptions().timeZone;
