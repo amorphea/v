@@ -145,8 +145,8 @@ class Event {
       (newValue) => s.timezone = DateUtils.fromPrettyTimezone(newValue)
     );
 
-    s.utcStartDateObj = Vue.computed(() => s.startDate && s.startTime && s.timezone && DateUtils.combineDatetimeAndTimezoneAsUTC(s.startDatetime, s.timezone));
-    s.utcEndDateObj = Vue.computed(() => s.endDate && s.endTime && s.timezone && DateUtils.combineDatetimeAndTimezoneAsUTC(s.endDatetime, s.timezone));
+    addComputed('utcStartDateObj', () => s.startDate && s.startTime && s.timezone && DateUtils.combineDatetimeAndTimezoneAsUTC(s.startDatetime, s.timezone));
+    addComputed('utcEndDateObj', () => s.endDate && s.endTime && s.timezone && DateUtils.combineDatetimeAndTimezoneAsUTC(s.endDatetime, s.timezone));
 
     addComputed('startTimezoneOffset', () => s.utcStartDateObj && DateUtils.printTimeZone(s.timezone, 'longOffset', undefined, s.utcStartDateObj));
     addComputed('endTimezoneOffset', () => s.utcEndDateObj && DateUtils.printTimeZone(s.timezone, 'longOffset', undefined, s.utcEndDateObj));
