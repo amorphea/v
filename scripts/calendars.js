@@ -43,14 +43,18 @@ const calendarButtonsComponent = {
 		},
 	},
 	computed: {
+		// See: https://github.com/InteractionDesignFoundation/add-event-to-calendar-docs/blob/main/services/google.md
+		// See: https://stackoverflow.com/questions/10488831/link-to-add-to-google-calendar
 		googleCalendarLink() {
-			return 'https://calendar.google.com/calendar/r/eventedit?' + this.googleCalendarLinkParams; // can also use 'https://calendar.google.com/calendar/render?action=TEMPLATE&'
+			return 'https://calendar.google.com/calendar/r/eventedit?' + this.googleCalendarLinkParams;
 		},
 		mobileGoogleCalendarLink() {
-			return 'https://calendar.google.com/calendar/gp#~calendar:view=e&bm=1?' + this.googleCalendarLinkParams;
+			return 'https://calendar.google.com/calendar/render?action=TEMPLATE&' + this.googleCalendarLinkParams; // previously tried: https://calendar.google.com/calendar/gp#~calendar:view=e&bm=1?
+		},
+		mobileGoogleCalendarIntent() {
+			return 'intent://https://calendar.google.com/calendar/render?action=TEMPLATE&' + this.googleCalendarLinkParams + '#Intent;scheme=https;package=com.google.android.calendar;S.browser_fallback_url=' + this.encode('https://calendar.google.com/calendar/render?action=TEMPLATE&' + this.googleCalendarLinkParams) + ';end';
 		},
 		googleCalendarLinkParams() {
-			// See: https://github.com/InteractionDesignFoundation/add-event-to-calendar-docs/blob/main/services/google.md
 			
 			let start = this.event.utcStartDateObj || this.event.startDateObj;
 			let end = this.event.utcEndDateObj || this.event.endDateObj;
