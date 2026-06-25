@@ -15,6 +15,8 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with UtilV. If not, see <https://www.gnu.org/licenses/>.
 
+"use strict";
+
 class DateUtils {
   // Just use Intl library, not Temporal, as browser support for Temporal isn't good enough yet
   
