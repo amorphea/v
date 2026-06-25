@@ -178,7 +178,7 @@ input {
 
 .calendar-buttons-heading {
 	text-transform: uppercase;
-	font-size: 2cqw;
+	font-size: 1.6cqw;
 	font-weight: bold;
 }
 .calendar-buttons-list {
@@ -190,14 +190,26 @@ input {
 }
 .calendar-button {
 	background-color: white;
-	border-radius: 10cqw;
-	font-size: 4cqw;
+	border-radius: 2cqw;
+	font-size: 2cqw;
+	padding: 0.5cqw 1.5cqw 0.8cqw 1.5cqw;
+	color: #4a4a4a;
+	white-space: nowrap;
+    word-break: keep-all;
+    text-wrap: nowrap;
+    text-wrap-mode: nowrap;
 	box-shadow:
 		0 0.1cqw 0.2cqw hsl(0deg 0% 0% / 0.1),
 		0 0.3cqw 0.4cqw hsl(0deg 0% 0% / 0.1),
 		0 0.4cqw 0.8cqw hsl(0deg 0% 0% / 0.1),
 		0 1.0cqw 1.6cqw hsl(0deg 0% 0% / 0.1),
 		0 2.0cqw 3.2cqw hsl(0deg 0% 0% / 0.15);
+}
+.calendar-button:visited {
+	color: #4a4a4a;
+}
+.calendar-button:hover {
+	color: #a57bb0;
 }
 
 .section-heading {
