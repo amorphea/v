@@ -202,14 +202,20 @@ input {
 		0 0.1cqw 0.2cqw hsl(0deg 0% 0% / 0.1),
 		0 0.3cqw 0.4cqw hsl(0deg 0% 0% / 0.1),
 		0 0.4cqw 0.8cqw hsl(0deg 0% 0% / 0.1),
-		0 1.0cqw 1.6cqw hsl(0deg 0% 0% / 0.1),
-		0 2.0cqw 3.2cqw hsl(0deg 0% 0% / 0.15);
+		0 1.0cqw 1.6cqw hsl(0deg 0% 0% / 0.1);
 }
 .calendar-button:visited {
 	color: #4a4a4a;
 }
 .calendar-button:hover {
 	color: #a57bb0;
+	border-bottom: none;
+	box-shadow:
+		0 0.1cqw 0.2cqw hsl(0deg 0% 0% / 0.1),
+		0 0.3cqw 0.4cqw hsl(0deg 0% 0% / 0.1),
+		0 0.4cqw 0.8cqw hsl(0deg 0% 0% / 0.1),
+		0 1.0cqw 1.6cqw hsl(0deg 0% 0% / 0.1),
+		0 2.0cqw 3.2cqw hsl(0deg 0% 0% / 0.15);
 }
 
 .section-heading {
