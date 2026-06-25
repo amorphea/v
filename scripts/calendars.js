@@ -49,6 +49,9 @@ const calendarButtonsComponent = {
 		},
 	},
 	computed: {
+		isAndroid() {
+			return navigator.userAgent.toLowerCase().indexOf('android') > -1;
+		},
 		// See: https://github.com/InteractionDesignFoundation/add-event-to-calendar-docs/blob/main/services/google.md
 		// See: https://stackoverflow.com/questions/10488831/link-to-add-to-google-calendar
 		googleCalendarLink() {
