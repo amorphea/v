@@ -147,20 +147,7 @@ input {
 	height: calc(min(100cqw, 100svh, 42rem) * 0.2);
 	margin-block-end: 3.75rem;
 }
-@property --cal-scale-numerator { syntax: "<length>"; initial-value: 0px; inherits: false; }
-@property --cal-scale-denominator { syntax: "<length>"; initial-value: 0px; inherits: false; }
 .calendar-buttons {
-	/*
-	We want to set transform: scale(calc(100cqw / 33.777rem * 1.1)), however dividing one length
-	by another isn't supported well by all browsers (e.g. Firefox mobile), so instead we use some
-	complicated length variables as a workaround (see: https://stackoverflow.com/a/79734800)
-	*/
-	--cal-scale-numerator: 100cqw;
-	--cal-scale-denominator: 33.777rem;
-	--cal-scale: calc(tan(atan2(var(--cal-scale-numerator), var(--cal-scale-denominator))));
-	transform: scale(calc(var(--cal-scale) * 1.1));
-	min-width: max-content;
-	height: 0; /* if the height was not zero, then the extra size would mess up the scale transformation on some screen sizes*/
 	display: flex;
 	flex-flow: column nowrap;
 	gap: 1cqw;
@@ -175,9 +162,6 @@ input {
 	}
 	.event-square {
 		width: 100%;
-	}
-	.calendar-buttons {
-		transform: scale(calc(var(--cal-scale) * 1.1 * (1 / 0.8)));
 	}
 }
 
