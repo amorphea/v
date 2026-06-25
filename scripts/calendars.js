@@ -44,8 +44,13 @@ const calendarButtonsComponent = {
 	},
 	computed: {
 		googleCalendarLink() {
+			return 'https://calendar.google.com/calendar/r/eventedit?' + this.googleCalendarLinkParams(); // can also use 'https://calendar.google.com/calendar/render?action=TEMPLATE&'
+		},
+		mobileGoogleCalendarLink() {
+			return 'https://calendar.google.com/calendar/gp#~calendar:view=e&bm=1?' + this.googleCalendarLinkParams();
+		},
+		googleCalendarLinkParams() {
 			// See: https://github.com/InteractionDesignFoundation/add-event-to-calendar-docs/blob/main/services/google.md
-			const prefix = 'https://calendar.google.com/calendar/r/eventedit?'; // can also use 'https://calendar.google.com/calendar/render?action=TEMPLATE&'
 			
 			let start = this.event.utcStartDateObj || this.event.startDateObj;
 			let end = this.event.utcEndDateObj || this.event.endDateObj;
@@ -60,13 +65,12 @@ const calendarButtonsComponent = {
 				? this.encodeCompactDate(start) + "/" + this.encodeCompactDate(end)
 				: this.encodeCompactDateTime(start) + "/" + this.encodeCompactDateTime(end);
 			
-			return prefix +
+			return
 				'text=' + this.encode(this.event.title) +
 				"&dates=" + dateString +
 				(this.event.timezone ? "&ctz=" + this.encode(this.event.timezone) : "") +
 				(this.event.location ? "&location=" + this.encode(this.event.location) : "") +
 				((this.event.description || this.event.rsvpString) ? "&details=" + this.encode(this.joinTruthyStrings("\r\n\r\n", this.event.rsvpString, this.event.description)) : "");
 		},
-		
 	}
 };
