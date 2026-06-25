@@ -311,12 +311,12 @@
 		</div>
 		<template id="calendar-buttons">
 			<div>
-				<div>
+				<div class="calendar-buttons-heading">
 					Add to calendar
 				</div>
-				<div>
-					<a v-if="!isAndroid" :href="googleCalendarLink">Google calendar</a>
-					<a v-if="isAndroid" :href="mobileGoogleCalendarIntent">Google calendar</a>
+				<div class="calendar-buttons-list">
+					<a v-if="!isAndroid" :href="googleCalendarLink" class="calendar-button">Google Calendar</a>
+					<a v-if="isAndroid" :href="mobileGoogleCalendarIntent" class="calendar-button">Google Calendar</a>
 				</div>
 			</div>
 		</template>
