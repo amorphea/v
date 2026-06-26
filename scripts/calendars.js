@@ -32,12 +32,25 @@ const calendarButtonsComponent = {
 		encode(str) {
 			return encodeURIComponent(str);
 		},
-		encodeGoogleDate(dateISOStr, isUTC) {
-			return dateISOStr ? this.encode(dateISOStr.replace(/T.*$/, isUTC ? "Z" : "").replace(/-/g, "")) : "";
+		encodeGoogleDate(date, isZoned, includeTime) {
+			if (isZoned) return includeTime ? this.encodeZonedGoogleDateTime(date) : this.encodeZonedGoogleDate(date);
+			else return includeTime ? this.encodeWallClockGoogleDateTime(date) : encodeWallClockGoogleDate(date);
 		},
-		encodeGoogleDateTime(dateISOStr, isUTC) {
+		encodeWallClockGoogleDate(date) {
+			// Example: 20260626
+			return date ? DateUtils.formatLocalISOTime(date).replace(/T.*$/, "").replace(/-/g, "") : "";
+		},
+		encodeZonedGoogleDate(date) {
+			// Example: 20260626Z
+			return date ? date.toISOString().replace(/T.*$/, "Z").replace(/-/g, "") : "";
+		},
+		encodeWallClockGoogleDateTime(date) {
+			// Example: 20260626T114500
+			return date ? DateUtils.formatLocalISOTime(date).replace(/\.\d\d\d/, "").replace(/-|:/g, "").replace(/Z$/, "") : "";
+		},
+		encodeZonedGoogleDateTime(date) {
 			// Example: 20260626T114500Z
-			return dateISOStr ? this.encode(dateISOStr.replace(/\.\d\d\d/, "").replace(/-|:/g, "").replace(/Z$/, isUTC ? "Z" : "")) : "";
+			return date ? date.toISOString().replace(/\.\d\d\d/, "").replace(/-|:/g, "") : "";
 		},
 		encodeOutlookDateTime(dateISOStr) {
 			// Example: 2026-06-26T11%3A45%3A00
@@ -88,8 +101,8 @@ const calendarButtonsComponent = {
 		googleCalendarLinkParams() {
 			let start = this.event.utcStartDateObj || this.event.startDateObj;
 			let end = this.event.utcEndDateObj || this.event.endDateObj;
-			let startIsUtc = !!this.event.utcStartDateObj;
-			let endIsUtc = !!this.event.utcEndDateObj;
+			let startIsZoned = !!this.event.utcStartDateObj; // is the start time a 'zoned' time (i.e. one with a timezone) or a 'wall-clock' time?
+			let endIsZoned = !!this.event.utcEndDateObj; // is the end time a 'zoned' time (i.e. one with a timezone) or a 'wall-clock' time?
 			
 			if (!start || !end || !this.event.title) return null; // these parameters are required for google calendar
 
@@ -98,13 +111,8 @@ const calendarButtonsComponent = {
 				end = new Date(end);
 				end.setDate(end.getDate() + 1);
 			}
-
-			const startISOStr = startIsUtc ? start.toISOString() : DateUtils.formatLocalISOTime(start);
-			const endISOStr = endIsUtc ? end.toISOString() : DateUtils.formatLocalISOTime(end);
 			
-			const dateString = this.event.allDay
-				? this.encodeGoogleDate(startISOStr, startIsUtc) + "/" + this.encodeGoogleDate(endISOStr, endIsUtc)
-				: this.encodeGoogleDateTime(startISOStr, startIsUtc) + "/" + this.encodeGoogleDateTime(endISOStr, endIsUtc);
+			const dateString = this.encodeGoogleDate(start, startIsZoned, !this.event.allDay) + "/" + this.encodeGoogleDate(end, endIsZoned, !this.event.allDay);
 			
 			return (
 				'text=' + this.encode(this.event.title) +
