@@ -58,7 +58,7 @@ class DateUtils {
 
   static formatLocalISOTime(dateObj) {
     // Converts a date (stored in UTC time) into the current user's local time zone, and prints it in the same format as Date.toISOString() (but without the 'Z' at the end)
-    return new Intl.DateTimeFormat("ja-JP", {dateStyle: "short", timeStyle: "short"}).format(dateObj).replace(/\//g, "-").replace(/ /g, "T") + ":00" // Example time in ja-JP format: "2026/04/04 16:30"
+    return new Intl.DateTimeFormat("sv-SE", {dateStyle: "short", timeStyle: "short"}).format(dateObj).replace(/ /g, "T") + ":00" // Example time in sv-SE format: "2026-06-26 13:50"
   }
 
   // Convert IANA timezones to and from pretty timezones by replacing slashes "/" with chevrons " › " and replacing underscores with spaces
