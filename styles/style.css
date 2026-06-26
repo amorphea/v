@@ -186,7 +186,7 @@ input {
 		--cal-scale: 0.7;
 	}
 	.section-image-credit div {
-		width: 98%;
+		width: 97%;
 	}
 }
 
@@ -200,7 +200,8 @@ input {
 	flex-flow: row wrap;
 	align-items: center;
 	justify-content: center;
-	gap: 1.8em;
+	row-gap: 1em;
+	column-gap: 1.8em;
 }
 .calendar-button {
 	background-color: white;
