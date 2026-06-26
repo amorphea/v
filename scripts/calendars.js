@@ -67,7 +67,7 @@ const calendarButtonsComponent = {
 				end.setDate(end.getDate() + 1);
 			}
 			return end;
-		}
+		},
 		googleCalendarLinkPrefix() {
 			return 'calendar.google.com/calendar/render?action=TEMPLATE&';
 			// Other options, which didn't work well on mobile:
