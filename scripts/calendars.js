@@ -59,6 +59,15 @@ const calendarButtonsComponent = {
 		joinTruthyStrings(separator, ...strings) {
 			return strings.filter(x => !!x).join(separator);
 		},
+		fixAllDayEventEnd(start, end) {
+			// Some calendars require all-day events to have start/end dates that are 1 day apart
+			// This method returns an end date which meets that requirement (but ONLY if the start and end dates were identical originally; it leaves multi-day all day events untouched)
+			if (end.getDate() == start.getDate() && end.getMonth() == start.getMonth() && end.getFullYear() == start.getFullYear()) {
+				end = new Date(end);
+				end.setDate(end.getDate() + 1);
+			}
+			return end;
+		}
 		googleCalendarLinkPrefix() {
 			return 'calendar.google.com/calendar/render?action=TEMPLATE&';
 			// Other options, which didn't work well on mobile:
@@ -115,11 +124,7 @@ const calendarButtonsComponent = {
 			
 			if (!start || !end || !this.event.title) return null; // these parameters are required by google calendar
 
-			if (this.event.allDay && end.getDate() == start.getDate() && end.getMonth() == start.getMonth() && end.getFullYear() == start.getFullYear()) {
-				// google calendar requires all-day events to have start/end dates that are 1 day apart
-				end = new Date(end);
-				end.setDate(end.getDate() + 1);
-			}
+			if (this.event.allDay) end = this.fixAllDayEventEnd(start, end);
 			
 			const dateString = this.encodeGoogleDate(start, startIsZoned, !this.event.allDay) + "/" + this.encodeGoogleDate(end, endIsZoned, !this.event.allDay); // omit the time for all-day events, include it otherwise
 			
@@ -135,25 +140,28 @@ const calendarButtonsComponent = {
 			return 'https://' + this.outlookCalendarLinkPrefix() + this.outlookCalendarLinkParams;
 		},
 		outlookCalendarLinkParams() {
-			// Outlook ignores UTC times sadly, and appears to have no way to specify a timezone
-			// For events with no timezone (startIsUtc == false), we simply print the wall-clock time from the event link
-			// For events with a timezone, we take the UTC time and render it as a local time based on the *current* user's current local timezone,
-			// so that it should hopefully appear correctly in the current user's Outlook web app
+			// Outlook ignores UTC times sadly, and appears to have no way to specify a timezone,
+			// so we handle the next part differently from Google:
+			// 
+			// There are two categories of event times to deal with: 'zoned' times (with a timezone) and 'wall-clock' times (with no timezone)
+			//  - For wall-clock times, we can use startDateObj, and then call DateUtils.formatLocalISOTime() to print it for the calendar link (same as Google)
+			//  - For zoned times, we can use utcStartDateObj, and then render it into the *current* user's local timezone using DateUtils.formatLocalISOTime(),
+			//    so that it should hopefully apppear correctly in the current user's Outlook web app
+			//
+			// I.e. in either case we just call DateUtils.formatLocalISOTime()
+			// :)
 
-			let startIsUtc = !!this.event.utcStartDateObj;
-			let endIsUtc = !!this.event.utcEndDateObj;
+			let start = this.event.utcStartDateObj || this.event.startDateObj;
+			let end = this.event.utcEndDateObj || this.event.endDateObj;
+			let startIsZoned = !!this.event.utcStartDateObj;
+			let endIsZoned = !!this.event.utcEndDateObj;
 
-			let startStr = startIsUtc ? DateUtils.formatLocalISOTime(this.event.utcStartDateObj) : (this.event.startDate + 'T' + this.event.startTime + ":00"); // formatted as an ISO time e.g. 2026-04-04T16:30:00 (without the 'Z')
-			let endStr = endIsUtc ? DateUtils.formatLocalISOTime(this.event.utcEndDateObj) : (this.event.endDate + 'T' + this.event.endTime + ":00");
-
-			// outlook calendar requires all-day events to have start/end dates that are 1 day apart, OR for the end time to be omitted
-			// editing the times to achieve the first is tricky here when using wal- clock time strings, so we do the latter if needed instead
-			let hideEndTime = this.event.allDay && startStr === endStr;
+			if (this.event.allDay) end = this.fixAllDayEventEnd(start, end);
 			
 			return (
 				'allday=' + (this.event.allDay ? 'true' : 'false') +
-				'&startdt=' + this.encodeOutlookDateTime(startStr) +
-				(!hideEndTime ? '&enddt=' + this.encodeOutlookDateTime(endStr) : "") +
+				'&startdt=' + this.encodeOutlookDateTime(DateUtils.formatLocalISOTime(start)) +
+				'&enddt=' + this.encodeOutlookDateTime(DateUtils.formatLocalISOTime(end)) +
 				(this.event.title ? "&subject=" + this.encode(this.event.title) : "") +
 				(this.event.location ? "&location=" + this.encode(this.event.location) : "") +
 				((this.event.description || this.event.rsvpString) ? "&body=" + this.encode(this.joinTruthyStrings("\r\n\r\n", this.event.rsvpString, this.event.description)) : "")
