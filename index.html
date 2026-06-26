@@ -95,7 +95,9 @@
 							Error displaying event
 						</div>
 					</div>
-					<div class="calendar-buttons-display" v-if="urlHashLoaded" v-cloak>
+				</section>
+				<section class="section-calendar-buttons" v-if="urlHashLoaded" v-cloak>
+					<div class="calendar-buttons-display">
 						<calendar-buttons :event="event"></calendar-buttons>
 					</div>
 				</section>
