@@ -126,7 +126,7 @@ const calendarButtonsComponent = {
 
 			// outlook calendar requires all-day events to have start/end dates that are 1 day apart, OR for the end time to be omitted
 			// editing the times to achieve the first is tricky here when using wal- clock time strings, so we do the latter if needed instead
-			let hideEndTime == this.event.allDay && startStr === endStr;
+			let hideEndTime = this.event.allDay && startStr === endStr;
 			
 			return (
 				'allday=' + (this.event.allDay ? 'true' : 'false') +
