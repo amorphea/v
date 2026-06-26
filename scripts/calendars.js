@@ -32,12 +32,12 @@ const calendarButtonsComponent = {
 		encode(str) {
 			return encodeURIComponent(str);
 		},
-		encodeGoogleDate(dateObj, isUTC) {
-			return dateObj ? this.encode(dateObj.toISOString().replace(/T.*$/, isUTC ? "Z" : "").replace(/-/g, "")) : "";
+		encodeGoogleDate(dateISOStr, isUTC) {
+			return dateISOStr ? this.encode(dateISOStr.replace(/T.*$/, isUTC ? "Z" : "").replace(/-/g, "")) : "";
 		},
-		encodeGoogleDateTime(dateObj, isUTC) {
+		encodeGoogleDateTime(dateISOStr, isUTC) {
 			// Example: 20260626T114500Z
-			return dateObj ? this.encode(dateObj.toISOString().replace(/\.\d\d\d/, "").replace(/-|:/g, "").replace(/Z$/, isUTC ? "Z" : "")) : "";
+			return dateISOStr ? this.encode(dateISOStr.replace(/\.\d\d\d/, "").replace(/-|:/g, "").replace(/Z$/, isUTC ? "Z" : "")) : "";
 		},
 		encodeOutlookDateTime(dateISOStr) {
 			// Example: 2026-06-26T11%3A45%3A00
@@ -94,12 +94,17 @@ const calendarButtonsComponent = {
 			if (!start || !end || !this.event.title) return null; // these parameters are required for google calendar
 
 			if (this.event.allDay && end.getDate() == start.getDate() && end.getMonth() == start.getMonth() && end.getFullYear() == start.getFullYear()) {
-				end = new Date(end); end.setDate(end.getDate() + 1); // google calendar requires all-day events to have start/end dates that are 1 day apart
+				// google calendar requires all-day events to have start/end dates that are 1 day apart
+				end = new Date(end);
+				end.setDate(end.getDate() + 1);
 			}
+
+			const startISOStr = startIsUtc ? start.toISOString() : DateUtils.formatLocalISOTime(start);
+			const endISOStr = endIsUtc ? end.toISOString() : DateUtils.formatLocalISOTime(end);
 			
 			const dateString = this.event.allDay
-				? this.encodeGoogleDate(start, startIsUtc) + "/" + this.encodeGoogleDate(end, endIsUtc)
-				: this.encodeGoogleDateTime(start, startIsUtc) + "/" + this.encodeGoogleDateTime(end, endIsUtc);
+				? this.encodeGoogleDate(startISOStr, startIsUtc) + "/" + this.encodeGoogleDate(endISOStr, endIsUtc)
+				: this.encodeGoogleDateTime(startISOStr, startIsUtc) + "/" + this.encodeGoogleDateTime(endISOStr, endIsUtc);
 			
 			return (
 				'text=' + this.encode(this.event.title) +
@@ -121,8 +126,8 @@ const calendarButtonsComponent = {
 			let startIsUtc = !!this.event.utcStartDateObj;
 			let endIsUtc = !!this.event.utcEndDateObj;
 
-			let startStr = startIsUtc ? DateUtils.formatLocalISOTime(this.event.utcStartDateObj) : (this.event.startDate + 'T' + this.event.startTime); // formatted as an ISO time e.g. 2026-04-04T16:30:00 or 2026-04-04T16:30:00Z
-			let endStr = endIsUtc ? DateUtils.formatLocalISOTime(this.event.utcEndDateObj) : (this.event.endDate + 'T' + this.event.endTime);
+			let startStr = startIsUtc ? DateUtils.formatLocalISOTime(this.event.utcStartDateObj) : (this.event.startDate + 'T' + this.event.startTime + ":00"); // formatted as an ISO time e.g. 2026-04-04T16:30:00 (without the 'Z')
+			let endStr = endIsUtc ? DateUtils.formatLocalISOTime(this.event.utcEndDateObj) : (this.event.endDate + 'T' + this.event.endTime + ":00");
 
 			// outlook calendar requires all-day events to have start/end dates that are 1 day apart, OR for the end time to be omitted
 			// editing the times to achieve the first is tricky here when using wal- clock time strings, so we do the latter if needed instead
