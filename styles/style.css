@@ -144,13 +144,13 @@ input {
 	justify-items: center;
 	align-items: center;
 	justify-content: center;
-	height: calc(min(100cqw, 100svh, 42rem) * 0.2);
-	margin-block-end: 3.75rem;
+	height: calc(min(100cqw, 100svh, 42rem) * 0.25);
+    margin-block-end: 2.5rem;
 }
 .calendar-buttons {
 	display: flex;
 	flex-flow: column nowrap;
-	gap: 1cqw;
+	gap: 1.3cqw;
 	align-items: center;
 	justify-content: center;
 }
@@ -167,7 +167,7 @@ input {
 
 .calendar-buttons-heading {
 	text-transform: uppercase;
-	font-size: 1.6cqw;
+	font-size: 2.5cqw;
 	font-weight: bold;
 }
 .calendar-buttons-list {
@@ -175,23 +175,23 @@ input {
 	flex-flow: row wrap;
 	align-items: center;
 	justify-content: center;
-	gap: 2cqw;
+	gap: 4cqw;
 }
 .calendar-button {
 	background-color: white;
-	border-radius: 4cqw;
-	font-size: 2cqw;
-	padding: 0.5cqw 1.5cqw 0.8cqw 1.5cqw;
+	border-radius: 6cqw;
+	font-size: 3cqw;
+	padding: 1cqw 2.5cqw 1.4cqw 2.5cqw;
 	color: #4a4a4a;
 	white-space: nowrap;
     word-break: keep-all;
     text-wrap: nowrap;
     text-wrap-mode: nowrap;
 	box-shadow:
-		0 0.1cqw 0.2cqw hsl(0deg 0% 0% / 0.1),
-		0 0.3cqw 0.4cqw hsl(0deg 0% 0% / 0.1),
-		0 0.4cqw 0.8cqw hsl(0deg 0% 0% / 0.1),
-		0 1.0cqw 1.6cqw hsl(0deg 0% 0% / 0.1);
+		0 0.2cqw 0.4cqw hsl(0deg 0% 0% / 0.1),
+		0 0.6cqw 0.8cqw hsl(0deg 0% 0% / 0.1),
+		0 0.8cqw 1.6cqw hsl(0deg 0% 0% / 0.1),
+		0 2.0cqw 3.2cqw hsl(0deg 0% 0% / 0.1);
 }
 .calendar-button:visited {
 	color: #4a4a4a;
@@ -200,11 +200,11 @@ input {
 	color: #a57bb0;
 	border-bottom: none;
 	box-shadow:
-		0 0.1cqw 0.2cqw hsl(0deg 0% 0% / 0.1),
-		0 0.3cqw 0.4cqw hsl(0deg 0% 0% / 0.1),
-		0 0.4cqw 0.8cqw hsl(0deg 0% 0% / 0.1),
-		0 1.0cqw 1.6cqw hsl(0deg 0% 0% / 0.1),
-		0 2.0cqw 3.2cqw hsl(0deg 0% 0% / 0.15);
+		0 0.2cqw 0.4cqw hsl(0deg 0% 0% / 0.1),
+		0 0.6cqw 0.8cqw hsl(0deg 0% 0% / 0.1),
+		0 0.8cqw 1.6cqw hsl(0deg 0% 0% / 0.1),
+		0 2.0cqw 3.2cqw hsl(0deg 0% 0% / 0.1),
+		0 4.0cqw 6.4cqw hsl(0deg 0% 0% / 0.15);
 }
 
 .section-heading {
