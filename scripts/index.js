@@ -296,7 +296,13 @@ const app = Vue.createApp({
     },
     eventSquareStyle() {
       return (this.themeAppearance?.font ? "font-family: '" + this.themeAppearance.font.name + "';" : "") + (this.themeAppearance?.image ? "background-image: url('" + this.themeAppearance.image.url + "');" + this.themeAppearance.image.textStyling : "");
-    }
+    },
+    imageInfo() {
+      return this.themeAppearance?.image?.url?.match(/(?<group>\d\d\d)-(?<number>\d\d\d) (?<author>[^ ]+)-(?<year>\d\d\d\d) (?<license>[^ ]+) (?<size>[^ ]+)/u)?.groups
+    },
+    imageCredit() {
+      return this.imageInfo?.author + " " + this.imageInfo?.year + ", " + this.imageInfo?.license;
+    },
   },
   asyncComputed: {
     async eventStringCompressedEncoded() { return await this.compressAndEncode(this.eventString); },
