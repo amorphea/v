@@ -1,19 +1,19 @@
 // Copyright (C) 2026 amorphea
 //
-// This file is part of UtilV.
+// This file is part of Grevillea.
 //
-// UtilV is free software: you can redistribute it and/or modify it under the
+// Grevillea is free software: you can redistribute it and/or modify it under the
 // terms of the GNU Affero General Public License as published by the Free
 // Software Foundation, either version 3 of the License, or (at your option)
 // any later version.
 //
-// UtilV is distributed in the hope that it will be useful, but WITHOUT ANY
+// Grevillea is distributed in the hope that it will be useful, but WITHOUT ANY
 // WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
 // FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more
 // details.
 //
 // You should have received a copy of the GNU Affero General Public License
-// along with UtilV. If not, see <https://www.gnu.org/licenses/>.
+// along with Grevillea. If not, see <https://www.gnu.org/licenses/>.
 
 "use strict";
 
