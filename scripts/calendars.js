@@ -39,9 +39,9 @@ const calendarButtonsComponent = {
 			// Example: 20260626T114500Z
 			return dateObj ? this.encode(dateObj.toISOString().replace(/\.\d\d\d/, "").replace(/-|:/g, "").replace(/Z$/, isUTC ? "Z" : "")) : "";
 		},
-		encodeOutlookDateTime(dateObj) {
+		encodeOutlookDateTime(dateISOStr) {
 			// Example: 2026-06-26T11%3A45%3A00
-			return dateObj ? dateObj.toISOString().replace(/\.\d\d\d/, "").replace(/:/g, "%3A").replace(/Z$/, "") : "";
+			return dateObj ? dateISOStr.replace(/\.\d\d\d/, "").replace(/:/g, "%3A") : "";
 		},
 		joinTruthyStrings(separator, ...strings) {
 			return strings.filter(x => !!x).join(separator);
@@ -114,19 +114,24 @@ const calendarButtonsComponent = {
 		},
 		outlookCalendarLinkParams() {
 			// Outlook ignores UTC times sadly, and appears to have no way to specify a timezone
-			// We just use the wall-clock time here, and hope that the user realises if they're in a different timezone
-			// Future improvement: We may be able to convert from a UTC/timezoned time on the event to the current user's local timezone?
-			
-			let start = this.event.startDateObj;
-			let end = this.event.endDateObj;
-			if (this.event.allDay && end.getDate() == start.getDate() && end.getMonth() == start.getMonth() && end.getFullYear() == start.getFullYear()) {
-				end = new Date(end); end.setDate(end.getDate() + 1); // outlook calendar requires all-day events to have start/end dates that are 1 day apart
-			}
+			// For events with no timezone (startIsUtc == false), we simply print the wall-clock time from the event link
+			// For events with a timezone, we take the UTC time and render it as a local time based on the *current* user's current local timezone,
+			// so that it should hopefully appear correctly in the current user's Outlook web app
+
+			let startIsUtc = !!this.event.utcStartDateObj;
+			let endIsUtc = !!this.event.utcEndDateObj;
+
+			let startStr = startIsUtc ? DateUtils.formatLocalISOTime(this.event.utcStartDateObj) : (this.event.startDate + 'T' + this.event.startTime); // formatted as an ISO time e.g. 2026-04-04T16:30:00 or 2026-04-04T16:30:00Z
+			let endStr = endIsUtc ? DateUtils.formatLocalISOTime(this.event.utcEndDateObj) : (this.event.endDate + 'T' + this.event.endTime);
+
+			// outlook calendar requires all-day events to have start/end dates that are 1 day apart, OR for the end time to be omitted
+			// editing the times to achieve the first is tricky here when using wal- clock time strings, so we do the latter if needed instead
+			let hideEndTime == this.event.allDay && startStr === endStr;
 			
 			return (
 				'allday=' + (this.event.allDay ? 'true' : 'false') +
 				'&startdt=' + this.encodeOutlookDateTime(start) +
-				'&enddt=' + this.encodeOutlookDateTime(end) +
+				(!hideEndTime ? '&enddt=' + this.encodeOutlookDateTime(end) : "") +
 				(this.event.title ? "&subject=" + this.encode(this.event.title) : "") +
 				(this.event.location ? "&location=" + this.encode(this.event.location) : "") +
 				((this.event.description || this.event.rsvpString) ? "&body=" + this.encode(this.joinTruthyStrings("\r\n\r\n", this.event.rsvpString, this.event.description)) : "")
