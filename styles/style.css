@@ -138,6 +138,9 @@ input {
 	text-align: center;
 }
 
+:root {
+	--cal-scale: 1;
+}
 .calendar-buttons-display {
 	display: grid;
 	justify-items: center;
@@ -147,7 +150,8 @@ input {
 .calendar-buttons {
 	display: flex;
 	flex-flow: column nowrap;
-	gap: 0.5rem;
+	font-size: calc(1rem * var(--cal-scale));
+	gap: 0.5em;
 	align-items: center;
 	justify-content: center;
 	margin-block-start: 2.5rem;
@@ -162,11 +166,14 @@ input {
 	.event-square {
 		width: 100%;
 	}
+	:root {
+		--cal-scale: 0.7;
+	}
 }
 
 .calendar-buttons-heading {
 	text-transform: uppercase;
-	font-size: 1rem;
+	font-size: 1em;
 	font-weight: bold;
 }
 .calendar-buttons-list {
@@ -174,23 +181,23 @@ input {
 	flex-flow: row wrap;
 	align-items: center;
 	justify-content: center;
-	gap: 1.8rem;
+	gap: 1.8em;
 }
 .calendar-button {
 	background-color: white;
-	border-radius: 5rem;
-	font-size: 1.2rem;
-	padding: 0.4rem 1.1rem 0.6rem 1.1rem;
+	border-radius: 5em;
+	font-size: 1.2em;
+	padding: 0.4em 1.1em 0.6em 1.1em;
 	color: #4a4a4a;
 	white-space: nowrap;
     word-break: keep-all;
     text-wrap: nowrap;
     text-wrap-mode: nowrap;
 	box-shadow:
-		0 0.1rem 0.2rem hsl(0deg 0% 0% / 0.1),
-		0 0.3rem 0.4rem hsl(0deg 0% 0% / 0.1),
-		0 0.4rem 0.8rem hsl(0deg 0% 0% / 0.1),
-		0 1.0rem 1.6rem hsl(0deg 0% 0% / 0.1);
+		0 0.1em 0.2em hsl(0deg 0% 0% / 0.1),
+		0 0.3em 0.4em hsl(0deg 0% 0% / 0.1),
+		0 0.4em 0.8em hsl(0deg 0% 0% / 0.1),
+		0 1.0em 1.6em hsl(0deg 0% 0% / 0.1);
 }
 .calendar-button:visited {
 	color: #4a4a4a;
@@ -199,11 +206,11 @@ input {
 	color: #a57bb0;
 	border-bottom: none;
 	box-shadow:
-		0 0.1rem 0.2rem hsl(0deg 0% 0% / 0.1),
-		0 0.3rem 0.4rem hsl(0deg 0% 0% / 0.1),
-		0 0.4rem 0.8rem hsl(0deg 0% 0% / 0.1),
-		0 1.0rem 1.6rem hsl(0deg 0% 0% / 0.1),
-		0 2.0rem 3.2rem hsl(0deg 0% 0% / 0.15);
+		0 0.1em 0.2em hsl(0deg 0% 0% / 0.1),
+		0 0.3em 0.4em hsl(0deg 0% 0% / 0.1),
+		0 0.4em 0.8em hsl(0deg 0% 0% / 0.1),
+		0 1.0em 1.6em hsl(0deg 0% 0% / 0.1),
+		0 2.0em 3.2em hsl(0deg 0% 0% / 0.15);
 }
 
 .section-heading {
