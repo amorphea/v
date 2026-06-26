@@ -17,6 +17,9 @@
 
 "use strict";
 
+// For the most complete documentation on calendar links, see:
+// https://interactiondesignfoundation.github.io/add-event-to-calendar-docs/
+
 const calendarButtonsComponent = {
 	template: "#calendar-buttons",
 	components: {
@@ -86,6 +89,7 @@ const calendarButtonsComponent = {
 			// https://outlook.office.com/calendar/0/deeplink/compose?
 			// https://outlook.office.com/calendar/deeplink/compose?
 			// See:
+			// https://interactiondesignfoundation.github.io/add-event-to-calendar-docs/services/outlook-web.html
 			// https://www.labnol.org/calendar
 			// https://customer.io/tools/calendar-link-generator
 			// https://gist.github.com/miwebguy/2e805e343e0d434f06f2194b92b925d8
