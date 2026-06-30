@@ -192,6 +192,11 @@
 								<textarea id="description" name="description" v-model="event.description" placeholder="Description here"></textarea>
 							</div>
 						</div>
+						<div class="row">
+							<div class="col">
+								<a class="button" :href="eventUrlSmallestEncoded?.fullUrl">Generate event!</a>
+							</div>
+						</div>
 					</form>
 				</section>
 				<links-section v-if="!urlHash" :event-url="eventUrl" :event-url-smallest-encoded="eventUrlSmallestEncoded"></links-section>
