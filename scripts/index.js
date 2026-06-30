@@ -17,6 +17,10 @@
 
 "use strict";
 
+addEventListener("hashchange", (event) => { // if the user manually edits the URL hash, reload the page to apply the new URL hash
+  window.location.reload();
+})
+
 const app = Vue.createApp({
   components: {
     LinksSection: linksSectionComponent,
