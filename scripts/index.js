@@ -273,7 +273,7 @@ const app = Vue.createApp({
     displayEvent() {
       history.pushState({}, "", "#" + this.eventUrl.urlHash);
 
-      if (!this.urlHash) {
+      if (this.createModeCurrently) {
         this.createModeCurrently = false;
         this.urlHashLoaded = true;
       }
