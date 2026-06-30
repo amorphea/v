@@ -474,6 +474,11 @@ input {
 	flex-grow: 1;
 }
 
+.theme-rng-regenerable .theme-info-button svg.bi-info-circle {
+	height: 1.3em;
+    width: 1.3em;
+}
+
 /* attempt to hide the native date picker. this only works on some platforms,
  * so other platforms will still show the date picker (this is the best we can do) */
 .date-nopicker::-webkit-inner-spin-button,
