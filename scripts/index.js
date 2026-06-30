@@ -270,6 +270,13 @@ const app = Vue.createApp({
     },
     displayEvent() {
       history.pushState({}, "", "#" + this.eventUrl.urlHash);
+      
+      if (this.urlHash) {
+        // TODO: scroll page up
+      } else {
+        this.urlHash = this.eventUrl.urlHash;
+        this.urlHashLoaded = true;
+      }
     },
   },
   computed: {
