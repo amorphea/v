@@ -482,12 +482,12 @@ input {
     -webkit-appearance: none;
 }
 
-.row.result-button col {
+.row.result-button .col {
 	display: flex;
 	flex-flow: row nowrap;
 	justify-content: center;
 }
-.row.result-button col button {
+.row.result-button .col .button {
 	min-width: 50%;
 	padding: 6px 20px;
 }
