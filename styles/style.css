@@ -282,6 +282,7 @@ a:hover {
     height: 10px;
     width: 10px;
     opacity: 0;
+	z-index: -1;
 }
 .section-collapsible .section-heading-toggle-label {
 	grid-area: toggle;
@@ -417,6 +418,7 @@ a:hover {
     height: 10px;
     width: 10px;
     opacity: 0;
+	z-index: -1;
 }
 .timezone-details-toggle-label {
 	grid-area: toggle;
