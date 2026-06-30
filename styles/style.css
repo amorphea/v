@@ -320,11 +320,21 @@ input {
 	padding-inline: 13px;
 }
 
+.result-button-col {
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: center;
+}
+.result-button-col button {
+	min-width: 50%;
+}
+
 .button {
 	border-radius: 4px;
 	border: 0;
 	cursor: pointer;
 	box-sizing: border-box;
+	padding: 6px 10px;
 }
 .icon-button {
 	display: flex;
