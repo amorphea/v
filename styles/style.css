@@ -53,6 +53,20 @@ input {
     width: 100%;
 }
 
+
+a {
+	text-decoration: none;
+	border-bottom: 1px solid #1d7484;
+	color: #1d7484;
+}
+a:visited {
+	color: #1d7484;
+}
+a:hover {
+	color: #a57bb0;
+	border-bottom: 2px solid #a57bb0;
+}
+
 [v-cloak] {
 	display: none !important;
 }
