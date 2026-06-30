@@ -317,6 +317,8 @@ const app = Vue.createApp({
       return this.themeAppearance?.image?.url?.match(/(?<group>\d\d\d+)-(?<number>\d\d\d+) (?<author>[^ ]+)-(?<year>\d\d\d\d) (?<license>[^ ]+) (?<size>[^ ]+)/u)?.groups
     },
     imageCredit() {
+      if (!this.themeAppearance?.image) return null; // don't display image credit when there's no image
+      if (!this.imageInfo?.author) return "Unknown"; // display 'Unknown' whenever the regex match inside imageInfo fails
       return this.imageInfo?.author + " " + this.imageInfo?.year + ", " + this.imageInfo?.license;
     },
   },
