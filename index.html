@@ -39,7 +39,7 @@
 				<link v-if="zoomMode" href="styles/zoom-mode.css?v=1.0" rel="stylesheet">
 			</teleport>
 			<main class="main">
-				<section v-if="urlHash" class="section-event-display">
+				<section v-if="!createModeCurrently" class="section-event-display">
 					<div class="event-display">
 						<div class="event-square" v-if="urlHashLoaded" v-cloak :style="eventSquareStyle">
 							<div class="title">
@@ -104,10 +104,10 @@
 						<calendar-buttons :event="event"></calendar-buttons>
 					</div>
 				</section>
-				<links-section v-if="urlHash" :event-url="eventUrl" :event-url-smallest-encoded="eventUrlSmallestEncoded"></links-section>
+				<links-section v-if="!createModeInitially" :event-url="eventUrl" :event-url-smallest-encoded="eventUrlSmallestEncoded"></links-section>
 				<section class="section-collapsible section-edit">
-					<span class="section-heading" v-text="urlHash ? 'Edit' : 'Create Event'"></span>
-					<input checked="urlHash ? null : true" id="section-edit-collapse-button" class="section-heading-toggle" type="checkbox" aria-label="Expand or collapse editor" autocomplete="off" v-on:keyup.enter="(event) => event.target.checked = !event.target.checked">
+					<span class="section-heading" v-text="createModeCurrently ? 'Create Event' : 'Edit'"></span>
+					<input checked="createModeInitially ? true : null" id="section-edit-collapse-button" class="section-heading-toggle" type="checkbox" aria-label="Expand or collapse editor" autocomplete="off" v-on:keyup.enter="(event) => event.target.checked = !event.target.checked">
 					<label for="section-edit-collapse-button" class="icon-button icon-button-light section-heading-toggle-label" title="Expand/collapse">
 						<icon-chevron-right></icon-chevron-right>
 					</label>
@@ -198,7 +198,7 @@
 						</div>
 					</form>
 				</section>
-				<links-section v-if="!urlHash" :event-url="eventUrl" :event-url-smallest-encoded="eventUrlSmallestEncoded"></links-section>
+				<links-section v-if="createModeInitially" :event-url="eventUrl" :event-url-smallest-encoded="eventUrlSmallestEncoded"></links-section>
 				<section class="section-collapsible section-faq">
 					<span class="section-heading">FAQ</span>
 					<input id="section-faq-collapse-button" class="section-heading-toggle" type="checkbox" aria-label="Expand or collapse frequently asked questions" v-on:keyup.enter="(event) => event.target.checked = !event.target.checked">
