@@ -38,6 +38,7 @@ const app = Vue.createApp({
       event: new Event("", "", "", "", "", "", DateUtils.getLocalTimeZone(), "", "", "", "", DateUtils.getTodaysDateString(), ""),
       urlBase: this.getUrlBase(),
       urlHash: window.location.hash.replace(/^#/, ''),
+      urlHost: window.location.host,
       createModeInitially: !window.location.hash.replace(/^#/, ''),
       createModeCurrently: !window.location.hash.replace(/^#/, ''),
       urlHashLoaded: false,
