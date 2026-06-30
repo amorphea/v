@@ -271,12 +271,16 @@ const app = Vue.createApp({
       this.urlHashLoadFailed = true;
     },
     showThemeInfo() {
-      if (this.$refs.faqCollapseButton) {
+      if (!this.$refs.faqCollapseButton || !this.$refs.themeInfo) return;
+      
+      if (this.$refs.faqCollapseButton.checked) {
+        this.$refs.themeInfo.scrollIntoView({ behavior: "smooth" });
+      } else {
         this.$refs.faqCollapseButton.checked = true;
+        setTimeout(() => {
+          this.$refs.themeInfo?.scrollIntoView({ behavior: "smooth" });
+        }, 500);
       }
-      setTimeout(() => {
-        this.$refs.themeInfo?.scrollIntoView({ behavior: "smooth" });
-      }, 500);
     },
     displayEvent() {
       history.pushState({}, "", "#" + this.eventUrl.urlHash);
