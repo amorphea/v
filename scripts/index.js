@@ -357,7 +357,7 @@ const app = Vue.createApp({
     }
   },
   mounted() {
-    ShrinkText.shrinkText(this.$refs.eventDescription);
+    ShrinkText.shrinkText(this.$refs.eventDescription, this.$refs.eventSquare.getBoundingClientRect().height * 0.6);
   },
   compilerOptions: {
     isCustomElement: (tag) => tag.startsWith('add-')
