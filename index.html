@@ -267,7 +267,7 @@
 						<p>
 							Depending on what platform you're using, either of the two links might work better. For
 							example, Instagram stories have a 245 character limit (as of 2026); some platforms might
-							only allow ASCII links not Unicode characters; and so on.
+							only allow ASCII links (not Unicode characters); and so on.
 						</p>
 						<p>
 							You're also welcome to paste the link into a URL shortener on another site (depending on
@@ -393,8 +393,7 @@
 		<template id="url-display">
 			<div v-on:copy="removeNewlinesFromManualCopy">
 				<div class="url-title">
-					<span v-text="urlTitle"></span>
-					<a v-if="urlFaqCallback" v-on:click="urlFaqCallback()" href="javascript:void(0)" v-text="urlFaqLinkText"></a>
+					<span v-text="urlTitle"></span> <a v-if="urlFaqCallback" v-on:click="urlFaqCallback()" href="javascript:void(0)" v-text="urlFaqLinkText"></a>
 				</div>
 				<div class="url-preview-row">
 					<div class="url-preview">
