@@ -27,13 +27,8 @@ class ShrinkText {
 	// CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE
 	// OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 	static shrinkText(element, width, maxHeight) {
-		if (!isElement(el) || (!settings.reProcess && el.getAttribute('textFitted'))) {
+		if (!isElement(element)) {
 			return false;
-		}
-
-		// Set textFitted attribute so we know this was processed.
-		if (!settings.reProcess) {
-			el.setAttribute('textFitted', 1);
 		}
 
 		var innerSpan, originalHeight, originalHTML, originalWidth;
@@ -44,54 +39,20 @@ class ShrinkText {
 		originalWidth = innerWidth(el);
 		originalHeight = innerHeight(el);
 
-		// Don't process if we can't find box dimensions
-		if (!originalWidth || (!settings.widthOnly && !originalHeight)) {
-			if(!settings.widthOnly)
-				throw new Error('Set a static height and width on the target element ' + el.outerHTML +
-					' before using textFit!');
-			else
-				throw new Error('Set a static width on the target element ' + el.outerHTML +
-					' before using textFit!');
-		}
-
 		// Add textFitted span inside this container.
-		if (originalHTML.indexOf('textFitted') === -1) {
-			innerSpan = document.createElement('span');
-			innerSpan.className = 'textFitted';
-			// Inline block ensure it takes on the size of its contents, even if they are enclosed
-			// in other tags like <p>
-			innerSpan.style['display'] = 'inline-block';
-			innerSpan.innerHTML = originalHTML;
-			el.innerHTML = '';
-			el.appendChild(innerSpan);
-		} else {
-			// Reprocessing.
-			innerSpan = el.querySelector('span.textFitted');
-			// Remove vertical align if we're reprocessing.
-			if (hasClass(innerSpan, 'textFitAlignVert')){
-				innerSpan.className = innerSpan.className.replace('textFitAlignVert', '');
-				innerSpan.style['height'] = '';
-				el.className.replace('textFitAlignVertFlex', '');
-			}
-		}
+		innerSpan = document.createElement('span');
+		innerSpan.className = 'textFitted';
+		// Inline block ensure it takes on the size of its contents, even if they are enclosed
+		// in other tags like <p>
+		innerSpan.style['display'] = 'inline-block';
+		innerSpan.innerHTML = originalHTML;
+		el.innerHTML = '';
+		el.appendChild(innerSpan);
 
 		// Prepare & set alignment
 		if (settings.alignHoriz) {
 			el.style['text-align'] = 'center';
 			innerSpan.style['text-align'] = 'center';
-		}
-
-		// Check if this string is multiple lines
-		// Not guaranteed to always work if you use wonky line-heights
-		var multiLine = settings.multiLine;
-		if (settings.detectMultiLine && !multiLine &&
-				innerSpan.getBoundingClientRect().height >= parseInt(window.getComputedStyle(innerSpan)['font-size'], 10) * 2){
-			multiLine = true;
-		}
-
-		// If we're not treating this as a multiline string, don't let it wrap.
-		if (!multiLine) {
-			el.style['white-space'] = 'nowrap';
 		}
 
 		low = settings.minFontSize;
@@ -117,20 +78,5 @@ class ShrinkText {
 		// found, updating font if differs:
 		if( innerSpan.style.fontSize != size + 'px' ) innerSpan.style.fontSize = size + 'px';
 
-		// Our height is finalized. If we are aligning vertically, set that up.
-		if (settings.alignVert) {
-			addStyleSheet();
-			var height = innerSpan.scrollHeight;
-			if (window.getComputedStyle(el)['position'] === "static"){
-				el.style['position'] = 'relative';
-			}
-			if (!hasClass(innerSpan, "textFitAlignVert")){
-				innerSpan.className = innerSpan.className + " textFitAlignVert";
-			}
-			innerSpan.style['height'] = height + "px";
-			if (settings.alignVertWithFlexbox && !hasClass(el, "textFitAlignVertFlex")) {
-				el.className = el.className + " textFitAlignVertFlex";
-			}
-		}
 	}
 }
