@@ -39,6 +39,7 @@ const urlDisplayComponent = {
     url: EventUrlInfo,
     urlTitle: String,
     urlFaqCallback: Function,
+    urlFaqLinkText: String,
   },
   data() {
     return {
@@ -70,6 +71,5 @@ const linksSectionComponent = {
     eventUrl: EventUrlInfo,
     eventUrlSmallestEncoded: EventUrlInfo,
     urlFaqCallback: Function,
-    urlFaqLinkText: String,
   },
 };
