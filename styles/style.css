@@ -145,7 +145,7 @@ a:hover {
 	
 }
 .event-square .description {
-	flex-grow: 1;
+	/* flex-grow: 1; */
 }
 .event-square .description div {
 	white-space: pre-wrap;
