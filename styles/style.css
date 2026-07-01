@@ -318,12 +318,13 @@ a:hover {
 .section-collapsible.section-links .links-list {
 	grid-area: collapse;
 }
-.section-collapsible.section-links .links-list .url-stats {
+.section-collapsible.section-links .links-list .url-stats, .section-collapsible.section-links .links-list .url-title {
 	height: 0;
     overflow: clip;
 	transition: height 0.25s ease-in-out;
 }
-.section-collapsible.section-links .section-heading-toggle:checked + .section-heading-toggle-label + .links-list .url-stats {
+.section-collapsible.section-links .section-heading-toggle:checked + .section-heading-toggle-label + .links-list .url-stats,
+.section-collapsible.section-links .section-heading-toggle:checked + .section-heading-toggle-label + .links-list .url-title {
 	height: auto;
 }
 
@@ -548,6 +549,10 @@ a:hover {
 	gap: 1.25rem;
 }
 
+.url-title {
+	text-align: center;
+	
+}
 .url-preview-row, .url-preview {
     display: flex;
 	flex-direction: row;
@@ -632,7 +637,7 @@ a:hover {
 	flex-direction: column;
 	justify-content: start;
 }
-.url-stats .compatibility-heading, .timezone-details .timezone-details-heading {
+.url-stats .compatibility-heading, .timezone-details .timezone-details-heading, .url-title {
 	text-transform: uppercase;
 	font-size: 0.8em;
 	font-weight: bold;
