@@ -104,7 +104,7 @@
 						<calendar-buttons :event="event"></calendar-buttons>
 					</div>
 				</section>
-				<links-section v-if="!createModeInitially" :event-url="eventUrl" :event-url-smallest-encoded="eventUrlSmallestEncoded"></links-section>
+				<links-section v-if="!createModeInitially" :event-url="eventUrl" :event-url-smallest-encoded="eventUrlSmallestEncoded" :url-info-callback="urlInfoCallback"></links-section>
 				<section class="section-collapsible section-edit">
 					<span class="section-heading" v-text="createModeCurrently ? 'Create Event' : 'Edit'"></span>
 					<input :checked="createModeInitially ? true : null" id="section-edit-collapse-button" class="section-heading-toggle" type="checkbox" aria-label="Expand or collapse editor" autocomplete="off" v-on:keyup.enter="(event) => event.target.checked = !event.target.checked">
@@ -205,7 +205,7 @@
 						</div>
 					</form>
 				</section>
-				<links-section v-if="createModeInitially" :event-url="eventUrl" :event-url-smallest-encoded="eventUrlSmallestEncoded"></links-section>
+				<links-section v-if="createModeInitially" :event-url="eventUrl" :event-url-smallest-encoded="eventUrlSmallestEncoded" :url-info-callback="urlInfoCallback"></links-section>
 				<section class="section-collapsible section-faq">
 					<span class="section-heading">FAQ</span>
 					<input id="section-faq-collapse-button" ref="faqCollapseButton" class="section-heading-toggle" type="checkbox" aria-label="Expand or collapse frequently asked questions" v-on:keyup.enter="(event) => event.target.checked = !event.target.checked">
@@ -341,7 +341,8 @@
 				<div class="footer-content">
 					<div class="footer-text">
 						<div>
-							This website was built while living on the lands of the Kaurna people. Always was, always will be Aboriginal Land. We pay our respects to Elders past, present and emerging.
+							This website was built while living on the lands of the Kaurna people. Always was,
+							always will be Aboriginal Land. We pay our respects to Elders past, present and emerging.
 						</div>
 						<div>
 							Artificial Intelligence was not used in the development of this website.
@@ -385,13 +386,16 @@
 				</label>
 				<div class="links-list">
 					<url-display :url="eventUrl" url-title="Plaintext"></url-display>
-					<url-display :url="eventUrlSmallestEncoded" url-title="Condensed"></url-display>
+					<url-display :url="eventUrlSmallestEncoded" url-title="Condensed" url-info-link-text="(Info)" :url-info-callback="urlInfoCallback"></url-display>
 				</div>
 			</section>
 		</template>
 		<template id="url-display">
 			<div v-on:copy="removeNewlinesFromManualCopy">
-				<div class="url-title" v-text="urlTitle"></div>
+				<div class="url-title">
+					<span v-text="urlTitle"></span>
+					<a v-if="urlInfoCallback" v-on:click="urlInfoCallback()" href="javascript:void(0)" v-text="urlInfoLinkText"></a>
+				</div>
 				<div class="url-preview-row">
 					<div class="url-preview">
 						<div class="url-base" v-text="url?.urlBase"></div>
