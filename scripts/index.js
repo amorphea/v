@@ -48,6 +48,11 @@ const app = Vue.createApp({
       zoomMode: false,
     };
   },
+  watch: {
+    'event.description': function(newDesc, oldDesc) {
+      this.autoShrinkEventDesc();
+    }
+  },
   methods: {
     encode(str) {
       return unibinary.encodeString(str);
@@ -271,6 +276,10 @@ const app = Vue.createApp({
       }
       this.urlHashLoadFailed = true;
     },
+    autoShrinkEventDesc() {
+      let maxHeight = this.$refs.eventSquare.getBoundingClientRect().height * 0.8;
+      ShrinkText.shrinkText(this.$refs.eventDescription, maxHeight);
+    },
     showThemesFaq() {
       this.showFaqSection(this.$refs.themesFaq);
     },
@@ -357,7 +366,7 @@ const app = Vue.createApp({
     }
   },
   mounted() {
-    ShrinkText.shrinkText(this.$refs.eventDescription, this.$refs.eventSquare.getBoundingClientRect().height * 0.6);
+    this.autoShrinkEventDesc();
   },
   compilerOptions: {
     isCustomElement: (tag) => tag.startsWith('add-')
