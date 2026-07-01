@@ -130,6 +130,10 @@ a:hover {
 	gap: 1cqw;
 	flex-wrap: nowrap;
 	font-size: 3.7cqw;
+	max-width: 100%;
+}
+.event-square * {
+	overflow-wrap: break-word; /* forcibly break any excessively-long words */
 }
 .event-square .title h1 {
 	margin: 2cqh 0 3cqh 0;
@@ -150,6 +154,7 @@ a:hover {
 .event-square .description div {
 	white-space: pre-wrap;
 	text-align: center;
+	max-width: 100%;
 }
 
 .section-image-credit {
