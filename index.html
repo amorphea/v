@@ -219,8 +219,11 @@
 							currently hosted on <i v-text="urlHost"></i>.
 						</p>
 						<p>
-							To make an event, just open a <a href="#">new page</a>, fill out the form, copy a link, and send it to friends!
-							They can save the event to their calendars, or take a screenshot :))
+							To make an event, just open a <a href="#">new page</a>, fill out the form, copy a link,
+							and send it to friends! They can save the event to their calendars, or take a screenshot :))
+						</p>
+						<p>
+							Grevillea is designed to be independent of any social media platform, while maximising privacy.
 						</p>
 						<h6>Can I trust these event details?</h6>
 						<p>
@@ -234,6 +237,12 @@
 							This site doesn't even have a database; there's no data to store! Nor are there cookies,
 							tracking, ads, or anything else.
 						</p>
+						<p>
+							Note: This means the links can be quite long! Grevillea is designed to keep the links as
+							short as possible, but you should keep your event description brief too. This is also why
+							you can't upload your own images, why the theme selection works the way it does, and so on
+							-- it's all designed to keep the links as short as possible.
+						</p>
 						<h6>Does GitHub store my data?</h6>
 						<p>
 							Yes. GitHub keeps a log of IP addresses who access the site, and might store other
@@ -244,13 +253,25 @@
 							Yes. Once someone adds the event to their calendar, the event data will be stored in
 							their calendar software.
 						</p>
-						<h6>Why is my link in Chinese?</h6>
+						<h6>How can I make my link shorter? Why did someone send me a link in Chinese?</h6>
 						<p>
-							Some platforms support sending links, but have a character limit (e.g. Instagram
-							has a character limit when sharing links to your story).
-							It turns out that by compressing the URL and using a wider range of Unicode characters,
-							we can fit a longer event into a short link. Unicode has a lot of Chinese/Asian characters,
-							so the links look Chinese! It's almost guaranteed to be nonsense to a Chinese reader though.
+							When sharing an event, you can share either a 'plaintext' or 'condensed' link. Both contain
+							exactly the same event details.
+						</p>
+						<p>
+							The condensed link uses a wider range of Unicode characters (and zip compression) in order
+							to fit all the event details into as few characters as possible. Unicode has lots of
+							Chinese and Asian characters, so the link looks Chinese! It's almost guaranteed to be
+							nonsense to a Chinese reader though.
+						</p>
+						<p>
+							Depending on what platform you're using, either of the two links might work better. For
+							example, Instagram stories have a 245 character limit (as of 2026); some platforms might
+							only allow ASCII links not Unicode characters; and so on.
+						</p>
+						<p>
+							You're also welcome to paste the link into a URL shortener on another site (depending on
+							the site, you may need to make an account etc.)
 						</p>
 						<h6 ref="themeInfo">How do I select a background image and font?</h6>
 						<p>
@@ -266,7 +287,7 @@
 							Background images are handmade by real people (no AI). We plan to add new themes, images and fonts
 							in the future (you're welcome to get in touch and help out!). The initial seed is today's date,
 							and every time you hit refresh, it'll move back one day into the past. When we add new images
-							and fonts, they'll only appear for future seed dates - so your existing events will keep looking
+							and fonts, they'll only appear for future seed dates -- so your existing events will keep looking
 							the same :)
 						</p>
 						<h6>Can I use this site to share community/not-for-profit events?</h6>
