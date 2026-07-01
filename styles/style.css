@@ -551,7 +551,9 @@ a:hover {
 
 .url-title {
 	text-align: center;
-	
+	text-transform: uppercase;
+    font-size: 0.8rem;
+    font-weight: bold;
 }
 .url-preview-row, .url-preview {
     display: flex;
@@ -637,7 +639,7 @@ a:hover {
 	flex-direction: column;
 	justify-content: start;
 }
-.url-stats .compatibility-heading, .timezone-details .timezone-details-heading, .url-title {
+.url-stats .compatibility-heading, .timezone-details .timezone-details-heading {
 	text-transform: uppercase;
 	font-size: 0.8em;
 	font-weight: bold;
