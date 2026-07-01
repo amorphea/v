@@ -356,6 +356,9 @@ const app = Vue.createApp({
       this.loadEventFromUrlHash(this.urlHash); // don't wait for async method to return (even if we tried to wait, Vue would continue anyway)
     }
   },
+  mounted() {
+    ShrinkText.shrinkText(this.$refs.eventDescription);
+  },
   compilerOptions: {
     isCustomElement: (tag) => tag.startsWith('add-')
   }
