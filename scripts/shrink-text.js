@@ -11,7 +11,10 @@ class ShrinkText {
 
 			ShrinkText.setFontSize(element, ShrinkText.getFontSize(element) / 2);
 			
-			if (i >= 10) return null; // Fail if it takes more than 10 iterations
+			if (i >= 10) { // Fail if it takes more than 10 iterations
+				ShrinkText.setFontSize(element, 1);
+				return null;
+			}
 		}
 
 		let minSize = ShrinkText.getFontSize(element);
