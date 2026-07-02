@@ -291,7 +291,8 @@ const app = Vue.createApp({
       //    run custom code. It could also contain URI-encoded strings, e.g. %20 for whitespace.
       //    If we tried using encodeURI or encodeURIComponent, we'd break any URLs which already included
       //    URI-encoded strings like %20 etc. Instead, we can use CSS.escape(), which prefixes both ' characters
-      //    (and other characters that might be dangerous to CSS) with backslashes \
+      //    (and other characters that might be dangerous to CSS) with backslashes "\"
+      //    See: https://stackoverflow.com/a/33541245
       //
       // 3) Loading the image from another site will alert that site to the current user's IP address. As far as
       //    I know, this is pretty unavoidable. I guess the best we can say is, don't wholeheartedly trust links
