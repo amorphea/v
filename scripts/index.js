@@ -301,7 +301,11 @@ const app = Vue.createApp({
       return this.event?.imageUrl ? "background-image: url('" + CSS.escape(this.event.imageUrl) + "');" : null;
     },
     eventSquareStyle() {
-      return (this.themeAppearance?.font ? "font-family: '" + this.themeAppearance.font.name + "';" : "") + (this.custombackgroundImage || (this.themeAppearance?.image ? "background-image: url('" + this.themeAppearance.image.url + "');" + this.themeAppearance.image.textStyling : ""));
+      return (
+        (this.themeAppearance?.font ? "font-family: '" + this.themeAppearance.font.name + "';" : "") +
+        (this.custombackgroundImage || (this.themeAppearance?.image ? "background-image: url('" + this.themeAppearance.image.url + "');" : "")) +
+        (this.themeAppearance?.image ? this.themeAppearance.image.textStyling : "")
+      );
     },
     imageInfo() {
       return this.themeAppearance?.image?.url?.match(/(?<group>\d\d\d+)-(?<number>\d\d\d+) (?<author>[^ ]+)-(?<year>\d\d\d\d) (?<license>[^ ]+) (?<size>[^ ]+)/u)?.groups
