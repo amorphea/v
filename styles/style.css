@@ -440,6 +440,20 @@ a:hover {
 .timezone-details div {
 	text-align: center;
 }
+.timezone-details-row {
+	display: flex;
+	flex-flow: row nowrap;
+	gap: 0.5em;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+}
+.timezone-details-date {
+	border: 1px solid #9a9a9a;
+	border-radius: 5px;
+	padding: 0.2em 0.8em;
+	flex-grow: 1;
+}
 .timezone-details-toggle:checked + .timezone-details-toggle-label + .timezone-details {
 	/* expand the collapsible area whenever the checkbox is ticked */
 	height: auto;
