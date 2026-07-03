@@ -155,14 +155,14 @@
 									<div class="timezone-details">
 										<div class="timezone-details-heading">Event runs from:</div>
 										<div class="timezone-details-row">
-											<span v-text="event.startDateTimeUTC || '\u2014'" class="timezone-details-date"></span>
-											<span>to</span>
-											<span v-text="event.endDateTimeUTC || '\u2014'" class="timezone-details-date"></span>
+											<div v-text="event.startDateTimeUTC || '\u2014'" class="timezone-details-date"></div>
+											<div>to</div>
+											<div v-text="event.endDateTimeUTC || '\u2014'" class="timezone-details-date"></div>
 										</div>
 										<div class="timezone-details-row">
-											<span v-text="event.startDateTimeWithOffset || '\u2014'" class="timezone-details-date"></span>
-											<span>to</span>
-											<span v-text="event.endDateTimeWithOffset || '\u2014'" class="timezone-details-date"></span>
+											<div v-text="event.startDateTimeWithOffset || '\u2014'" class="timezone-details-date"></div>
+											<div>to</div>
+											<div v-text="event.endDateTimeWithOffset || '\u2014'" class="timezone-details-date"></div>
 										</div>
 									</div>
 								</div>
