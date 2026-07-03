@@ -320,7 +320,7 @@ const app = Vue.createApp({
       if (!this.custombackgroundImage) return null;
 
       let hostname;
-      try { hostname = (new URL(url)).hostname.replace('www.', ''); }
+      try { hostname = (new URL(this.event.imageUrl)).hostname.replace('www.', ''); }
       catch { hostname = "Unknown"; }
       
       return {
