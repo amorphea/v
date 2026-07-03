@@ -40,12 +40,12 @@ body {
 	background-color: #f9f9f9;
 }
 
-@media (max-width: 42.75rem) { /* i.e. max-width: 38em, when font-size = var(--sakura18) = 1.125rem */
+@media (max-width: 42rem) {
 	body {
 		font-size: 0.9rem;
 	}
 }
-@media (max-width: 23.875rem) { /* i.e. approx max-width: 24.97em, when font-size = var(--sakura153) = 0.95625rem */
+@media (max-width: 24rem) {
 	body {
 		font-size: 0.8rem;
 	}
