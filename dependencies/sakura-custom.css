@@ -47,14 +47,9 @@ body {
 	background-color: #f9f9f9;
 }
 
-@media (max-width: 42rem) {
-	body {
-		font-size: 0.9rem;
-	}
-}
 @media (max-width: 24rem) {
 	body {
-		font-size: 0.8rem;
+		font-size: 0.9rem;
 	}
 }
 h1, h6, .h1, .h6 {
