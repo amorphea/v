@@ -134,6 +134,7 @@ a:hover {
 }
 .event-square * {
 	overflow-wrap: break-word; /* forcibly break any excessively-long words */
+	text-align: center;
 }
 .event-square .title h1 {
 	margin: 2cqh 0 3cqh 0;
@@ -435,6 +436,9 @@ a:hover {
 	overflow: clip;
 	transition: height 0.25s ease-in-out;
 	margin-block-end: 10px;
+}
+.timezone-details div {
+	text-align: center;
 }
 .timezone-details-toggle:checked + .timezone-details-toggle-label + .timezone-details {
 	/* expand the collapsible area whenever the checkbox is ticked */
