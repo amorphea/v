@@ -653,6 +653,9 @@ a:hover {
 	font-size: 0.8em;
 	font-weight: bold;
 }
+.url-stats .compatibility-heading {
+	margin-block-start: 0.1em; /* add a tiny bit of space for better vertical centering */
+}
 
 .section-faq {
 	padding-inline: 13px;
