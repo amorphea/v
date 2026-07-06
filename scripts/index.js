@@ -50,7 +50,10 @@ const app = Vue.createApp({
   },
   watch: {
     'eventString': {
-      handler() { this.autoShrinkEventSquareText(); },
+      handler() {
+        this.autoShrinkEventSquareText();
+        this.addBulletsToEventSquareDateAndTime();
+      },
       flush: 'post'
     },
   },
@@ -217,8 +220,6 @@ const app = Vue.createApp({
     autoShrinkEventSquareText() {
       let maxHeight = this.$refs.eventSquare.getBoundingClientRect().height;
       ShrinkText.shrinkText(this.$refs.eventSquareFontRescale, maxHeight);
-
-      this.addBulletsToEventSquareDateAndTime();
     },
     addBulletsToEventSquareDateAndTime() {
       let dateTimes = this.$refs.eventSquareDateAndTime;
@@ -362,6 +363,7 @@ const app = Vue.createApp({
   },
   mounted() {
     this.autoShrinkEventSquareText();
+    this.addBulletsToEventSquareDateAndTime();
   },
   compilerOptions: {
     isCustomElement: (tag) => tag.startsWith('add-')
