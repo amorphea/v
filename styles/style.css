@@ -155,6 +155,9 @@ a:hover {
 .event-square-inner .date-and-time {
 	column-gap: 1.4em;
 }
+.event-square-inner .date-and-time .bullet-before {
+	position: relative; /* needed for correct positioning of bullet */
+}
 .event-square-inner .date-and-time .bullet-before:before {
 	content: "";
     position: absolute;
