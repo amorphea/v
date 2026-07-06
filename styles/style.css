@@ -179,7 +179,7 @@ a:hover {
 	
 }
 .event-square-inner .description {
-	
+	margin-top: 0.7em;
 }
 .event-square-inner .description div {
 	white-space: pre-wrap;
