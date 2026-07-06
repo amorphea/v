@@ -221,8 +221,7 @@ const app = Vue.createApp({
       this.urlHashLoadFailed = true;
     },
     autoShrinkEventSquareText() {
-      let maxHeightFraction = 0.95; /* note: there's a 3% padding at the top and bottom, but overflowing beyond that slightly is fine anyway */
-      let maxHeight = this.$refs.eventSquare.getBoundingClientRect().height * maxHeightFraction;
+      let maxHeight = this.$refs.eventSquare.getBoundingClientRect().height;
       ShrinkText.shrinkText(this.$refs.eventSquareFontRescale, maxHeight);
     },
     showThemesFaq() {
