@@ -142,7 +142,8 @@ a:hover {
 	flex-flow: row wrap;
 	justify-content: center;
 	align-items: center;
-	gap: 1cqw;
+	column-gap: 1cqw;
+	row-gap: 0;
 	max-width: 100%;
 }
 .event-square-inner * {
