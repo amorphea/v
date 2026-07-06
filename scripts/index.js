@@ -222,6 +222,7 @@ const app = Vue.createApp({
       ShrinkText.shrinkText(this.$refs.eventSquareFontRescale, maxHeight);
     },
     addBulletsToEventSquareDateAndTime() {
+      // Based on: https://stackoverflow.com/a/41019508
       let dateTimes = this.$refs.eventSquareDateAndTime;
       let prevChild = null;
       for (const child of dateTimes.children) {
