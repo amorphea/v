@@ -748,7 +748,7 @@ a:hover {
 .footer-content .footer-links {
 	display: flex;
 	flex-flow: row wrap;
-	column-gap: 1.4rem;
+	column-gap: 1.6em;
 	overflow: clip;
 }
 /* add bullets automatically between footer items. based on https://stackoverflow.com/a/31220698 */
@@ -760,9 +760,9 @@ a:hover {
     position: absolute;
     background-color: white;
     border-radius: 1em;
-    width: 0.3rem;
-    height: 0.3rem;
-    left: calc(-0.7rem + -0.15rem);
+    width: 0.34em;
+    height: 0.34em;
+    left: calc(-0.8em + -0.15rem);
 	/* vertically center the bullet */
     margin-top: auto;
     margin-bottom: auto;
