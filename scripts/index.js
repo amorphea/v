@@ -49,16 +49,16 @@ const app = Vue.createApp({
     };
   },
   watch: {
-    'event.title':       { handler: this.autoShrinkEventSquareText(), flush: 'post' },
-    'event.location':    this.autoShrinkEventSquareTextNextTick(),
-    'event.startDate':   this.autoShrinkEventSquareTextNextTick(),
-    'event.startTime':   this.autoShrinkEventSquareTextNextTick(),
-    'event.endDate':     this.autoShrinkEventSquareTextNextTick(),
-    'event.endTime':     this.autoShrinkEventSquareTextNextTick(),
-    'event.timezone':    this.autoShrinkEventSquareTextNextTick(),
-    'event.rsvp':        this.autoShrinkEventSquareTextNextTick(),
-    'event.rsvpDate':    this.autoShrinkEventSquareTextNextTick(),
-    'event.description': this.autoShrinkEventSquareTextNextTick(),
+    'event.title':       { handler: this.autoShrinkEventSquareText, flush: 'post' },
+    'event.location':    this.autoShrinkEventSquareTextNextTick,
+    'event.startDate':   this.autoShrinkEventSquareTextNextTick,
+    'event.startTime':   this.autoShrinkEventSquareTextNextTick,
+    'event.endDate':     this.autoShrinkEventSquareTextNextTick,
+    'event.endTime':     this.autoShrinkEventSquareTextNextTick,
+    'event.timezone':    this.autoShrinkEventSquareTextNextTick,
+    'event.rsvp':        this.autoShrinkEventSquareTextNextTick,
+    'event.rsvpDate':    this.autoShrinkEventSquareTextNextTick,
+    'event.description': this.autoShrinkEventSquareTextNextTick,
   },
   methods: {
     encode(str) {
