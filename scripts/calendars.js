@@ -206,5 +206,47 @@ const calendarButtonsComponent = {
 				((this.event.description || this.event.rsvpString) ? "&DESC=" + this.encode(this.joinTruthyStrings("\r\n\r\n", this.event.rsvpString, this.event.description)) : "")
 			);
 		},
+		icsFileUri() {
+			return "data:text/calendar;charset=UTF-8," + encodeURIComponent(this.icsFileContents);
+		},
+		icsFileContents() {
+			function encodeIcsLine(line) {
+				// Each line must be at most 75 bytes long, not including the CR LF at the end
+				// (note this is *bytes* not two-byte unicode characters, so we set the limit at 30 characters)
+				// Longer lines are 'folded' by prefixing the next line with a single space character,
+				// see https://www.rfc-editor.org/info/rfc5545/#section-3
+				// Carriage returns, line feeds, and backslashes are escaped with backslashes
+				
+				line = line.replace(/\\/g, "\\").replace(/\r/g, "\\r").replace(/\n/g, "\\n");
+				let foldedLine = "";
+				while (line !== "") {
+					foldedLine += line.substring(0, 30) + "\r\n ";
+					line = line.substring(30);
+				}
+				return foldedLine + "\r\n";
+			}
+
+			let start = this.event.utcStartDateObj || this.event.startDateObj;
+			let end = this.event.utcEndDateObj || this.event.endDateObj;
+			let startIsZoned = !!this.event.utcStartDateObj;
+			let endIsZoned = !!this.event.utcEndDateObj;
+
+			if (this.event.allDay) end = this.fixAllDayEventEnd(start, end);
+
+			// TODO: Add URI, DTSTAMP, more timezone handling, image, source url, etc
+			return (
+				encodeIcsLine("BEGIN:VCALENDAR") +
+				encodeIcsLine("VERSION:2.0") +
+				encodeIcsLine("PRODID:-//amorphea//Grevillea//1.0") +
+				encodeIcsLine("BEGIN:VEVENT") +
+				encodeIcsLine("DTSTART:" + this.encodeGoogleDate(start, startIsZoned, !this.event.allDay)) +
+				encodeIcsLine("DTEND:" + this.encodeGoogleDate(end, endIsZoned, !this.event.allDay)) +
+				encodeIcsLine("SUMMARY:" + this.event.title) +
+				encodeIcsLine("LOCATION:" + this.event.location) +
+				encodeIcsLine("DESCRIPTION:" + this.event.description) +
+				encodeIcsLine("END:VEVENT") +
+				encodeIcsLine("END:VCALENDAR") +
+			);
+		},
 	}
 };
