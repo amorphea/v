@@ -300,10 +300,12 @@ const app = Vue.createApp({
       //    opened it (i.e. this is effectively no different from usual)
       return this.event?.imageUrl ? "background-image: url('" + CSS.escape(this.event.imageUrl) + "');" : null;
     },
-    eventSquareStyle() {
+    eventSquareOuterStyle() {
+      return this.custombackgroundImage || (this.themeAppearance?.image ? "background-image: url('" + this.themeAppearance.image.url + "');" : "");
+    },
+    eventSquareInnerStyle() {
       return (
         (this.themeAppearance?.font ? "font-family: '" + this.themeAppearance.font.name + "';" : "") +
-        (this.custombackgroundImage || (this.themeAppearance?.image ? "background-image: url('" + this.themeAppearance.image.url + "');" : "")) +
         (this.themeAppearance?.image ? this.themeAppearance.image.textStyling : "")
       );
     },
