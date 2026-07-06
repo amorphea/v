@@ -43,7 +43,12 @@ class ThemesDB {
   static #possibleThemes = null;
 
   static #logEntry(date, name, image, font) {
-    return { date, name, image: image ? { url: image[0], textStyling: image[1] } : null, font: font ? { name: font[0], url: font[1] } : null };
+    return {
+      date,
+      name,
+      image: image ? { url: image[0], textStyling: image[1] } : null,
+      font: font ? { name: font[0], url: font[1] } : null
+    };
   }
   
   static getPossibleThemes() {
