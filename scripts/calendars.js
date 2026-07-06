@@ -181,7 +181,7 @@ const calendarButtonsComponent = {
 			);
 		},
 		yahooCalendarLink() {
-			return 'https://' + this.yahooCalendarLinkPrefix() + 
+			return 'https://' + this.yahooCalendarLinkPrefix() + this.yahooCalendarLinkParams;
 		},
 		yahooCalendarLinkParams() {
 			// Yahoo appears to handle timezones the same way as Google, so we do the same here as above
