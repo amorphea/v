@@ -41,58 +41,64 @@
 			<main class="main">
 				<section v-if="!createModeCurrently" class="section-event-display">
 					<div class="event-display">
-						<div class="event-square" ref="eventSquare" v-if="urlHashLoaded" v-cloak :style="eventSquareStyle">
-							<div class="title">
-								<h1 v-text="event.title"></h1>
+						<div class="event-square-size">
+							<div class="event-square-font-baseline">
+								<div class="event-square-font-rescaled">
+									<div class="event-square" ref="eventSquare" v-if="urlHashLoaded" v-cloak :style="eventSquareStyle">
+										<div class="title">
+											<h1 v-text="event.title"></h1>
+										</div>
+										<div class="location">
+											<div v-if="event.location" v-text="event.location"></div>
+										</div>
+										<div class="date-and-time">
+											<!-- single-day, non-all-day events -->
+											<div v-if="!event.multiDay && !event.allDay && event.shortEndTime" v-text="event.shortStartTime + ' \u2013 ' + event.shortEndTime"></div>
+											<div v-if="!event.multiDay && !event.allDay && !event.shortEndTime" v-text="event.whimsicalStartTime"></div>
+											<div v-if="!event.multiDay && !event.allDay">&bull;</div>
+											<div v-if="!event.multiDay && !event.allDay" v-text="event.startLongWeekday || event.endLongWeekday"></div>
+											<div v-if="!event.multiDay && !event.allDay">&bull;</div>
+											<div v-if="!event.multiDay && !event.allDay" v-text="event.startYearfulDate || event.endYearfulDate"></div>
+				
+											<!-- single-day, all-day events -->
+											<div v-if="!event.multiDay && event.allDay" v-text="event.startLongWeekday"></div>
+											<div v-if="!event.multiDay && event.allDay">&bull;</div>
+											<div v-if="!event.multiDay && event.allDay" v-text="event.startYearfulDate || event.endYearfulDate"></div>
+											
+											<!-- multi-day, non-all-day events -->
+											<div v-if="event.multiDay && !event.allDay && event.lessThanAWeek" v-text="event.startLongWeekday + '\u2013' + event.endLongWeekday"></div>
+											<div v-if="event.multiDay && !event.allDay && event.lessThanAWeek">&bull;</div>
+											<div v-if="event.multiDay && !event.allDay && event.lessThanAWeek && !event.multiYear" v-text="event.shortStartTime + ' ' + event.startYearlessDate"></div>
+											<div v-if="event.multiDay && !event.allDay && event.lessThanAWeek && event.multiYear" v-text="event.shortStartTime + ' ' + event.startYearfulDate"></div>
+											<div v-if="event.multiDay && !event.allDay && !event.lessThanAWeek && !event.multiYear" v-text="event.shortStartTime + ' ' + event.startShortWeekday + ' ' + event.startYearlessDate"></div>
+											<div v-if="event.multiDay && !event.allDay && !event.lessThanAWeek && event.multiYear" v-text="event.shortStartTime + ' ' + event.startShortWeekday + ' ' + event.startYearfulDate"></div>
+											<div v-if="event.multiDay && !event.allDay">&ndash;</div>
+											<div v-if="event.multiDay && !event.allDay && event.lessThanAWeek" v-text="event.shortEndTime + ' ' + event.endYearfulDate"></div>
+											<div v-if="event.multiDay && !event.allDay && !event.lessThanAWeek" v-text="event.shortEndTime + ' ' + event.startYearfulDate + ' ' + event.endYearfulDate"></div>
+				
+											<!-- multi-day, all-day events -->
+											<div v-if="event.multiDay && event.allDay && event.lessThanAWeek" v-text="event.startLongWeekday + '\u2013' + event.endLongWeekday"></div>
+											<div v-if="event.multiDay && event.allDay && event.lessThanAWeek">&bull;</div>
+											<div v-if="event.multiDay && event.allDay && event.lessThanAWeek && !event.multiYear" v-text="event.startYearlessDate + ' \u2013 ' + event.endYearfulDate"></div>
+											<div v-if="event.multiDay && event.allDay && event.lessThanAWeek && event.multiYear" v-text="event.startYearfulDate + ' \u2013 ' + event.endYearfulDate"></div>
+											<div v-if="event.multiDay && event.allDay && !event.lessThanAWeek && !event.multiYear" v-text="event.startShortWeekday + ' ' + event.startYearlessDate + ' \u2013 ' + event.endShortWeekday + ' ' + event.endYearfulDate"></div>
+											<div v-if="event.multiDay && event.allDay && !event.lessThanAWeek && event.multiYear" v-text="event.startShortWeekday + ' ' + event.startYearfulDate + ' \u2013 ' + event.endShortWeekday + ' ' + event.endYearfulDate"></div>
+										</div>
+										<div class="timezone" v-if="event.timezone">
+											<div><span v-text="event.startTimezoneOffset"></span> (<span v-text="event.prettyTimezone"></span>)</div>
+										</div>
+										<div class="rsvp">
+											<div v-text="event.rsvpString"></div>
+										</div>
+										<div class="description" ref="eventDescription">
+											<div v-text="event.description"></div>
+										</div>
+									</div>
+									<div class="event-square" v-if="urlHashLoadFailed" v-cloak>
+										Error displaying event
+									</div>
+								</div>
 							</div>
-							<div class="location">
-								<div v-if="event.location" v-text="event.location"></div>
-							</div>
-							<div class="date-and-time">
-								<!-- single-day, non-all-day events -->
-								<div v-if="!event.multiDay && !event.allDay && event.shortEndTime" v-text="event.shortStartTime + ' \u2013 ' + event.shortEndTime"></div>
-								<div v-if="!event.multiDay && !event.allDay && !event.shortEndTime" v-text="event.whimsicalStartTime"></div>
-								<div v-if="!event.multiDay && !event.allDay">&bull;</div>
-								<div v-if="!event.multiDay && !event.allDay" v-text="event.startLongWeekday || event.endLongWeekday"></div>
-								<div v-if="!event.multiDay && !event.allDay">&bull;</div>
-								<div v-if="!event.multiDay && !event.allDay" v-text="event.startYearfulDate || event.endYearfulDate"></div>
-	
-								<!-- single-day, all-day events -->
-								<div v-if="!event.multiDay && event.allDay" v-text="event.startLongWeekday"></div>
-								<div v-if="!event.multiDay && event.allDay">&bull;</div>
-								<div v-if="!event.multiDay && event.allDay" v-text="event.startYearfulDate || event.endYearfulDate"></div>
-								
-								<!-- multi-day, non-all-day events -->
-								<div v-if="event.multiDay && !event.allDay && event.lessThanAWeek" v-text="event.startLongWeekday + '\u2013' + event.endLongWeekday"></div>
-								<div v-if="event.multiDay && !event.allDay && event.lessThanAWeek">&bull;</div>
-								<div v-if="event.multiDay && !event.allDay && event.lessThanAWeek && !event.multiYear" v-text="event.shortStartTime + ' ' + event.startYearlessDate"></div>
-								<div v-if="event.multiDay && !event.allDay && event.lessThanAWeek && event.multiYear" v-text="event.shortStartTime + ' ' + event.startYearfulDate"></div>
-								<div v-if="event.multiDay && !event.allDay && !event.lessThanAWeek && !event.multiYear" v-text="event.shortStartTime + ' ' + event.startShortWeekday + ' ' + event.startYearlessDate"></div>
-								<div v-if="event.multiDay && !event.allDay && !event.lessThanAWeek && event.multiYear" v-text="event.shortStartTime + ' ' + event.startShortWeekday + ' ' + event.startYearfulDate"></div>
-								<div v-if="event.multiDay && !event.allDay">&ndash;</div>
-								<div v-if="event.multiDay && !event.allDay && event.lessThanAWeek" v-text="event.shortEndTime + ' ' + event.endYearfulDate"></div>
-								<div v-if="event.multiDay && !event.allDay && !event.lessThanAWeek" v-text="event.shortEndTime + ' ' + event.startYearfulDate + ' ' + event.endYearfulDate"></div>
-	
-								<!-- multi-day, all-day events -->
-								<div v-if="event.multiDay && event.allDay && event.lessThanAWeek" v-text="event.startLongWeekday + '\u2013' + event.endLongWeekday"></div>
-								<div v-if="event.multiDay && event.allDay && event.lessThanAWeek">&bull;</div>
-								<div v-if="event.multiDay && event.allDay && event.lessThanAWeek && !event.multiYear" v-text="event.startYearlessDate + ' \u2013 ' + event.endYearfulDate"></div>
-								<div v-if="event.multiDay && event.allDay && event.lessThanAWeek && event.multiYear" v-text="event.startYearfulDate + ' \u2013 ' + event.endYearfulDate"></div>
-								<div v-if="event.multiDay && event.allDay && !event.lessThanAWeek && !event.multiYear" v-text="event.startShortWeekday + ' ' + event.startYearlessDate + ' \u2013 ' + event.endShortWeekday + ' ' + event.endYearfulDate"></div>
-								<div v-if="event.multiDay && event.allDay && !event.lessThanAWeek && event.multiYear" v-text="event.startShortWeekday + ' ' + event.startYearfulDate + ' \u2013 ' + event.endShortWeekday + ' ' + event.endYearfulDate"></div>
-							</div>
-							<div class="timezone" v-if="event.timezone">
-								<div><span v-text="event.startTimezoneOffset"></span> (<span v-text="event.prettyTimezone"></span>)</div>
-							</div>
-							<div class="rsvp">
-								<div v-text="event.rsvpString"></div>
-							</div>
-							<div class="description" ref="eventDescription">
-								<div v-text="event.description"></div>
-							</div>
-						</div>
-						<div class="event-square" v-if="urlHashLoadFailed" v-cloak>
-							Error displaying event
 						</div>
 					</div>
 				</section>
