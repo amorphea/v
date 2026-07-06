@@ -49,7 +49,7 @@ const app = Vue.createApp({
     };
   },
   watch: {
-    'event.title':       this.autoShrinkEventSquareTextNextTick(),
+    'event.title':       { handler: this.autoShrinkEventSquareText(), flush: 'post' },
     'event.location':    this.autoShrinkEventSquareTextNextTick(),
     'event.startDate':   this.autoShrinkEventSquareTextNextTick(),
     'event.startTime':   this.autoShrinkEventSquareTextNextTick(),
