@@ -163,9 +163,9 @@ a:hover {
     position: absolute;
     background-color: white;
     border-radius: 1em;
-    width: 0.3em;
-    height: 0.3em;
-    left: calc(-0.7em + -0.15em);
+    width: 0.32em;
+    height: 0.32em;
+    left: calc(-0.7em + -0.16em);
 	/* vertically center the bullet */
     margin-top: auto;
     margin-bottom: auto;
