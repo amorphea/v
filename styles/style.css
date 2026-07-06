@@ -262,6 +262,7 @@ a:hover {
 .calendar-button {
 	background-color: white;
 	border-radius: 5em;
+	border-bottom: none;
 	font-size: 1.2em;
 	padding: 0.5em 1.1em 0.6em 1.1em;
 	color: #4a4a4a;
@@ -277,6 +278,7 @@ a:hover {
 }
 .calendar-button:visited {
 	color: #4a4a4a;
+	border-bottom: none;
 }
 .calendar-button:hover {
 	color: #a57bb0;
@@ -778,6 +780,7 @@ a:hover {
 	display: flex;
 	padding: 0;
 	margin: 0;
+	border-bottom: none;
 	flex: 0 0 auto;
 	width: 5rem;
 	align-items: center;
@@ -798,5 +801,5 @@ a:hover {
 }
 .footer-content a.footer-icon:hover, .footer-content a.footer-icon:visited {
 	color: inherit;
-    border-bottom: inherit;
+    border-bottom: none;
 }
