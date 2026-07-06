@@ -169,9 +169,9 @@ a:hover {
     background-color: white;
 	box-shadow: var(--theme-shadow);
     border-radius: 1em;
-    width: 0.32em;
-    height: 0.32em;
-    left: calc(-0.7em + -0.16em);
+    width: 0.3em;
+    height: 0.3em;
+    left: calc(-0.7em + -0.15em);
 	/* vertically center the bullet */
     margin-top: auto;
     margin-bottom: auto;
