@@ -34,7 +34,7 @@ units, so that the user can zoom as normal.
 	width: calc(min(100cqw, 42rem)) !important;
 	height: calc(min(100cqw, 42rem)) !important;
 }
-.event-square {
+.event-square-outer {
 	width: 100% !important;
 }
 .section-image-credit {
