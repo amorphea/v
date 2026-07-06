@@ -223,6 +223,19 @@ const app = Vue.createApp({
     autoShrinkEventSquareText() {
       let maxHeight = this.$refs.eventSquare.getBoundingClientRect().height;
       ShrinkText.shrinkText(this.$refs.eventSquareFontRescale, maxHeight);
+
+      this.addBulletsToEventSquareDateAndTime();
+    },
+    addBulletsToEventSquareDateAndTime() {
+      let dateTimes = this.$refs.eventSquareDateAndTime;
+      let prevChild = null;
+      for (const child of dateTimes.children) {
+        if (prevChild != null) {
+          if (child.offsetTop === prevChild.offsetTop) child.classList.add('bullet-before');
+          else child.classList.remove('bullet-before');
+        }
+        prevChild = child;
+      }
     },
     showThemesFaq() {
       this.showFaqSection(this.$refs.themesFaq);
