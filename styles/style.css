@@ -107,7 +107,6 @@ a:hover {
 	background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
-	padding: 3%;
 	box-shadow:
 		0 0.2cqw 0.2cqw hsl(0deg 0% 0% / 0.08),
 		0 0.4cqw 0.4cqw hsl(0deg 0% 0% / 0.08),
@@ -133,6 +132,7 @@ a:hover {
 	flex-wrap: nowrap;
 	justify-content: center;
 	align-items: center;
+	padding: 3%;
 }
 .event-square-inner > * {
 	display: flex;
