@@ -41,10 +41,10 @@
 			<main class="main">
 				<section v-if="!createModeCurrently" class="section-event-display">
 					<div class="event-display">
-						<div class="event-square" ref="eventSquare" v-if="urlHashLoaded" v-cloak>
+						<div class="event-square" ref="eventSquare" v-if="urlHashLoaded" v-cloak :style="eventSquareOuterStyle">
 							<div class="event-square-font-baseline">
 								<div class="event-square-font-rescaled">
-									<div class="event-square-theme-styled" :style="eventSquareStyle">
+									<div class="event-square-theme-styled" :style="eventSquareInnerStyle">
 										<div class="title">
 											<h1 v-text="event.title"></h1>
 										</div>
