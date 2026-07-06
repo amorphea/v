@@ -97,22 +97,13 @@ a:hover {
 	justify-items: center;
 	align-items: end;
 }
-.event-square {
+.event-square-size {
 	container-type: size;
 	grid-row: 1 / 2;
 	grid-column: 1 / 2;
 	width: 80%;
 	aspect-ratio: 1;
 	border: 0.4cqw solid #777777;
-	display: flex;
-	flex-direction: column;
-	flex-wrap: nowrap;
-	justify-content: center;
-	align-items: center;
-	padding: 3%;
-	background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
 	box-shadow:
 		0 0.2cqw 0.2cqw hsl(0deg 0% 0% / 0.08),
 		0 0.4cqw 0.4cqw hsl(0deg 0% 0% / 0.08),
@@ -123,13 +114,33 @@ a:hover {
 		0 6.0cqw 12.8cqw hsl(0deg 0% 0% / 0.1),
 		0 8.0cqw 25.6cqw hsl(0deg 0% 0% / 0.15);
 }
+.event-square-font-baseline {
+	font-size: 3.7cqw;
+	width: 100%;
+}
+.event-square-font-rescaled {
+	/* the font-size will be adjusted using javascript, starting as 1em and then shrinking if necessary */
+	width: 100%;
+}
+.event-square {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: center;
+	padding: 3%;
+	background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
 .event-square > * {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	gap: 1cqw;
 	flex-wrap: nowrap;
-	font-size: 3.7cqw;
+	font-size: 1em;
 	max-width: 100%;
 }
 .event-square * {
@@ -144,7 +155,7 @@ a:hover {
 	
 }
 .event-square .timezone {
-	font-size: 3cqw;
+	font-size: 0.8em;
 }
 .event-square .rsvp {
 	
@@ -201,7 +212,7 @@ a:hover {
 		width: calc(min(100cqw, 100svh, 42rem));
 		height: calc(min(100cqw, 100svh, 42rem));
 	}
-	.event-square {
+	.event-square-size {
 		width: 100%;
 	}
 	:root {
