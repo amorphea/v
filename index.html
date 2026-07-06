@@ -43,7 +43,7 @@
 					<div class="event-display">
 						<div class="event-square-outer" ref="eventSquare" v-if="urlHashLoaded" v-cloak :style="eventSquareOuterStyle">
 							<div class="event-square-font-baseline">
-								<div class="event-square-font-rescaled">
+								<div class="event-square-font-rescaled" ref="eventSquareFontRescale">
 									<div class="event-square-inner" :style="eventSquareInnerStyle">
 										<div class="title">
 											<h1 v-text="event.title"></h1>
@@ -90,7 +90,7 @@
 										<div class="rsvp">
 											<div v-text="event.rsvpString"></div>
 										</div>
-										<div class="description" ref="eventDescription">
+										<div class="description">
 											<div v-text="event.description"></div>
 										</div>
 									</div>
