@@ -49,9 +49,16 @@ const app = Vue.createApp({
     };
   },
   watch: {
-    'event.description': function(newDesc, oldDesc) {
-       this.$nextTick(() => this.autoShrinkEventDesc());
-    }
+    'event.title':       function(newDesc, oldDesc) { this.$nextTick(() => this.autoShrinkEventSquareText()); },
+    'event.location':    function(newDesc, oldDesc) { this.$nextTick(() => this.autoShrinkEventSquareText()); },
+    'event.startDate':   function(newDesc, oldDesc) { this.$nextTick(() => this.autoShrinkEventSquareText()); },
+    'event.startTime':   function(newDesc, oldDesc) { this.$nextTick(() => this.autoShrinkEventSquareText()); },
+    'event.endDate':     function(newDesc, oldDesc) { this.$nextTick(() => this.autoShrinkEventSquareText()); },
+    'event.endTime':     function(newDesc, oldDesc) { this.$nextTick(() => this.autoShrinkEventSquareText()); },
+    'event.timezone':    function(newDesc, oldDesc) { this.$nextTick(() => this.autoShrinkEventSquareText()); },
+    'event.rsvp':        function(newDesc, oldDesc) { this.$nextTick(() => this.autoShrinkEventSquareText()); },
+    'event.rsvpDate':    function(newDesc, oldDesc) { this.$nextTick(() => this.autoShrinkEventSquareText()); },
+    'event.description': function(newDesc, oldDesc) { this.$nextTick(() => this.autoShrinkEventSquareText()); },
   },
   methods: {
     encode(str) {
@@ -213,9 +220,9 @@ const app = Vue.createApp({
       }
       this.urlHashLoadFailed = true;
     },
-    autoShrinkEventDesc() {
+    autoShrinkEventSquareText() {
       let maxHeight = this.$refs.eventSquare.getBoundingClientRect().height * 0.7;
-      ShrinkText.shrinkText(this.$refs.eventDescription, maxHeight);
+      ShrinkText.shrinkText(this.$refs.eventSquareFontRescale, maxHeight);
     },
     showThemesFaq() {
       this.showFaqSection(this.$refs.themesFaq);
@@ -347,7 +354,7 @@ const app = Vue.createApp({
     }
   },
   mounted() {
-    this.autoShrinkEventDesc();
+    this.autoShrinkEventSquareText();
   },
   compilerOptions: {
     isCustomElement: (tag) => tag.startsWith('add-')
