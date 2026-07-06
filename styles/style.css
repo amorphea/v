@@ -126,7 +126,7 @@ a:hover {
 	width: 100%;
 }
 .event-square-font-rescaled {
-	/* the font-size will be adjusted using javascript, starting as 1em and then shrinking if necessary */
+	/* the font-size will be adjusted using javascript, starting at 1em and then shrinking if necessary */
 	width: 100%;
 }
 .event-square-inner {
@@ -139,11 +139,10 @@ a:hover {
 }
 .event-square-inner > * {
 	display: flex;
+	flex-flow: row wrap;
 	justify-content: center;
 	align-items: center;
 	gap: 1cqw;
-	flex-wrap: nowrap;
-	font-size: 1em;
 	max-width: 100%;
 }
 .event-square-inner * {
@@ -164,7 +163,7 @@ a:hover {
 	
 }
 .event-square-inner .description {
-	/* flex-grow: 1; */
+	
 }
 .event-square-inner .description div {
 	white-space: pre-wrap;
