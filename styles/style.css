@@ -213,6 +213,9 @@ a:hover {
 :root {
 	--cal-scale: 1;
 }
+.section-calendar-buttons {
+	padding-inline: 13px;
+}
 .calendar-buttons-display {
 	display: grid;
 	justify-items: center;
