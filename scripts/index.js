@@ -50,15 +50,15 @@ const app = Vue.createApp({
   },
   watch: {
     'event.title':       { handler() { this.autoShrinkEventSquareText(); }, flush: 'post' },
-    'event.location':    function() { this.autoShrinkEventSquareTextNextTick() },
-    'event.startDate':   function() { this.autoShrinkEventSquareTextNextTick() },
-    'event.startTime':   function() { this.autoShrinkEventSquareTextNextTick() },
-    'event.endDate':     function() { this.autoShrinkEventSquareTextNextTick() },
-    'event.endTime':     function() { this.autoShrinkEventSquareTextNextTick() },
-    'event.timezone':    function() { this.autoShrinkEventSquareTextNextTick() },
-    'event.rsvp':        function() { this.autoShrinkEventSquareTextNextTick() },
-    'event.rsvpDate':    function() { this.autoShrinkEventSquareTextNextTick() },
-    'event.description': function() { this.autoShrinkEventSquareTextNextTick() },
+    'event.location':    { handler() { this.autoShrinkEventSquareText(); }, flush: 'post' },
+    'event.startDate':   { handler() { this.autoShrinkEventSquareText(); }, flush: 'post' },
+    'event.startTime':   { handler() { this.autoShrinkEventSquareText(); }, flush: 'post' },
+    'event.endDate':     { handler() { this.autoShrinkEventSquareText(); }, flush: 'post' },
+    'event.endTime':     { handler() { this.autoShrinkEventSquareText(); }, flush: 'post' },
+    'event.timezone':    { handler() { this.autoShrinkEventSquareText(); }, flush: 'post' },
+    'event.rsvp':        { handler() { this.autoShrinkEventSquareText(); }, flush: 'post' },
+    'event.rsvpDate':    { handler() { this.autoShrinkEventSquareText(); }, flush: 'post' },
+    'event.description': { handler() { this.autoShrinkEventSquareText(); }, flush: 'post' },
   },
   methods: {
     encode(str) {
@@ -223,9 +223,6 @@ const app = Vue.createApp({
     autoShrinkEventSquareText() {
       let maxHeight = this.$refs.eventSquare.getBoundingClientRect().height * 0.9;
       ShrinkText.shrinkText(this.$refs.eventSquareFontRescale, maxHeight);
-    },
-    autoShrinkEventSquareTextNextTick() {
-      this.$nextTick(() => this.autoShrinkEventSquareText());
     },
     showThemesFaq() {
       this.showFaqSection(this.$refs.themesFaq);
