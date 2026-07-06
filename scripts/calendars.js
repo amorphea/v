@@ -218,7 +218,8 @@ const calendarButtonsComponent = {
 				line = line.replace(/\\/g, "\\").replace(/\r/g, "\\r").replace(/\n/g, "\\n");
 				let foldedLine = "";
 				while (line !== "") {
-					foldedLine += line.substring(0, 30) + "\r\n ";
+					if (foldedLine !== "") foldedLine += "\r\n ";
+					foldedLine += line.substring(0, 30);
 					line = line.substring(30);
 				}
 				return foldedLine + "\r\n";
