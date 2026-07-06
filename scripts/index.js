@@ -221,7 +221,7 @@ const app = Vue.createApp({
       this.urlHashLoadFailed = true;
     },
     autoShrinkEventSquareText() {
-      let maxHeight = this.$refs.eventSquare.getBoundingClientRect().height * 0.7;
+      let maxHeight = this.$refs.eventSquare.getBoundingClientRect().height * 0.9;
       ShrinkText.shrinkText(this.$refs.eventSquareFontRescale, maxHeight);
     },
     autoShrinkEventSquareTextNextTick() {
