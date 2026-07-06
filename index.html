@@ -73,7 +73,7 @@
 												<span v-if="event.multiDay && !event.allDay && event.lessThanAWeek && event.multiYear" v-text="event.shortStartTime + ' ' + event.startYearfulDate"></span>
 												<span v-if="event.multiDay && !event.allDay && !event.lessThanAWeek && !event.multiYear" v-text="event.shortStartTime + ' ' + event.startShortWeekday + ' ' + event.startYearlessDate"></span>
 												<span v-if="event.multiDay && !event.allDay && !event.lessThanAWeek && event.multiYear" v-text="event.shortStartTime + ' ' + event.startShortWeekday + ' ' + event.startYearfulDate"></span>
-												<span v-if="event.multiDay && !event.allDay">&ndash;</span>
+												<span v-if="event.multiDay && !event.allDay"> &ndash; </span>
 												<span v-if="event.multiDay && !event.allDay && event.lessThanAWeek" v-text="event.shortEndTime + ' ' + event.endYearfulDate"></span>
 												<span v-if="event.multiDay && !event.allDay && !event.lessThanAWeek" v-text="event.shortEndTime + ' ' + event.startYearfulDate + ' ' + event.endYearfulDate"></span>
 											</div>
