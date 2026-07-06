@@ -49,16 +49,16 @@ const app = Vue.createApp({
     };
   },
   watch: {
-    'event.title':       { handler: this.autoShrinkEventSquareText, flush: 'post' },
-    'event.location':    this.autoShrinkEventSquareTextNextTick,
-    'event.startDate':   this.autoShrinkEventSquareTextNextTick,
-    'event.startTime':   this.autoShrinkEventSquareTextNextTick,
-    'event.endDate':     this.autoShrinkEventSquareTextNextTick,
-    'event.endTime':     this.autoShrinkEventSquareTextNextTick,
-    'event.timezone':    this.autoShrinkEventSquareTextNextTick,
-    'event.rsvp':        this.autoShrinkEventSquareTextNextTick,
-    'event.rsvpDate':    this.autoShrinkEventSquareTextNextTick,
-    'event.description': this.autoShrinkEventSquareTextNextTick,
+    'event.title':       { handler() { this.autoShrinkEventSquareText(); }, flush: 'post' },
+    'event.location':    function() { this.autoShrinkEventSquareTextNextTick() },
+    'event.startDate':   function() { this.autoShrinkEventSquareTextNextTick() },
+    'event.startTime':   function() { this.autoShrinkEventSquareTextNextTick() },
+    'event.endDate':     function() { this.autoShrinkEventSquareTextNextTick() },
+    'event.endTime':     function() { this.autoShrinkEventSquareTextNextTick() },
+    'event.timezone':    function() { this.autoShrinkEventSquareTextNextTick() },
+    'event.rsvp':        function() { this.autoShrinkEventSquareTextNextTick() },
+    'event.rsvpDate':    function() { this.autoShrinkEventSquareTextNextTick() },
+    'event.description': function() { this.autoShrinkEventSquareTextNextTick() },
   },
   methods: {
     encode(str) {
