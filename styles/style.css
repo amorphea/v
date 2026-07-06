@@ -104,6 +104,10 @@ a:hover {
 	width: 80%;
 	aspect-ratio: 1;
 	border: 0.4cqw solid #777777;
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: center;
+	align-items: center;
 	background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
@@ -128,8 +132,7 @@ a:hover {
 .event-square-inner {
 	width: 100%;
 	display: flex;
-	flex-direction: column;
-	flex-wrap: nowrap;
+	flex-flow: column nowrap;
 	justify-content: center;
 	align-items: center;
 	padding: 3%;
