@@ -151,6 +151,9 @@ a:hover {
 .event-square-inner .title h1 {
 	margin: 2cqh 0 3cqh 0;
 	font-family: inherit;
+	font-weight: inherit;
+	line-height: 1.2;
+	font-size: 2.3em;
 }
 .event-square-inner .date-and-time {
 	column-gap: 1.4em;
