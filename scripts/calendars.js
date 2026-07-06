@@ -231,6 +231,7 @@ const calendarButtonsComponent = {
 
 			if (this.event.allDay) end = this.fixAllDayEventEnd(start, end);
 
+			
 			// TODO: Add URI, DTSTAMP, more timezone handling, image, source url, etc
 			return (
 				encodeIcsLine("BEGIN:VCALENDAR") +
