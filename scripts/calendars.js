@@ -99,6 +99,7 @@ const calendarButtonsComponent = {
 		},
 		yahooCalendarLinkPrefix() {
 			return 'calendar.yahoo.com/?v=60&';
+			// See: https://interactiondesignfoundation.github.io/add-event-to-calendar-docs/services/yahoo.html
 		},
 	},
 	computed: {
@@ -208,6 +209,10 @@ const calendarButtonsComponent = {
 			return "data:text/calendar;charset=UTF-8," + encodeURIComponent(this.icsFileContents);
 		},
 		icsFileContents() {
+			// See: https://en.wikipedia.org/wiki/ICalendar
+			// Archive: https://en.wikipedia.org/w/index.php?title=ICalendar&oldid=1337928525
+			// See: https://www.rfc-editor.org/info/rfc5545/
+			
 			function encodeIcsLine(line) {
 				// Each line must be at most 75 bytes long, not including the CR LF at the end
 				// (note this is *bytes* not two-byte unicode characters, so we set the limit at 30 characters)
