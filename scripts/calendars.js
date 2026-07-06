@@ -97,6 +97,9 @@ const calendarButtonsComponent = {
 		office365CalendarLinkPrefix() {
 			return 'outlook.office.com/calendar/deeplink/compose?path=%2Fcalendar%2Faction%2Fcompose&rru=addevent&';
 		},
+		yahooCalendarLinkPrefix() {
+			return 'calendar.yahoo.com/?v=60&';
+		},
 	},
 	computed: {
 		isAndroid() {
@@ -129,7 +132,7 @@ const calendarButtonsComponent = {
 			let startIsZoned = !!this.event.utcStartDateObj;
 			let endIsZoned = !!this.event.utcEndDateObj;
 			
-			if (!start || !end || !this.event.title) return null; // these parameters are required by google calendar
+			if (!start || !end || !this.event.title) return null; // these parameters are required by Google Calendar
 
 			if (this.event.allDay) end = this.fixAllDayEventEnd(start, end);
 			
@@ -176,6 +179,32 @@ const calendarButtonsComponent = {
 				(this.event.location ? "&location=" + this.encode(this.event.location) : "") +
 				((this.event.description || this.event.rsvpString) ? "&body=" + this.encode(this.joinTruthyStrings("\r\n\r\n", this.event.rsvpString, this.event.description)) : "")
 			);
-		}
+		},
+		yahooCalendarLink() {
+			return 'https://' + this.yahooCalendarLinkPrefix() + 
+		},
+		yahooCalendarLinkParams() {
+			// Yahoo appears to handle timezones the same way as Google, so we do the same here as above
+			// It also uses the same date-time encoding format to Google (though the start and end times are separate URL parameters, rather than being stuck together)
+			
+			let start = this.event.utcStartDateObj || this.event.startDateObj;
+			let end = this.event.utcEndDateObj || this.event.endDateObj;
+			let startIsZoned = !!this.event.utcStartDateObj;
+			let endIsZoned = !!this.event.utcEndDateObj;
+
+			if (!start || !this.event.title) return null; // these parameters are required by Yahoo
+
+			if (this.event.allDay) end = this.fixAllDayEventEnd(start, end);
+			
+			const dateString =  + "/" + ; 
+			
+			return (
+				"TITLE=" + this.encode(this.event.title) +
+				"&ST=" + this.encodeGoogleDate(start, startIsZoned, !this.event.allDay) + // omit the time for all-day events, include it otherwise
+				(end ? "&ET=" + this.encodeGoogleDate(end, endIsZoned, !this.event.allDay) : "") +
+				(this.event.location ? "&in_loc=" + this.encode(this.event.location) : "") +
+				((this.event.description || this.event.rsvpString) ? "&DESC=" + this.encode(this.joinTruthyStrings("\r\n\r\n", this.event.rsvpString, this.event.description)) : "")
+			);
+		},
 	}
 };
