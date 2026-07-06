@@ -196,8 +196,6 @@ const calendarButtonsComponent = {
 
 			if (this.event.allDay) end = this.fixAllDayEventEnd(start, end);
 			
-			const dateString =  + "/" + ; 
-			
 			return (
 				"TITLE=" + this.encode(this.event.title) +
 				"&ST=" + this.encodeGoogleDate(start, startIsZoned, !this.event.allDay) + // omit the time for all-day events, include it otherwise
