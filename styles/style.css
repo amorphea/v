@@ -156,6 +156,14 @@ a:hover {
 .event-square-inner .date-and-time {
 	
 }
+.event-square-inner .date-and-time div {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+	align-items: center;
+	gap: 1cqw;
+	max-width: 100%;
+}
 .event-square-inner .timezone {
 	font-size: 0.8em;
 }
