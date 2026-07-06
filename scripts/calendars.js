@@ -244,7 +244,7 @@ const calendarButtonsComponent = {
 				encodeIcsLine("LOCATION:" + this.event.location) +
 				encodeIcsLine("DESCRIPTION:" + this.event.description) +
 				encodeIcsLine("END:VEVENT") +
-				encodeIcsLine("END:VCALENDAR") +
+				encodeIcsLine("END:VCALENDAR")
 			);
 		},
 	}
