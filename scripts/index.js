@@ -198,7 +198,7 @@ const app = Vue.createApp({
         for (const unibinDecode of [false, true]) {
           if (!unibinDecode && decompress) continue; // this combination never occurs in practice; skip this loop iteration
           for (const uriDecode of [false, true]) {
-            console.log("Trying decoder combination [decompress: " + decompress + ", unibinDecode:" + unibinDecode + ", uriDecode:" + uriDecode + "]");
+            console.log("Trying decoder combination [decompress: " + decompress + ", unibinDecode: " + unibinDecode + ", uriDecode: " + uriDecode + "]");
             
             let str = urlHash;
             try { if (uriDecode) str = decodeURIComponent(str); }
