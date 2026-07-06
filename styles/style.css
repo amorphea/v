@@ -134,7 +134,7 @@ a:hover {
 	justify-content: center;
 	align-items: center;
 }
-.event-square > * {
+.event-square-inner > * {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -143,27 +143,27 @@ a:hover {
 	font-size: 1em;
 	max-width: 100%;
 }
-.event-square * {
+.event-square-inner * {
 	overflow-wrap: break-word; /* forcibly break any excessively-long words */
 	text-align: center;
 }
-.event-square .title h1 {
+.event-square-inner .title h1 {
 	margin: 2cqh 0 3cqh 0;
 	font-family: inherit;
 }
-.event-square .date-and-time {
+.event-square-inner .date-and-time {
 	
 }
-.event-square .timezone {
+.event-square-inner .timezone {
 	font-size: 0.8em;
 }
-.event-square .rsvp {
+.event-square-inner .rsvp {
 	
 }
-.event-square .description {
+.event-square-inner .description {
 	/* flex-grow: 1; */
 }
-.event-square .description div {
+.event-square-inner .description div {
 	white-space: pre-wrap;
 	text-align: center;
 	max-width: 100%;
@@ -212,7 +212,7 @@ a:hover {
 		width: calc(min(100cqw, 100svh, 42rem));
 		height: calc(min(100cqw, 100svh, 42rem));
 	}
-	.event-square {
+	.event-square-outer {
 		width: 100%;
 	}
 	:root {
