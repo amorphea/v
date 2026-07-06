@@ -136,6 +136,7 @@ a:hover {
 	justify-content: center;
 	align-items: center;
 	padding: 3%;
+	text-shadow: var(--theme-shadow);
 }
 .event-square-inner > * {
 	display: flex;
@@ -165,6 +166,7 @@ a:hover {
 	content: "";
     position: absolute;
     background-color: white;
+	box-shadow: var(--theme-shadow);
     border-radius: 1em;
     width: 0.32em;
     height: 0.32em;
