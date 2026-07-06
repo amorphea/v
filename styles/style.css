@@ -142,8 +142,6 @@ a:hover {
 	flex-flow: row wrap;
 	justify-content: center;
 	align-items: center;
-	column-gap: 1cqw;
-	row-gap: 0;
 	max-width: 100%;
 }
 .event-square-inner * {
@@ -155,7 +153,21 @@ a:hover {
 	font-family: inherit;
 }
 .event-square-inner .date-and-time {
-	
+	column-gap: 1.4em;
+}
+.event-square-inner .date-and-time .bullet-before:before {
+	content: "";
+    position: absolute;
+    background-color: white;
+    border-radius: 1em;
+    width: 0.3em;
+    height: 0.3em;
+    left: calc(-0.7em + -0.15em);
+	/* vertically center the bullet */
+    margin-top: auto;
+    margin-bottom: auto;
+    top: 50%;
+    bottom: 50%;
 }
 .event-square-inner .timezone {
 	font-size: 0.8em;
