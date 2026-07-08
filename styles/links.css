@@ -1,0 +1,127 @@
+/*
+Copyright (C) 2026 amorphea
+
+This file is part of Grevillea.
+
+Grevillea is free software: you can redistribute it and/or modify it under the
+terms of the GNU Affero General Public License as published by the Free
+Software Foundation, either version 3 of the License, or (at your option)
+any later version.
+
+Grevillea is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more
+details.
+
+You should have received a copy of the GNU Affero General Public License
+along with Grevillea. If not, see <https://www.gnu.org/licenses/>.
+*/
+
+.section-links {
+	padding-inline: 13px;
+}
+
+.links-list {
+	display: flex;
+	flex-direction: column;
+	gap: 1.25rem;
+}
+
+.url-title {
+	text-align: center;
+	text-transform: uppercase;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+.url-preview-row, .url-preview {
+    display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+}
+.url-preview-row {
+    flex-wrap: nowrap;
+	gap: 0.8rem;
+	align-items: stretch;
+}
+.url-preview {
+	flex-grow: 1;
+	gap: 0.4rem;
+	padding: 0.6rem;
+	border-radius: 4px;
+	background-color: #f1f1f1;
+	overflow-x: scroll;
+	-webkit-overflow-scrolling: touch;
+	flex-wrap: nowrap;
+}
+.url-preview:focus-visible {
+	outline: 1px solid #1d7484;
+}
+.url-preview .url-base {
+	text-transform: uppercase;
+	font-size: 0.7em;
+	font-weight: bold;
+	color: #A57BB0;
+	white-space: nowrap;
+    word-break: keep-all;
+    text-wrap: nowrap;
+    text-wrap-mode: nowrap;
+}
+.url-preview .hash-icon-container {
+	display: inline-grid;
+	place-items: center;
+}
+.url-preview svg.hash-icon {
+    grid-area: 1 / 2 / 1 / 2;
+	min-width: 1.25rem;
+	height: 1.25rem;
+	width: 1.25rem;
+	color: #A57BB0;
+}
+.url-preview .hash-text {
+	grid-area: 1 / 2 / 1 / 2;
+	font-size: 0.75rem;
+	color: transparent;
+}
+.url-preview code {
+	/*word-break: break-all;*/
+	white-space: nowrap;
+	flex-grow: 1;
+	padding: 0;
+}
+.url-preview-row .icon-button.copy-button {
+	width: calc(2em + 12px);
+	min-width: calc(2em + 12px);
+	max-width: calc(2em + 12px);
+}
+.url-preview-row .copy-button svg {
+	height: 1.5rem;
+	width: 1.5rem;
+}
+
+.url-stats, .timezone-details {
+    display: flex;
+	align-items: center;
+	gap: 0.3125rem;
+	font-size: 0.8em;
+}
+.url-stats {
+	margin-block-end: 0.5em;
+}
+.url-stats {
+	flex-direction: row;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+.timezone-details {
+	flex-direction: column;
+	justify-content: start;
+}
+.url-stats .compatibility-heading, .timezone-details .timezone-details-heading {
+	text-transform: uppercase;
+	font-size: 0.8em;
+	font-weight: bold;
+}
+.url-stats .compatibility-heading {
+	margin-block-start: 0.1em; /* add a tiny bit of space for better vertical centering */
+}
