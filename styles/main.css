@@ -74,6 +74,12 @@ a:hover {
 	--vs-font-size: 1em;
 }
 
+.caption {
+	text-transform: uppercase;
+	font-size: 0.8em;
+	font-weight: bold;
+}
+
 .section-heading {
 	line-height: 1;
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
