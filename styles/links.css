@@ -21,26 +21,28 @@ along with Grevillea. If not, see <https://www.gnu.org/licenses/>.
 	padding-inline: 13px;
 }
 
-.links-list {
+.section-links .links-list {
 	display: flex;
 	flex-flow: column nowrap;
 	gap: 1.25rem;
 }
 
-.caption.url-title {
+.section-links .caption.url-title {
 	text-align: center;
 	font-size: 0.7em;
 }
-.url-preview-row, .url-preview {
+
+.url-preview-row {
 	display: flex;
 	flex-flow: row nowrap;
 	justify-content: flex-start;
-}
-.url-preview-row {
 	gap: 0.8rem;
 	align-items: stretch;
 }
 .url-preview {
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: flex-start;
 	flex-grow: 1;
 	align-items: center;
 	gap: 0.4rem;
@@ -84,7 +86,7 @@ along with Grevillea. If not, see <https://www.gnu.org/licenses/>.
 	flex-grow: 1;
 	padding: 0;
 }
-.url-preview-row .icon-button.copy-button {
+.url-preview-row .copy-button {
 	width: calc(2em + 12px);
 	min-width: calc(2em + 12px);
 	max-width: calc(2em + 12px);
