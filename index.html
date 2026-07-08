@@ -107,7 +107,7 @@
 					<div class="caption">Image credit: <span v-text="imageCredit"></span></div>
 				</section>
 				<section v-if="!createModeCurrently && imageSource" class="section-image-credit" v-cloak>
-					<div>Image source: <a :href="imageSource.href" v-text="imageSource.text"></a></div>
+					<div class="caption">Image source: <a :href="imageSource.href" v-text="imageSource.text"></a></div>
 				</section>
 				<section class="section-calendar-buttons" v-if="urlHashLoaded" v-cloak>
 					<div class="calendar-buttons-display">
