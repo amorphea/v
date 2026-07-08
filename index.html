@@ -386,8 +386,8 @@
 			</footer>
 		</div>
 		<template id="calendar-buttons">
-			<div class="calendar-buttons" v-if="googleCalendarLink || mobileGoogleCalendarIntent || outlookCalendarLink || office365CalendarLink || yahooCalendarLink || icsFileUri">
-				<div class="calendar-buttons-heading">
+			<div class="calendar-buttons">
+				<div class="calendar-buttons-heading" v-if="googleCalendarLink || mobileGoogleCalendarIntent || outlookCalendarLink || office365CalendarLink || yahooCalendarLink || icsFileUri">
 					Add to calendar
 				</div>
 				<div class="calendar-buttons-list">
