@@ -24,7 +24,8 @@ along with Grevillea. If not, see <https://www.gnu.org/licenses/>.
 .section-edit .input-row {
 	display: flex;
 	flex-flow: row wrap;
-	gap: 1.25rem;
+	column-gap: 1.25rem;
+	row-gap: 0.625rem;
 	margin-bottom: 0.625rem;
 }
 .section-edit .input-col {
