@@ -391,12 +391,12 @@
 					Add to calendar
 				</div>
 				<div class="calendar-buttons-list">
-					<a v-if="!isAndroid" :href="googleCalendarLink" class="calendar-button">Google Calendar</a>
-					<a v-if="isAndroid" :href="mobileGoogleCalendarIntent" class="calendar-button">Google Calendar</a>
-					<a :href="outlookCalendarLink" class="calendar-button">Microsoft Outlook</a>
-					<a :href="office365CalendarLink" class="calendar-button">Office 365</a>
-					<a :href="yahooCalendarLink" class="calendar-button">Yahoo</a>
-					<a :href="icsFileUri" class="calendar-button">iCal (Apple)</a>
+					<a v-if="!isAndroid && googleCalendarLink" :href="googleCalendarLink" class="calendar-button">Google Calendar</a>
+					<a v-if="isAndroid && mobileGoogleCalendarIntent" :href="mobileGoogleCalendarIntent" class="calendar-button">Google Calendar</a>
+					<a v-if="outlookCalendarLink" :href="outlookCalendarLink" class="calendar-button">Microsoft Outlook</a>
+					<a v-if="office365CalendarLink" :href="office365CalendarLink" class="calendar-button">Office 365</a>
+					<a v-if="yahooCalendarLink" :href="yahooCalendarLink" class="calendar-button">Yahoo</a>
+					<a v-if="icsFileUri" :href="icsFileUri" class="calendar-button">iCal (Apple)</a>
 				</div>
 			</div>
 		</template>
