@@ -17,6 +17,14 @@ You should have received a copy of the GNU Affero General Public License
 along with Grevillea. If not, see <https://www.gnu.org/licenses/>.
 */
 
+footer {
+	background-color: #a57bb0;
+	color: white;
+	font-size: 0.8em;
+	padding-top: 3rem;
+    padding-bottom: 4rem;
+}
+
 .footer-content {
 	padding-inline: 13px;
 	display: flex;
