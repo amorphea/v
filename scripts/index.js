@@ -151,7 +151,7 @@ const app = Vue.createApp({
     },
     parseEventString(str) {
       if (!str) return null;
-      const arr = str.split(";");
+      let arr = str.split(";");
       if (arr.length < 3) { arr = str.split("|"); } // temporary -- try the old format instead
       if (arr.length < 3) return null; // require at least a title, location, and start time  
       
