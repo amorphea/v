@@ -105,7 +105,7 @@
 					</div>
 				</section>
 				<section v-if="!createModeCurrently && imageCredit" class="section-image-credit" v-cloak>
-					<div>Image credit: <span v-text="imageCredit"></span></div>
+					<div class="caption">Image credit: <span v-text="imageCredit"></span></div>
 				</section>
 				<section v-if="!createModeCurrently && imageSource" class="section-image-credit" v-cloak>
 					<div>Image source: <a :href="imageSource.href" v-text="imageSource.text"></a></div>
@@ -167,7 +167,7 @@
 										<icon-info></icon-info>
 									</label>
 									<div class="timezone-details">
-										<div class="timezone-details-heading">Event runs from:</div>
+										<div class="caption">Event runs from:</div>
 										<div class="timezone-details-row">
 											<div v-text="event.startDateTimeUTC || '\u2014'" class="timezone-details-date"></div>
 											<div>to</div>
@@ -403,7 +403,7 @@
 		</div>
 		<template id="calendar-buttons">
 			<div class="calendar-buttons">
-				<div class="calendar-buttons-heading" v-if="googleCalendarLink || mobileGoogleCalendarIntent || outlookCalendarLink || office365CalendarLink || yahooCalendarLink || icsFileUri">
+				<div class="caption calendar-buttons-heading" v-if="googleCalendarLink || mobileGoogleCalendarIntent || outlookCalendarLink || office365CalendarLink || yahooCalendarLink || icsFileUri">
 					Add to calendar
 				</div>
 				<div class="calendar-buttons-list">
@@ -431,7 +431,7 @@
 		</template>
 		<template id="url-display">
 			<div v-on:copy="removeNewlinesFromManualCopy">
-				<div class="url-title">
+				<div class="caption url-title">
 					<span v-text="urlTitle"></span> <a v-if="urlFaqCallback" v-on:click="urlFaqCallback()" href="javascript:void(0)" v-text="urlFaqLinkText"></a>
 				</div>
 				<div class="url-preview-row">
@@ -449,7 +449,7 @@
 					</button>
 				</div>
 				<div class="url-stats">
-					<div class="compatibility-heading">Compatibility:</div>
+					<div class="caption">Compatibility:</div>
 					<div><span v-text="url?.charCount"></span> chars</div>
 					<div>&bull;</div>
 					<div>Instagram: <span v-if="url?.compatibleWithIG">Yea</span><span v-else>Nay</span></div>
