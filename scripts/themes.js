@@ -79,13 +79,9 @@ class Theme {
     const images = this.imageLogs?.filter(x => new Date(x.date) <= new Date(seedDate));
     const fonts = this.fontLogs?.filter(x => new Date(x.date) <= new Date(seedDate));
     
-    const imageLog = images[Theme.#randomInt(rng, 0, images.length - 1)];
-    const fontLog = fonts[Theme.#randomInt(rng, 0, fonts.length - 1)];
+    const imageLog = images[RandomUtils.randomInt(rng, 0, images.length - 1)];
+    const fontLog = fonts[RandomUtils.randomInt(rng, 0, fonts.length - 1)];
     
     return { image: imageLog.image, font: fontLog.font };
-  }
-
-  static #randomInt(rng, min, max) { // returns a number inclusive of min and max
-    return Math.floor(rng.next() * (max + 1 - min) + min);
   }
 }
