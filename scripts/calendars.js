@@ -107,10 +107,10 @@ const calendarButtonsComponent = {
 			return navigator.userAgent.toLowerCase().indexOf('android') > -1;
 		},
 		googleCalendarLink() {
-			return 'https://' + this.googleCalendarLinkPrefix() + this.googleCalendarLinkParams;
+			return this.googleCalendarLinkParams && 'https://' + this.googleCalendarLinkPrefix() + this.googleCalendarLinkParams;
 		},
 		mobileGoogleCalendarIntent() {
-			return (
+			return this.googleCalendarLinkParams && (
 				'intent://' +
 				this.googleCalendarLinkPrefix() + this.googleCalendarLinkParams +
 				'#Intent;scheme=https;package=com.google.android.calendar;S.browser_fallback_url=' +
@@ -148,10 +148,10 @@ const calendarButtonsComponent = {
 			);
 		},
 		outlookCalendarLink() {
-			return 'https://' + this.outlookCalendarLinkPrefix() + this.outlookCalendarLinkParams;
+			return this.outlookCalendarLinkParams && 'https://' + this.outlookCalendarLinkPrefix() + this.outlookCalendarLinkParams;
 		},
 		office365CalendarLink() {
-			return 'https://' + this.office365CalendarLinkPrefix() + this.outlookCalendarLinkParams;
+			return this.outlookCalendarLinkParams && 'https://' + this.office365CalendarLinkPrefix() + this.outlookCalendarLinkParams;
 		},
 		outlookCalendarLinkParams() {
 			// Outlook appears to ignore UTC times sadly (adding a 'Z' didn't work when tested), and it appears to have no way to specify a timezone separately either,
@@ -182,7 +182,7 @@ const calendarButtonsComponent = {
 			);
 		},
 		yahooCalendarLink() {
-			return 'https://' + this.yahooCalendarLinkPrefix() + this.yahooCalendarLinkParams;
+			return this.yahooCalendarLinkParams && 'https://' + this.yahooCalendarLinkPrefix() + this.yahooCalendarLinkParams;
 		},
 		yahooCalendarLinkParams() {
 			// Yahoo appears to handle timezones the same way as Google, so we do the same here as above
@@ -206,7 +206,7 @@ const calendarButtonsComponent = {
 			);
 		},
 		icsFileUri() {
-			return "data:text/calendar;charset=UTF-8," + encodeURIComponent(this.icsFileContents);
+			return this.icsFileContents && "data:text/calendar;charset=UTF-8," + encodeURIComponent(this.icsFileContents);
 		},
 		icsFileContents() {
 			// See: https://en.wikipedia.org/wiki/ICalendar
