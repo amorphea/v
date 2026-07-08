@@ -33,7 +33,7 @@ body {
 
 main, .footer-content {
 	max-width: 42rem;
-    margin: auto;
+	margin: auto;
 }
 
 textarea { 
@@ -42,7 +42,7 @@ textarea {
 }
 
 input {
-    width: 100%;
+	width: 100%;
 }
 
 
@@ -93,8 +93,8 @@ a:hover {
 	row-gap: 1rem;
 	grid-template-columns: max-content min-content 1fr;
 	grid-template-areas:
-	    "heading toggle empty"
-	    "collapse collapse collapse";
+		"heading toggle empty"
+		"collapse collapse collapse";
 	margin-top: 2rem;
 }
 .section-collapsible .section-heading {
@@ -103,10 +103,10 @@ a:hover {
 .section-collapsible .section-heading-toggle {
 	/* hide the original checkbox (the label is shown instead). don't use "display: none" or
 	 * "visibility: hidden" as those also make it get skipped when tabbing with a keyboard */
-    grid-area: toggle;
-    height: 10px;
-    width: 10px;
-    opacity: 0;
+	grid-area: toggle;
+	height: 10px;
+	width: 10px;
+	opacity: 0;
 	z-index: -1;
 }
 .section-collapsible .section-heading-toggle-label {
@@ -123,7 +123,7 @@ a:hover {
 }
 .section-collapsible .section-heading-toggle-label svg {
 	height: 1.3em;
-    width: 1.3em;
+	width: 1.3em;
 	transition: transform 0.25s ease-out;
 }
 .section-collapsible .section-heading-toggle:checked + .section-heading-toggle-label + .section-collapse {
@@ -137,7 +137,7 @@ a:hover {
 .section-collapsible .section-heading-toggle:focus-visible + .section-heading-toggle-label {
 	/* outline the label whenever anyone tabs to the original checkbox */
 	border: 1px solid #1d7484;
-    outline: 0;
+	outline: 0;
 }
 
 .section-collapsible.section-links .links-list {
@@ -145,7 +145,7 @@ a:hover {
 }
 .section-collapsible.section-links .links-list .url-stats, .section-collapsible.section-links .links-list .url-title {
 	height: 0;
-    overflow: clip;
+	overflow: clip;
 	transition: height 0.25s ease-in-out;
 }
 .section-collapsible.section-links .section-heading-toggle:checked + .section-heading-toggle-label + .links-list .url-stats,
@@ -169,7 +169,7 @@ a:hover {
 	cursor: pointer;
 	box-sizing: border-box;
 	align-items: center;
-    justify-content: center;
+	justify-content: center;
 }
 .button-light {
 	background-color: #f1f1f1;
