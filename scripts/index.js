@@ -371,6 +371,13 @@ const app = Vue.createApp({
   mounted() {
     this.autoShrinkEventSquareText();
     this.addBulletsToEventSquareDateAndTime();
+
+    // whenever a font is loaded, the sizing of text inside the event
+    // square may change, so we need to recalculate the layout
+    document.fonts.onloadingdone = () => {
+      this.autoShrinkEventSquareText();
+      this.addBulletsToEventSquareDateAndTime();
+    }
   },
   compilerOptions: {
     isCustomElement: (tag) => tag.startsWith('add-')
