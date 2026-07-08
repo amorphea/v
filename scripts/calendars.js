@@ -227,7 +227,7 @@ const calendarButtonsComponent = {
 					"-",
 					"Event",
 					this.event.startDate,
-					this.event.title?.replace(/(\s-)+/g, '-').replace(/[^\p{Ll}\p{Lu}\p{Lt}\p{Lo}\p{Nd}]/ug, '').substring(50)
+					this.event.title?.replace(/(\s-)+/g, '-').replace(/[^\p{Ll}\p{Lu}\p{Lt}\p{Lo}\p{Nd}]/ug, '').substring(0, 50)
 				) + ".ics"
 				: ""
 			);
