@@ -57,8 +57,8 @@ class DeterministicRandom {
     
     // Initialise by first hashing the seed and then running the RNG a few times
     // See: https://stackoverflow.com/a/47593316
-    const rngSeed = DeterministicRandom.cyrb53(seed + "");
-    this.rng = DeterministicRandom.splitmix32(rngSeed);
+    const rngSeed = RandomUtils.cyrb53(seed + "");
+    this.rng = RandomUtils.splitmix32(rngSeed);
     for (let i = 0; i < 10; i++) this.rng();
   }
 
