@@ -1,0 +1,206 @@
+/*
+Copyright (C) 2026 amorphea
+
+This file is part of Grevillea.
+
+Grevillea is free software: you can redistribute it and/or modify it under the
+terms of the GNU Affero General Public License as published by the Free
+Software Foundation, either version 3 of the License, or (at your option)
+any later version.
+
+Grevillea is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more
+details.
+
+You should have received a copy of the GNU Affero General Public License
+along with Grevillea. If not, see <https://www.gnu.org/licenses/>.
+*/
+
+.section-edit {
+	padding-inline: 13px;
+}
+
+.input-clearable {
+	display: flex;
+	flex-direction: row;
+	gap: 0.8em;
+}
+.input-clearable button.icon-button {
+    width: calc(2em + 12px);
+	min-width: calc(2em + 12px);
+	max-width: calc(2em + 12px);
+}
+.input-clearable button.icon-button {
+	margin-bottom: 10px;
+}
+.input-clearable svg.bi-x {
+	height: 1.8em;
+    width: 1.8em;
+}
+
+.icon-button.timezone-details-toggle-label, .theme-rng-regenerable button.icon-button {
+    width: calc(2em + 12px);
+	min-width: calc(2em + 12px);
+	max-width: calc(2em + 12px);
+}
+
+.timezone-input-collapsible {
+	display: grid;
+	column-gap: 0.8em;
+	row-gap: 0;
+	grid-template-columns: 1fr min-content;
+	grid-template-areas: 
+	    "input toggle"
+	    "details details";
+}
+.timezone-input-collapsible .search-and-select-box {
+	grid-area: input;
+}
+.timezone-details-toggle {
+	/* hide the original checkbox (the label is shown instead). don't use "display: none" or
+	 * "visibility: hidden" as those also make it get skipped when tabbing with a keyboard */
+    grid-area: toggle;
+    height: 10px;
+    width: 10px;
+    opacity: 0;
+	z-index: -1;
+}
+.timezone-details-toggle-label {
+	grid-area: toggle;
+}
+.timezone-details {
+	grid-area: details;
+	height: 0;
+	overflow: clip;
+	transition: height 0.25s ease-in-out;
+	margin-block-end: 10px;
+}
+.timezone-details div {
+	text-align: center;
+}
+.timezone-details-row {
+	display: flex;
+	flex-flow: row nowrap;
+	gap: 0.5em;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+}
+.timezone-details-date {
+	border: 1px solid #9a9a9a;
+	border-radius: 5px;
+	padding: 0.2em 0.8em;
+	flex-grow: 1;
+}
+.timezone-details-toggle:checked + .timezone-details-toggle-label + .timezone-details {
+	/* expand the collapsible area whenever the checkbox is ticked */
+	height: auto;
+}
+.timezone-details-toggle:focus-visible + .timezone-details-toggle-label {
+	/* outline the label whenever anyone tabs to the original checkbox */
+	border: 1px solid #1d7484;
+    outline: 0;
+}
+.timezone-details-toggle-label svg.bi-info-circle {
+	height: 1.3em;
+    width: 1.3em;
+}
+.timezone-details-heading {
+	margin-top: 0.8rem;
+}
+
+.theme-rng-regenerable {
+	display: flex;
+	flex-direction: row;
+	gap: 0.8em;
+}
+.theme-rng-regenerable button.icon-button {
+	margin-bottom: 10px;
+}
+.theme-rng-regenerable button.icon-button.floating-regenerate-button {
+	position: fixed;
+	aspect-ratio: 1;
+    margin: 0;
+	bottom: 1rem;
+    left: 1rem;
+	box-shadow:
+		0 0.1cqw 0.2cqw hsl(0deg 0% 0% / 0.1),
+		0 0.3cqw 0.4cqw hsl(0deg 0% 0% / 0.1),
+		0 0.4cqw 0.8cqw hsl(0deg 0% 0% / 0.1),
+		0 1.0cqw 1.6cqw hsl(0deg 0% 0% / 0.1),
+		0 2.0cqw 3.2cqw hsl(0deg 0% 0% / 0.15);
+	/* make the floating regenerate button hidden by default, then slide in and out smoothly when the edit section is expended/collapsed */
+	visibility: hidden;
+	transform: translate(-4em, 4em);
+	transition: transform 0.15s ease-in-out, visibility 0.25s;
+}
+.section-collapsible.section-edit .section-heading-toggle:checked + .section-heading-toggle-label + .section-collapse button.icon-button.floating-regenerate-button {
+	visibility: visible;
+	transform: none;
+}
+.theme-rng-regenerable button.icon-button.floating-regenerate-button:focus-visible {
+	border: none; /* hide focus. tabindex=-1 prevents tabbing to the button but it can still be focused after clicking. this styling makes the focus invisible */
+}
+.theme-rng-regenerable svg.bi-arrow-repeat {
+	height: 1.3em;
+    width: 1.3em;
+}
+.row.background-inputs .image-url, .row.background-inputs .theme {
+	flex-grow: 10;
+}
+.row.background-inputs .rng {
+	flex-grow: 1;
+}
+
+/* attempt to hide the native date picker. this only works on some platforms,
+ * so other platforms will still show the date picker (this is the best we can do) */
+.date-nopicker::-webkit-inner-spin-button,
+.date-nopicker::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+}
+
+.row.result-button .col {
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: center;
+}
+.row.result-button .col .button {
+	min-width: 50%;
+	padding: 6px 20px;
+}
+
+/* copy the form input styling from sakura.css and apply this to search-and-select boxes too */
+.search-and-select-box .vs__dropdown-toggle {
+	color: #4a4a4a;
+    padding: 4px 1px 6px 1px;
+    background-color: #f1f1f1;
+    border: 1px solid #f1f1f1;
+    border-radius: 4px;
+    box-shadow: none;
+    box-sizing: border-box;
+}
+.search-and-select-box .vs__dropdown-toggle:focus-within {
+	border: 1px solid #1d7484;
+	outline: 0;
+}
+/* fix clipped x and v buttons */
+.search-and-select-box svg {
+	max-width: revert;
+}
+/* fix subtly different font size inside search and select box between 'typing' and 'option selected' modes */
+.search-and-select-box .vs__selected, .search-and-select-box .vs__selected:focus {
+    line-height: var(--vs-line-height);
+    font-size: var(--vs-font-size);
+}
+/* wrap overflow for long timezone names nicely (the default is messy) */
+.search-and-select-box .vs__selected-options {
+	flex-wrap: nowrap;
+    container-type: inline-size;
+}
+.search-and-select-box .vs__selected {
+	max-width: 90%;
+	word-wrap: break-word;
+	display: inline;
+}
