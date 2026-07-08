@@ -44,8 +44,8 @@ along with Grevillea. If not, see <https://www.gnu.org/licenses/>.
 	justify-content: center;
 	align-items: center;
 	background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
+	background-repeat: no-repeat;
+	background-position: center center;
 	box-shadow:
 		0 0.2cqw 0.2cqw hsl(0deg 0% 0% / 0.08),
 		0 0.4cqw 0.4cqw hsl(0deg 0% 0% / 0.08),
@@ -99,18 +99,18 @@ along with Grevillea. If not, see <https://www.gnu.org/licenses/>.
 }
 .event-square-inner .date-and-time .bullet-before:before {
 	content: "";
-    position: absolute;
-    background-color: white;
+	position: absolute;
+	background-color: white;
 	box-shadow: var(--theme-shadow);
-    border-radius: 1em;
-    width: 0.3em;
-    height: 0.3em;
-    left: calc(-0.7em + -0.15em);
+	border-radius: 1em;
+	width: 0.3em;
+	height: 0.3em;
+	left: calc(-0.7em + -0.15em);
 	/* vertically center the bullet */
-    margin-top: auto;
-    margin-bottom: auto;
-    top: 50%;
-    bottom: 50%;
+	margin-top: auto;
+	margin-bottom: auto;
+	top: 50%;
+	bottom: 50%;
 }
 .event-square-inner .timezone {
 	font-size: 0.8em;
@@ -128,9 +128,9 @@ along with Grevillea. If not, see <https://www.gnu.org/licenses/>.
 }
 
 .section-image-credit {
-    width: 100%;
+	width: 100%;
 	max-width: calc(min(100svh, 42rem));
-    margin-inline: auto;
+	margin-inline: auto;
 	display: flex;
 	flex-flow: column nowrap;
 	align-items: center;
@@ -138,9 +138,9 @@ along with Grevillea. If not, see <https://www.gnu.org/licenses/>.
 }
 .section-image-credit .caption {
 	width: 80%;
-    font-size: 0.6rem;
-    text-align: right;
-    font-style: italic;
+	font-size: 0.6rem;
+	text-align: right;
+	font-style: italic;
 }
 
 :root {
@@ -163,7 +163,7 @@ along with Grevillea. If not, see <https://www.gnu.org/licenses/>.
 	align-items: center;
 	justify-content: center;
 	margin-block-start: 2.5rem;
-    margin-block-end: 2.5rem;
+	margin-block-end: 2.5rem;
 }
 
 @media screen and (max-width: 35rem) {
@@ -201,9 +201,9 @@ along with Grevillea. If not, see <https://www.gnu.org/licenses/>.
 	padding: 0.5em 1.1em 0.6em 1.1em;
 	color: #4a4a4a;
 	white-space: nowrap;
-    word-break: keep-all;
-    text-wrap: nowrap;
-    text-wrap-mode: nowrap;
+	word-break: keep-all;
+	text-wrap: nowrap;
+	text-wrap-mode: nowrap;
 	box-shadow:
 		0 0.1em 0.2em hsl(0deg 0% 0% / 0.1),
 		0 0.3em 0.4em hsl(0deg 0% 0% / 0.1),
