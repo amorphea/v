@@ -26,7 +26,8 @@ const calendarButtonsComponent = {
 	
 	},
 	props: {
-		event: Event
+		event: Event,
+		eventUrl: String,
 	},
 	data() {
 		return { }
@@ -273,7 +274,7 @@ const calendarButtonsComponent = {
 				encodeIcsLine("DTEND:" + this.encodeGoogleDate(end, endIsZoned, !this.event.allDay)) +
 				encodeIcsLine("SUMMARY:" + this.event.title) +
 				encodeIcsLine("LOCATION:" + this.event.location) +
-				encodeIcsLine("DESCRIPTION:" + this.event.description) +
+				encodeIcsLine("DESCRIPTION:" + this.event.description + "\n\nView online: " + this.eventUrl) +
 				encodeIcsLine("END:VEVENT") +
 				encodeIcsLine("END:VCALENDAR")
 			);
