@@ -218,10 +218,14 @@ const app = Vue.createApp({
       this.urlHashLoadFailed = true;
     },
     autoShrinkEventSquareText() {
+      if (!this.$refs.eventSquare || !this.$refs.eventSquareFontRescale) return;
+      
       let maxHeight = this.$refs.eventSquare.getBoundingClientRect().height;
       ShrinkText.shrinkText(this.$refs.eventSquareFontRescale, maxHeight);
     },
     addBulletsToEventSquareDateAndTime() {
+      if (!this.$refs.eventSquareDateAndTime) return;
+
       // Based on: https://stackoverflow.com/a/41019508
       let dateTimes = this.$refs.eventSquareDateAndTime;
       let prevChild = null;
