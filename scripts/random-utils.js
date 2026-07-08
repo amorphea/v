@@ -7,6 +7,11 @@ class RandomUtils {
     return new DeterministicRandom(seed);
   }
 
+  // returns a number inclusive of min and max, based on the provided random-number-generator (RNG)
+  static randomInt(rng, min, max) {
+    return Math.floor(rng.next() * (max + 1 - min) + min);
+  }
+
   /* SplitMix32 psuedo-random number generator
    * License: Public Domain
    * Authors: Sebastiano Vigna (vigna@acm.org), tommyettinger, bryc, et al
