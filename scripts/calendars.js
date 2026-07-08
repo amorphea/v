@@ -225,14 +225,13 @@ const calendarButtonsComponent = {
 			// See: https://add-to-calendar-pro.com/articles/how-to-create-ical-file
 			// See: https://www.ionos.com/digitalguide/websites/web-development/icalendar/
 			
-			function encodeIcsLine(line) {
+			function foldIcsLine(line) {
 				// Each line must be at most 75 bytes long, not including the CR LF at the end
 				// (note this is *bytes* not two-byte unicode characters, so we set the limit at 30 characters)
 				// Longer lines are 'folded' by prefixing the next line with a single space character,
 				// see https://www.rfc-editor.org/info/rfc5545/#section-3
 				// Carriage returns, line feeds, and backslashes are escaped with backslashes
 				
-				line = line.replace(/\\/g, "\\").replace(/,/g, "\\,").replace(/:/g, "\\:").replace(/\r/g, "\\r").replace(/\n/g, "\\n");
 				let foldedLine = "";
 				while (line !== "") {
 					if (foldedLine !== "") foldedLine += "\r\n ";
@@ -240,6 +239,9 @@ const calendarButtonsComponent = {
 					line = line.substring(30);
 				}
 				return foldedLine + "\r\n";
+			}
+			function encodeIcsParam(param) {
+				return param.replace(/\\/g, "\\").replace(/,/g, "\\,").replace(/:/g, "\\:").replace(/\r/g, "\\r").replace(/\n/g, "\\n");
 			}
 
 			let start = this.event.utcStartDateObj || this.event.startDateObj;
@@ -268,21 +270,21 @@ const calendarButtonsComponent = {
 			
 			// TODO: Add URI, DTSTAMP, more timezone handling, image, source url, etc
 			return (
-				encodeIcsLine("BEGIN:VCALENDAR") +
-				encodeIcsLine("VERSION:2.0") +
-				encodeIcsLine("PRODID:-//amorphea//Grevillea//1.0") +
-				encodeIcsLine("METHOD:PUBLISH") +
-				encodeIcsLine("CALSCALE:GREGORIAN") +
-				encodeIcsLine("BEGIN:VEVENT") +
-				encodeIcsLine("UID:" + uid) +
-				encodeIcsLine("DTSTAMP:" + new Date().getFullYear() + "0000T000000Z") + // event creation timestamp = the current year (omit additional data for privacy)
-				encodeIcsLine("DTSTART:" + this.encodeGoogleDate(start, startIsZoned, !this.event.allDay)) +
-				encodeIcsLine("DTEND:" + this.encodeGoogleDate(end, endIsZoned, !this.event.allDay)) +
-				encodeIcsLine("SUMMARY:" + this.event.title) +
-				encodeIcsLine("LOCATION:" + this.event.location) +
-				encodeIcsLine("DESCRIPTION:" + this.multilineExtendedDescription) +
-				encodeIcsLine("END:VEVENT") +
-				encodeIcsLine("END:VCALENDAR")
+				foldIcsLine("BEGIN:VCALENDAR") +
+				foldIcsLine("VERSION:2.0") +
+				foldIcsLine("PRODID:-//amorphea//Grevillea//1.0") +
+				foldIcsLine("METHOD:PUBLISH") +
+				foldIcsLine("CALSCALE:GREGORIAN") +
+				foldIcsLine("BEGIN:VEVENT") +
+				foldIcsLine("UID:" + encodeIcsParam(uid)) +
+				foldIcsLine("DTSTAMP:" + encodeIcsParam(new Date().getFullYear() + "0000T000000Z")) + // event creation timestamp = the current year (omit additional data for privacy)
+				foldIcsLine("DTSTART:" + encodeIcsParam(this.encodeGoogleDate(start, startIsZoned, !this.event.allDay))) +
+				foldIcsLine("DTEND:" + encodeIcsParam(this.encodeGoogleDate(end, endIsZoned, !this.event.allDay))) +
+				foldIcsLine("SUMMARY:" + encodeIcsParam(this.event.title)) +
+				foldIcsLine("LOCATION:" + encodeIcsParam(this.event.location)) +
+				foldIcsLine("DESCRIPTION:" + encodeIcsParam(this.multilineExtendedDescription)) +
+				foldIcsLine("END:VEVENT") +
+				foldIcsLine("END:VCALENDAR")
 			);
 		},
 	}
