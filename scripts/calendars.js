@@ -293,7 +293,6 @@ const calendarButtonsComponent = {
 				(this.event.location ? foldIcsLine("LOCATION:" + encodeIcsParam(this.event.location)) : "") +
 				(this.multilineExtendedDescription ? foldIcsLine("DESCRIPTION:" + encodeIcsParam(this.multilineExtendedDescription)) : "") +
 				foldIcsLine("X-MICROSOFT-CDO-ALLDAYEVENT:" + (this.event.allDay ? "TRUE" : "FALSE")) +
-				(this.eventUrl ? foldIcsLine("URL:" + encodeIcsParam("https://" + this.eventUrl)) : "") +
 				foldIcsLine("END:VEVENT") +
 				foldIcsLine("END:VCALENDAR")
 			);
