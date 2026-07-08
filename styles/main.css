@@ -36,14 +36,6 @@ main, .footer-content {
     margin: auto;
 }
 
-footer {
-	background-color: #a57bb0;
-	color: white;
-	font-size: 0.8em;
-	padding-top: 3rem;
-    padding-bottom: 4rem;
-}
-
 textarea { 
 	resize: block;
 	height: 10em;
