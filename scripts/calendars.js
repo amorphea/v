@@ -272,20 +272,11 @@ const calendarButtonsComponent = {
 
 			if (this.event.allDay) end = this.fixAllDayEventEnd(start, end);
 
-			// Generate a UID (globally unique identifier) using all of the event information EXCEPT the description
-			// The UID is used for updating existing events in a user's calendar (use an identical UID to update an event,
-			// use a different UID to add a new event)
-			// The UID for each event *must* be unique (to avoid accidentally updating existing events). It also shouldn't
-			// be random (to avoid accidentally adding duplicates of the same event). Therefore we generate it by taking
-			// a hash of the event details. However, we exclude the description, so that users can at least publish
-			// partial updates to existing events, e.g. by adding "CANCELLED" or "RESCHEDULED" to the start of the
-			// description and leaving everything else identical.
-			let uidSeed = [
-				this.event.title, this.event.location, this.event.startDate, this.event.startTime,
-				this.event.endDate, this.event.endTime, this.event.timezone, this.event.rsvp, this.event.rsvpDate,
-				this.event.imageUrl, this.event.theme, this.event.rng
-			].join(",");
-			let uid = DeterministicRandom.cyrb53(uidSeed) + "@grevillea";
+			// Generate a UID (globally unique identifier) using all of the event information plus the current time.
+			// The UID *must* be unique for each event *and* for each user downloading an event. Rather than just encoding
+			// the current time in plaintext, we hash it with all the event details and a random number (for extra privacy).
+			let uidSeed = [this.eventUrl, new Date().toISOString(), Math.random().toString()].join(",");
+			let uid = DeterministicRandom.cyrb53(uidSeed) + DeterministicRandom.cyrb53(uidSeed + "more-digits") + "@grevillea";
 			
 			return (
 				foldIcsLine("BEGIN:VCALENDAR") +
