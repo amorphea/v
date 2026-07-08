@@ -23,7 +23,7 @@ along with Grevillea. If not, see <https://www.gnu.org/licenses/>.
 
 .links-list {
 	display: flex;
-	flex-direction: column;
+	flex-flow: column nowrap;
 	gap: 1.25rem;
 }
 
@@ -33,24 +33,22 @@ along with Grevillea. If not, see <https://www.gnu.org/licenses/>.
 }
 .url-preview-row, .url-preview {
 	display: flex;
-	flex-direction: row;
+	flex-flow: row nowrap;
 	justify-content: flex-start;
-	align-items: center;
 }
 .url-preview-row {
-	flex-wrap: nowrap;
 	gap: 0.8rem;
 	align-items: stretch;
 }
 .url-preview {
 	flex-grow: 1;
+	align-items: center;
 	gap: 0.4rem;
 	padding: 0.6rem;
 	border-radius: 4px;
 	background-color: #f1f1f1;
 	overflow-x: scroll;
 	-webkit-overflow-scrolling: touch;
-	flex-wrap: nowrap;
 }
 .url-preview:focus-visible {
 	outline: 1px solid #1d7484;
@@ -82,7 +80,6 @@ along with Grevillea. If not, see <https://www.gnu.org/licenses/>.
 	color: transparent;
 }
 .url-preview code {
-	/*word-break: break-all;*/
 	white-space: nowrap;
 	flex-grow: 1;
 	padding: 0;
@@ -99,13 +96,12 @@ along with Grevillea. If not, see <https://www.gnu.org/licenses/>.
 
 .url-stats {
 	display: flex;
+	flex-flow: row wrap;
 	align-items: center;
-	gap: 0.3125rem;
-	font-size: 0.8em;
-	margin-block-end: 0.5em;
-	flex-direction: row;
 	justify-content: center;
-	flex-wrap: wrap;
+	font-size: 0.8em;
+	gap: 0.3125rem;
+	margin-block-end: 0.5em;
 }
 .url-stats .caption {
 	margin-block-start: 0.1em; /* add a tiny bit of space for better vertical centering */
