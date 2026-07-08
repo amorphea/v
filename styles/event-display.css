@@ -219,7 +219,7 @@ along with Grevillea. If not, see <https://www.gnu.org/licenses/>.
 	.calendar-buttons {
 		font-size: 0.7rem
 	}
-	.section-image-credit div {
+	.section-image-credit .caption {
 		width: 97%;
 	}
 }
