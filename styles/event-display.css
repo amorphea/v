@@ -1,0 +1,230 @@
+/*
+Copyright (C) 2026 amorphea
+
+This file is part of Grevillea.
+
+Grevillea is free software: you can redistribute it and/or modify it under the
+terms of the GNU Affero General Public License as published by the Free
+Software Foundation, either version 3 of the License, or (at your option)
+any later version.
+
+Grevillea is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more
+details.
+
+You should have received a copy of the GNU Affero General Public License
+along with Grevillea. If not, see <https://www.gnu.org/licenses/>.
+*/
+
+.section-event-display {
+	width: auto;
+	max-width: calc(min(100svh, 42rem));
+	container-type: inline-size;
+	margin-inline: auto;
+}
+.event-display {
+	container-type: size;
+	width: calc(min(100cqw, 100svh, 42rem));
+	height: calc(min(100cqw, 100svh, 42rem) * 0.9);
+	margin-inline: auto;
+	display: grid;
+	justify-items: center;
+	align-items: end;
+}
+.event-square-outer {
+	container-type: size;
+	grid-row: 1 / 2;
+	grid-column: 1 / 2;
+	width: 80%;
+	aspect-ratio: 1;
+	border: 0.4cqw solid #777777;
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: center;
+	align-items: center;
+	background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+	box-shadow:
+		0 0.2cqw 0.2cqw hsl(0deg 0% 0% / 0.08),
+		0 0.4cqw 0.4cqw hsl(0deg 0% 0% / 0.08),
+		0 0.8cqw 0.8cqw hsl(0deg 0% 0% / 0.08),
+		0 1.6cqw 1.6cqw hsl(0deg 0% 0% / 0.08),
+		0 2.0cqw 3.2cqw hsl(0deg 0% 0% / 0.1),
+		0 4.0cqw 6.4cqw hsl(0deg 0% 0% / 0.1),
+		0 6.0cqw 12.8cqw hsl(0deg 0% 0% / 0.1),
+		0 8.0cqw 25.6cqw hsl(0deg 0% 0% / 0.15);
+}
+.event-square-font-baseline {
+	font-size: 3.4cqw;
+	width: 100%;
+}
+.event-square-font-rescaled {
+	/* the font-size will be adjusted using javascript, starting at 1em and then shrinking if necessary */
+	width: 100%;
+}
+.event-square-inner {
+	width: 100%;
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: center;
+	align-items: center;
+	padding: 3%;
+	text-shadow: var(--theme-shadow);
+}
+.event-square-inner > * {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+	align-items: center;
+	max-width: 100%;
+}
+.event-square-inner * {
+	overflow-wrap: break-word; /* forcibly break any excessively-long words */
+	text-align: center;
+}
+.event-square-inner .title h1 {
+	margin: 2cqh 0 2cqh 0;
+	font-family: inherit;
+	font-weight: bold;
+	line-height: 1.2;
+	font-size: 2.3em;
+}
+.event-square-inner .date-and-time {
+	column-gap: 1.4em;
+}
+.event-square-inner .date-and-time .bullet-before {
+	position: relative; /* needed for correct positioning of bullet */
+}
+.event-square-inner .date-and-time .bullet-before:before {
+	content: "";
+    position: absolute;
+    background-color: white;
+	box-shadow: var(--theme-shadow);
+    border-radius: 1em;
+    width: 0.3em;
+    height: 0.3em;
+    left: calc(-0.7em + -0.15em);
+	/* vertically center the bullet */
+    margin-top: auto;
+    margin-bottom: auto;
+    top: 50%;
+    bottom: 50%;
+}
+.event-square-inner .timezone {
+	font-size: 0.8em;
+}
+.event-square-inner .rsvp {
+	
+}
+.event-square-inner .description {
+	margin-top: 0.7em;
+}
+.event-square-inner .description div {
+	white-space: pre-wrap;
+	text-align: center;
+	max-width: 100%;
+}
+
+.section-image-credit {
+    width: 100%;
+	max-width: calc(min(100svh, 42rem));
+    margin-inline: auto;
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: center;
+	justify-content: center;
+}
+.section-image-credit div {
+	width: 80%;
+	text-transform: uppercase;
+    font-weight: bold;
+    font-size: 0.6rem;
+    text-align: right;
+    font-style: italic;
+}
+
+:root {
+	--cal-scale: 1;
+}
+.section-calendar-buttons {
+	padding-inline: 13px;
+}
+.calendar-buttons-display {
+	display: grid;
+	justify-items: center;
+	align-items: center;
+	justify-content: center;
+}
+.calendar-buttons {
+	display: flex;
+	flex-flow: column nowrap;
+	font-size: calc(1rem * var(--cal-scale));
+	gap: 0.5em;
+	align-items: center;
+	justify-content: center;
+	margin-block-start: 2.5rem;
+    margin-block-end: 2.5rem;
+}
+
+@media screen and (max-width: 35rem) {
+	.event-display {
+		width: calc(min(100cqw, 100svh, 42rem));
+		height: calc(min(100cqw, 100svh, 42rem));
+	}
+	.event-square-outer {
+		width: 100%;
+	}
+	:root {
+		--cal-scale: 0.7;
+	}
+	.section-image-credit div {
+		width: 97%;
+	}
+}
+
+.calendar-buttons-heading {
+	text-transform: uppercase;
+	font-size: 1em;
+	font-weight: bold;
+}
+.calendar-buttons-list {
+	display: flex;
+	flex-flow: row wrap;
+	align-items: center;
+	justify-content: center;
+	row-gap: 1em;
+	column-gap: 1.8em;
+}
+.calendar-button {
+	background-color: white;
+	border-radius: 5em;
+	border-bottom: none;
+	font-size: 1.2em;
+	padding: 0.5em 1.1em 0.6em 1.1em;
+	color: #4a4a4a;
+	white-space: nowrap;
+    word-break: keep-all;
+    text-wrap: nowrap;
+    text-wrap-mode: nowrap;
+	box-shadow:
+		0 0.1em 0.2em hsl(0deg 0% 0% / 0.1),
+		0 0.3em 0.4em hsl(0deg 0% 0% / 0.1),
+		0 0.4em 0.8em hsl(0deg 0% 0% / 0.1),
+		0 1.0em 1.6em hsl(0deg 0% 0% / 0.1);
+}
+.calendar-button:visited {
+	color: #4a4a4a;
+	border-bottom: none;
+}
+.calendar-button:hover {
+	color: #a57bb0;
+	border-bottom: none;
+	box-shadow:
+		0 0.1em 0.2em hsl(0deg 0% 0% / 0.1),
+		0 0.3em 0.4em hsl(0deg 0% 0% / 0.1),
+		0 0.4em 0.8em hsl(0deg 0% 0% / 0.1),
+		0 1.0em 1.6em hsl(0deg 0% 0% / 0.1),
+		0 2.0em 3.2em hsl(0deg 0% 0% / 0.15);
+}
