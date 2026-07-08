@@ -162,23 +162,6 @@ along with Grevillea. If not, see <https://www.gnu.org/licenses/>.
 	margin-block-start: 2.5rem;
 	margin-block-end: 2.5rem;
 }
-
-@media screen and (max-width: 35rem) {
-	.event-display {
-		width: calc(min(100cqw, 100svh, 42rem));
-		height: calc(min(100cqw, 100svh, 42rem));
-	}
-	.event-square-outer {
-		width: 100%;
-	}
-	.calendar-buttons {
-		font-size: 0.7rem
-	}
-	.section-image-credit div {
-		width: 97%;
-	}
-}
-
 .caption.calendar-buttons-heading {
 	font-size: 1em;
 }
@@ -220,4 +203,20 @@ along with Grevillea. If not, see <https://www.gnu.org/licenses/>.
 		0 0.4em 0.8em hsl(0deg 0% 0% / 0.1),
 		0 1.0em 1.6em hsl(0deg 0% 0% / 0.1),
 		0 2.0em 3.2em hsl(0deg 0% 0% / 0.15);
+}
+
+@media screen and (max-width: 35rem) {
+	.event-display {
+		width: calc(min(100cqw, 100svh, 42rem));
+		height: calc(min(100cqw, 100svh, 42rem));
+	}
+	.event-square-outer {
+		width: 100%;
+	}
+	.calendar-buttons {
+		font-size: 0.7rem
+	}
+	.section-image-credit div {
+		width: 97%;
+	}
 }
