@@ -239,7 +239,11 @@ const calendarButtonsComponent = {
 			// See: https://www.rfc-editor.org/info/rfc5545/
 			// See: https://add-to-calendar-pro.com/articles/how-to-create-ical-file
 			// See: https://www.ionos.com/digitalguide/websites/web-development/icalendar/
-			
+
+			// Note: According to the spec, we should NOT include both a UTC time (ending with a 'Z')
+			// and specify a timezone (see: https://www.rfc-editor.org/info/rfc5545/#section-3.2.19).
+			// We should only do one or the other (UTC is easier here so we just do that)
+
 			function foldIcsLine(line) {
 				// Each line must be at most 75 bytes long, not including the CR LF at the end
 				// (note this is *bytes* not two-byte unicode characters, so we set the limit at 30 characters)
@@ -264,7 +268,7 @@ const calendarButtonsComponent = {
 			let startIsZoned = !!this.event.utcStartDateObj;
 			let endIsZoned = !!this.event.utcEndDateObj;
 
-			if (!start) return null; // require a start time before showing this calendar button
+			if (!start || !end || !this.event.title) return null; // these parameters are required by the ics file format
 
 			if (this.event.allDay) end = this.fixAllDayEventEnd(start, end);
 
@@ -283,7 +287,6 @@ const calendarButtonsComponent = {
 			].join(",");
 			let uid = DeterministicRandom.cyrb53(uidSeed) + "@grevillea";
 			
-			// TODO: Add URI, DTSTAMP, more timezone handling, image, source url, etc
 			return (
 				foldIcsLine("BEGIN:VCALENDAR") +
 				foldIcsLine("VERSION:2.0") +
@@ -296,8 +299,10 @@ const calendarButtonsComponent = {
 				foldIcsLine("DTSTART:" + encodeIcsParam(this.encodeGoogleDate(start, startIsZoned, !this.event.allDay))) +
 				foldIcsLine("DTEND:" + encodeIcsParam(this.encodeGoogleDate(end, endIsZoned, !this.event.allDay))) +
 				foldIcsLine("SUMMARY:" + encodeIcsParam(this.event.title)) +
-				foldIcsLine("LOCATION:" + encodeIcsParam(this.event.location)) +
-				foldIcsLine("DESCRIPTION:" + encodeIcsParam(this.multilineExtendedDescription)) +
+				(this.event.location ? foldIcsLine("LOCATION:" + encodeIcsParam(this.event.location)) : "") +
+				(this.multilineExtendedDescription ? foldIcsLine("DESCRIPTION:" + encodeIcsParam(this.multilineExtendedDescription)) : "") +
+				foldIcsLine("X-MICROSOFT-CDO-ALLDAYEVENT:" + (this.event.allDay ? "TRUE" : "FALSE")) +
+				(this.eventUrl ? foldIcsLine("URL:" + encodeIcsParam("https://" + this.eventUrl)) : "") +
 				foldIcsLine("END:VEVENT") +
 				foldIcsLine("END:VCALENDAR")
 			);
