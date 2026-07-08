@@ -1,4 +1,6 @@
-# Grevillea (Event sharing utility)
+# Grevillea
+
+An event sharing utility, designed to be independent of any social media platform, while maximising privacy.
 
 Full website: [amorphea.github.io/v](https://amorphea.github.io/v/)
 
