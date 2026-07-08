@@ -211,9 +211,12 @@ const calendarButtonsComponent = {
 			return this.icsFileContents && "data:text/calendar;charset=UTF-8," + encodeURIComponent(this.icsFileContents);
 		},
 		icsFileContents() {
-			// See: https://en.wikipedia.org/wiki/ICalendar
-			// Archive: https://en.wikipedia.org/w/index.php?title=ICalendar&oldid=1337928525
+			// See: https://icalendar.org/
+			// See: https://www.text-2-ics.com/blog/ics-file-format-structure-guide
+			// See: https://en.wikipedia.org/wiki/ICalendar (archive: https://en.wikipedia.org/w/index.php?title=ICalendar&oldid=1337928525)
 			// See: https://www.rfc-editor.org/info/rfc5545/
+			// See: https://add-to-calendar-pro.com/articles/how-to-create-ical-file
+			// See: https://www.ionos.com/digitalguide/websites/web-development/icalendar/
 			
 			function encodeIcsLine(line) {
 				// Each line must be at most 75 bytes long, not including the CR LF at the end
@@ -241,13 +244,31 @@ const calendarButtonsComponent = {
 
 			if (this.event.allDay) end = this.fixAllDayEventEnd(start, end);
 
+			// Generate a UID (globally unique identifier) using all of the event information EXCEPT the description
+			// The UID is used for updating existing events in a user's calendar (use an identical UID to update an event,
+			// use a different UID to add a new event)
+			// The UID for each event *must* be unique (to avoid accidentally updating existing events). It also shouldn't
+			// be random (to avoid accidentally adding duplicates of the same event). Therefore we generate it by taking
+			// a hash of the event details. However, we exclude the description, so that users can at least publish
+			// partial updates to existing events, e.g. by adding "CANCELLED" or "RESCHEDULED" to the start of the
+			// description and leaving everything else identical.
+			let uidSeed = [
+				this.event.title, this.event.location, this.event.startDate, this.event.startTime,
+				this.event.endDate, this.event.endTime, this.event.timezone, this.event.rsvp, this.event.rsvpDate,
+				this.event.imageUrl, this.event.theme, this.event.rng
+			].join(",");
+			let uid = DeterministicRandom.cyrb53(uidSeed) + "@grevillea";
 			
 			// TODO: Add URI, DTSTAMP, more timezone handling, image, source url, etc
 			return (
 				encodeIcsLine("BEGIN:VCALENDAR") +
 				encodeIcsLine("VERSION:2.0") +
 				encodeIcsLine("PRODID:-//amorphea//Grevillea//1.0") +
+				encodeIcsLine("METHOD:PUBLISH") +
+				encodeIcsLine("CALSCALE:GREGORIAN") +
 				encodeIcsLine("BEGIN:VEVENT") +
+				encodeIcsLine("UID:" + uid) +
+				encodeIcsLine("DTSTAMP:" + this.encodeZonedGoogleDateTime(new Date())) + // event creation timestamp = the current time, in UTC
 				encodeIcsLine("DTSTART:" + this.encodeGoogleDate(start, startIsZoned, !this.event.allDay)) +
 				encodeIcsLine("DTEND:" + this.encodeGoogleDate(end, endIsZoned, !this.event.allDay)) +
 				encodeIcsLine("SUMMARY:" + this.event.title) +
