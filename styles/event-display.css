@@ -136,10 +136,8 @@ along with Grevillea. If not, see <https://www.gnu.org/licenses/>.
 	align-items: center;
 	justify-content: center;
 }
-.section-image-credit div {
+.section-image-credit .caption {
 	width: 80%;
-	text-transform: uppercase;
-    font-weight: bold;
     font-size: 0.6rem;
     text-align: right;
     font-style: italic;
@@ -184,10 +182,8 @@ along with Grevillea. If not, see <https://www.gnu.org/licenses/>.
 	}
 }
 
-.calendar-buttons-heading {
-	text-transform: uppercase;
+.caption.calendar-buttons-heading {
 	font-size: 1em;
-	font-weight: bold;
 }
 .calendar-buttons-list {
 	display: flex;
