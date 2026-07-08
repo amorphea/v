@@ -260,7 +260,7 @@ const calendarButtonsComponent = {
 				return foldedLine + "\r\n";
 			}
 			function encodeIcsParam(param) {
-				return param.replace(/\\/g, "\\").replace(/,/g, "\\,").replace(/:/g, "\\:").replace(/\r/g, "\\r").replace(/\n/g, "\\n");
+				return param.replace(/\\/g, "\\").replace(/,/g, "\\,").replace(/\r/g, "\\r").replace(/\n/g, "\\n");
 			}
 
 			let start = this.event.utcStartDateObj || this.event.startDateObj;
