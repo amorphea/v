@@ -27,11 +27,9 @@ along with Grevillea. If not, see <https://www.gnu.org/licenses/>.
 	gap: 1.25rem;
 }
 
-.url-title {
+.caption.url-title {
 	text-align: center;
-	text-transform: uppercase;
 	font-size: 0.8rem;
-	font-weight: bold;
 }
 .url-preview-row, .url-preview {
 	display: flex;
@@ -117,11 +115,6 @@ along with Grevillea. If not, see <https://www.gnu.org/licenses/>.
 	flex-direction: column;
 	justify-content: start;
 }
-.url-stats .compatibility-heading, .timezone-details .timezone-details-heading {
-	text-transform: uppercase;
-	font-size: 0.8em;
-	font-weight: bold;
-}
-.url-stats .compatibility-heading {
+.url-stats .caption {
 	margin-block-start: 0.1em; /* add a tiny bit of space for better vertical centering */
 }
