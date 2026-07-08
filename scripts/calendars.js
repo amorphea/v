@@ -276,7 +276,7 @@ const calendarButtonsComponent = {
 			// The UID *must* be unique for each event *and* for each user downloading an event. Rather than just encoding
 			// the current time in plaintext, we hash it with all the event details and a random number (for extra privacy).
 			let uidSeed = [this.eventUrl, new Date().toISOString(), Math.random().toString()].join(",");
-			let uid = DeterministicRandom.cyrb53(uidSeed) + DeterministicRandom.cyrb53(uidSeed + "more-digits") + "@grevillea";
+			let uid = RandomUtils.getDeterministicHash(uidSeed) + RandomUtils.getDeterministicHash(uidSeed + "generate some more digits") + "@grevillea";
 			
 			return (
 				foldIcsLine("BEGIN:VCALENDAR") +
