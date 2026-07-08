@@ -217,6 +217,21 @@ const calendarButtonsComponent = {
 		icsFileUri() {
 			return this.icsFileContents && "data:text/calendar;charset=UTF-8," + encodeURIComponent(this.icsFileContents);
 		},
+		icsFileName() {
+			// Give the .ics file a name which includes the start date of the event and the title
+			// Remove all unfriendly characters from the title (allow all unicode letters and numbers, disallow other unicode symbols, and replace whitespaces with hyphens)
+			// Limit the title to 30 characters
+			return (
+				this.event.startDate
+				? this.joinTruthyStrings(
+					"-",
+					"Event",
+					this.event.startDate,
+					this.event.title?.replace(/(\s-)+/g, '-').replace(/[^\p{Ll}\p{Lu}\p{Lt}\p{Lo}\p{Nd}]/ug, '').substring(50)
+				) + ".ics"
+				: ""
+			);
+		},
 		icsFileContents() {
 			// See: https://icalendar.org/
 			// See: https://www.text-2-ics.com/blog/ics-file-format-structure-guide
