@@ -104,6 +104,12 @@ const calendarButtonsComponent = {
 		},
 	},
 	computed: {
+		extendedDescription() {
+			return this.joinTruthyStrings(". ", this.event.rsvpString, this.event.description, this.eventUrl ? "View online: https://" + this.eventUrl : null);
+		},
+		multilineExtendedDescription() {
+			return this.joinTruthyStrings("\n\n", this.event.rsvpString, this.event.description, this.eventUrl ? "View online: https://" + this.eventUrl : null);
+		},
 		isAndroid() {
 			return navigator.userAgent.toLowerCase().indexOf('android') > -1;
 		},
@@ -145,7 +151,7 @@ const calendarButtonsComponent = {
 				"&dates=" + dateString +
 				(this.event.timezone ? "&ctz=" + this.encode(this.event.timezone) : "") +
 				(this.event.location ? "&location=" + this.encode(this.event.location) : "") +
-				((this.event.description || this.event.rsvpString) ? "&details=" + this.encode(this.joinTruthyStrings("\r\n\r\n", this.event.rsvpString, this.event.description)) : "")
+				(this.multilineExtendedDescription ? "&details=" + this.encode(this.multilineExtendedDescription) : "")
 			);
 		},
 		outlookCalendarLink() {
@@ -181,7 +187,7 @@ const calendarButtonsComponent = {
 				'&enddt=' + this.encodeOutlookDateTime(DateUtils.formatLocalISOTime(end)) +
 				(this.event.title ? "&subject=" + this.encode(this.event.title) : "") +
 				(this.event.location ? "&location=" + this.encode(this.event.location) : "") +
-				((this.event.description || this.event.rsvpString) ? "&body=" + this.encode(this.joinTruthyStrings("\r\n\r\n", this.event.rsvpString, this.event.description)) : "")
+				(this.extendedDescription ? "&body=" + this.encode(this.extendedDescription) : "")
 			);
 		},
 		yahooCalendarLink() {
@@ -205,7 +211,7 @@ const calendarButtonsComponent = {
 				"&ST=" + this.encodeGoogleDate(start, startIsZoned, !this.event.allDay) + // omit the time for all-day events, include it otherwise
 				(end ? "&ET=" + this.encodeGoogleDate(end, endIsZoned, !this.event.allDay) : "") +
 				(this.event.location ? "&in_loc=" + this.encode(this.event.location) : "") +
-				((this.event.description || this.event.rsvpString) ? "&DESC=" + this.encode(this.joinTruthyStrings("\r\n\r\n", this.event.rsvpString, this.event.description)) : "")
+				(this.multilineExtendedDescription ? "&DESC=" + this.encode(this.multilineExtendedDescription) : "")
 			);
 		},
 		icsFileUri() {
@@ -274,7 +280,7 @@ const calendarButtonsComponent = {
 				encodeIcsLine("DTEND:" + this.encodeGoogleDate(end, endIsZoned, !this.event.allDay)) +
 				encodeIcsLine("SUMMARY:" + this.event.title) +
 				encodeIcsLine("LOCATION:" + this.event.location) +
-				encodeIcsLine("DESCRIPTION:" + this.event.description + "\n\nView online: " + this.eventUrl) +
+				encodeIcsLine("DESCRIPTION:" + this.multilineExtendedDescription) +
 				encodeIcsLine("END:VEVENT") +
 				encodeIcsLine("END:VCALENDAR")
 			);
