@@ -25,7 +25,7 @@
 		<title>Events</title>
 		<link rel="stylesheet" href="dependencies/reset.css?v=1.0">
 		<link rel="stylesheet" href="dependencies/sakura-custom.css?v=1.0" type="text/css">
-		<link rel="stylesheet" href="dependencies/chota-grid.css?v=1.0">
+		<!--<link rel="stylesheet" href="dependencies/chota-grid.css?v=1.0">-->
 		<link rel="stylesheet" href="https://unpkg.com/vue-select@beta/dist/vue-select.css" onerror="this.onerror=null; this.href='dependencies/vue-select.4.0.0-beta.6.css';"> <!-- See: https://stackoverflow.com/a/52223674 -->
 		<link rel="stylesheet" href="styles/main.css?v=1.0">
 		<link rel="stylesheet" href="styles/event-display.css?v=1.0">
@@ -123,18 +123,18 @@
 						<icon-chevron-right></icon-chevron-right>
 					</label>
 					<form class="section-collapse">
-						<div class="row">
-							<div class="col-8">
+						<div class="input-row">
+							<div class="input-col title">
 								<label for="title">Title</label>
 								<input type="text" id="title" name="title" v-model="event.title" placeholder="My Event">
 							</div>
-							<div class="col">
+							<div class="input-col">
 								<label for="location">Location</label>
 								<input type="text" id="location" name="location" v-model="event.location" placeholder="Location TBA">
 							</div>
 						</div>
-						<div class="row">
-							<div class="col">
+						<div class="input-row">
+							<div class="input-col">
 								<label for="start-date">Start</label>
 								<div class="input-clearable">
 									<input type="date" id="start-date" name="start-date" v-model="event.startDate" placeholder="2026-01-01">
@@ -145,7 +145,7 @@
 									<button type="button" class="icon-button button-light" aria-label="Clear start time" title="Clear" v-on:click="event.startTime = null"><icon-x></icon-x></button>
 								</div>
 							</div>
-							<div class="col">
+							<div class="input-col">
 								<label for="end-date">End</label>
 								<div class="input-clearable">
 									<input type="date" id="end-date" name="end-date" v-model="event.endDate" placeholder="2026-01-01">
@@ -157,8 +157,8 @@
 								</div>
 							</div>
 						</div>
-						<div class="row">
-							<div class="col">
+						<div class="input-row">
+							<div class="input-col">
 								<label for="timezone">Timezone</label>
 								<div class="timezone-input-collapsible">
 									<v-select id="timezone" name="timezone" class="search-and-select-box" v-model="event.prettyTimezone" :options="possiblePrettyTimezones"></v-select>
@@ -182,26 +182,26 @@
 								</div>
 							</div>
 						</div>
-						<div class="row">
-							<div class="col">
+						<div class="input-row">
+							<div class="input-col">
 								<label for="rsvp">RSVP</label>
 								<input type="text" id="rsvp" name="rsvp" v-model="event.rsvp" placeholder="eventorganiser@example.com">
 							</div>
-							<div class="col">
+							<div class="input-col">
 								<label for="rsvp-date">RSVP Date</label>
 								<input type="date" id="rsvp-date" name="rsvp-date" v-model="event.rsvpDate" placeholder="2026-01-01">
 							</div>
 						</div>
-						<div class="row background-inputs">
-							<div class="col image-url">
+						<div class="input-row background-inputs">
+							<div class="input-col image-url">
 								<label for="image-url">Image URL</label>
 								<input type="url" id="image-url" name="image-url" v-model="event.imageUrl" placeholder="https://example.com/event-poster.png">
 							</div>
-							<div class="col theme">
+							<div class="input-col theme">
 								<label for="theme">Theme</label>
 								<v-select id="theme" name="theme" class="search-and-select-box" v-model="event.theme" :options="possibleThemes"></v-select>
 							</div>
-							<div class="col rng">
+							<div class="input-col rng">
 								<label for="rng">
 									Seed
 									<a v-on:click="showThemesFaq()" href="javascript:void(0)">(Info)</a>
@@ -217,14 +217,14 @@
 								</div>
 							</div>
 						</div>
-						<div class="row">
-							<div class="col">
+						<div class="input-row">
+							<div class="input-col">
 								<label for="description">Description</label>
 								<textarea id="description" name="description" v-model="event.description" placeholder="Description here"></textarea>
 							</div>
 						</div>
-						<div class="row result-button">
-							<div class="col">
+						<div class="input-row result-button">
+							<div class="input-col">
 								<button type="button" class="button button-light" v-on:click="displayEvent">View result!</button>
 							</div>
 						</div>
