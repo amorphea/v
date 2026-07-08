@@ -432,7 +432,7 @@ a:hover {
 	flex-direction: row;
 	gap: 0.8em;
 }
-.input-clearable button.icon-button, .icon-button.timezone-details-toggle-label, .theme-rng-regenerable button.icon-button {
+.input-clearable button.icon-button {
     width: calc(2em + 12px);
 	min-width: calc(2em + 12px);
 	max-width: calc(2em + 12px);
@@ -443,6 +443,12 @@ a:hover {
 .input-clearable svg.bi-x {
 	height: 1.8em;
     width: 1.8em;
+}
+
+.icon-button.timezone-details-toggle-label, .theme-rng-regenerable button.icon-button {
+    width: calc(2em + 12px);
+	min-width: calc(2em + 12px);
+	max-width: calc(2em + 12px);
 }
 
 .timezone-input-collapsible {
