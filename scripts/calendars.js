@@ -269,7 +269,7 @@ const calendarButtonsComponent = {
 				encodeIcsLine("CALSCALE:GREGORIAN") +
 				encodeIcsLine("BEGIN:VEVENT") +
 				encodeIcsLine("UID:" + uid) +
-				encodeIcsLine("DTSTAMP:" + this.encodeZonedGoogleDateTime(new Date())) + // event creation timestamp = the current time, in UTC
+				encodeIcsLine("DTSTAMP:" + new Date().getFullYear() + "0000T000000Z") + // event creation timestamp = the current year (omit additional data for privacy)
 				encodeIcsLine("DTSTART:" + this.encodeGoogleDate(start, startIsZoned, !this.event.allDay)) +
 				encodeIcsLine("DTEND:" + this.encodeGoogleDate(end, endIsZoned, !this.event.allDay)) +
 				encodeIcsLine("SUMMARY:" + this.event.title) +
