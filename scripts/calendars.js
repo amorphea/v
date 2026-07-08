@@ -170,6 +170,8 @@ const calendarButtonsComponent = {
 			let startIsZoned = !!this.event.utcStartDateObj;
 			let endIsZoned = !!this.event.utcEndDateObj;
 
+			if (!start) return null; // require a start time before showing this calendar button
+
 			if (this.event.allDay) end = this.fixAllDayEventEnd(start, end);
 			
 			return (
@@ -234,6 +236,8 @@ const calendarButtonsComponent = {
 			let end = this.event.utcEndDateObj || this.event.endDateObj;
 			let startIsZoned = !!this.event.utcStartDateObj;
 			let endIsZoned = !!this.event.utcEndDateObj;
+
+			if (!start) return null; // require a start time before showing this calendar button
 
 			if (this.event.allDay) end = this.fixAllDayEventEnd(start, end);
 
