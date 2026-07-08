@@ -101,11 +101,12 @@ const app = Vue.createApp({
       let newStr = "";
       for (let char of str) {
         if (char === "~") newStr += '~7E'; // escape tildes
+        else if (char === ";") newStr += "~3B"; // escape semicolons
         else if (char === "|") newStr += "~7C"; // escape pipes
         else if (char === "+") newStr += "~2B"; // escape pluses
         else if (char === " ") newStr += "+"; // replace spaces with pluses
         else if (char === "`") newStr += "~60"; // escape backticks (needed for some reason, not sure why)
-        else if (/\!\@\$\%\^\&\*\(\)\_\+\-\=\[\]\{\}\\\;\:\'\"\,\<\.\>\/\?/.test(char)) newStr += char; // keep these symbols
+        else if (/\!\@\$\%\^\&\*\(\)\_\+\-\=\[\]\{\}\\\:\'\"\,\<\.\>\/\?/.test(char)) newStr += char; // keep these symbols
         else if (/\p{Letter}|\p{Number}|\p{Mark}|\p{Symbol}|\p{Punctuation}/u.test(char)) newStr += char; // keep everything in unicode other than control/separator characters
         else newStr += encodeURIComponent(char).replace("%", "~"); // escape all other fancy symbols like newlines, tabs, em spaces, RTL control characters, etc
       }
@@ -150,8 +151,9 @@ const app = Vue.createApp({
     },
     parseEventString(str) {
       if (!str) return null;
-      const arr = str.split("|");
-      if (arr.length < 3) return null; // require at least a title, location, and start time
+      const arr = str.split(";");
+      if (arr.length < 3) { arr = str.split("|"); } // temporary -- try the old format instead
+      if (arr.length < 3) return null; // require at least a title, location, and start time  
       
       const themeMatch = arr[10] && arr[10].match(/^(?<theme>[a-zA-Z\-]+)(?<rng>\d\d\d\d\d\d\d\d)$/);
       const theme = themeMatch && themeMatch.groups.theme?.toLowerCase();
@@ -269,17 +271,17 @@ const app = Vue.createApp({
   computed: {
     eventString() {
       return (
-        this.escapeEventStringPart(this.event.title) + "|" +
-        this.escapeEventStringPart(this.event.location) + "|" +
-        this.formatDate(this.event.startDate) + "|" +
-        this.formatTime(this.event.startTime) + "|" +
-        this.formatDate(this.event.endDate) + "|" +
-        this.formatTime(this.event.endTime) + "|" +
-        this.escapeEventStringPart(this.event.timezone) + "|" +
-        this.escapeEventStringPart(this.event.rsvp) + "|" +
-        this.formatDate(this.event.rsvpDate) + "|" +
-        this.escapeEventStringPart(this.event.imageUrl) + "|" +
-        this.formatTheme(this.event.theme, this.event.rng) + "|" +
+        this.escapeEventStringPart(this.event.title) + ";" +
+        this.escapeEventStringPart(this.event.location) + ";" +
+        this.formatDate(this.event.startDate) + ";" +
+        this.formatTime(this.event.startTime) + ";" +
+        this.formatDate(this.event.endDate) + ";" +
+        this.formatTime(this.event.endTime) + ";" +
+        this.escapeEventStringPart(this.event.timezone) + ";" +
+        this.escapeEventStringPart(this.event.rsvp) + ";" +
+        this.formatDate(this.event.rsvpDate) + ";" +
+        this.escapeEventStringPart(this.event.imageUrl) + ";" +
+        this.formatTheme(this.event.theme, this.event.rng) + ";" +
         this.escapeEventStringPart(this.event.description)
       );
     },
