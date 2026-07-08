@@ -131,16 +131,22 @@
 						<div class="row">
 							<div class="col">
 								<label for="start-date">Start</label>
-								<input type="date" id="start-date" name="start-date" v-model="event.startDate" placeholder="2026-01-01">
-								<div class="time-input-clearable">
+								<div class="input-clearable">
+									<input type="date" id="start-date" name="start-date" v-model="event.startDate" placeholder="2026-01-01">
+									<button type="button" class="icon-button button-light" aria-label="Clear start date" title="Clear" v-on:click="event.startDate = null"><icon-x></icon-x></button>
+								</div>
+								<div class="input-clearable">
 									<input type="time" id="start-time" name="start-time" v-model="event.startTime" placeholder="12:00">
 									<button type="button" class="icon-button button-light" aria-label="Clear start time" title="Clear" v-on:click="event.startTime = null"><icon-x></icon-x></button>
 								</div>
 							</div>
 							<div class="col">
 								<label for="end-date">End</label>
-								<input type="date" id="end-date" name="end-date" v-model="event.endDate" placeholder="2026-01-01">
-								<div class="time-input-clearable">
+								<div class="input-clearable">
+									<input type="date" id="end-date" name="end-date" v-model="event.endDate" placeholder="2026-01-01">
+									<button type="button" class="icon-button button-light" aria-label="Clear end date" title="Clear" v-on:click="event.endDate = null"><icon-x></icon-x></button>
+								</div>
+								<div class="input-clearable">
 									<input type="time" id="end-time" name="end-time" v-model="event.endTime" placeholder="12:00">
 									<button type="button" class="icon-button button-light" aria-label="Clear end time" title="Clear" v-on:click="event.endTime = null"><icon-x></icon-x></button>
 								</div>
