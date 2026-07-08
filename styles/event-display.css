@@ -143,9 +143,6 @@ along with Grevillea. If not, see <https://www.gnu.org/licenses/>.
 	font-style: italic;
 }
 
-:root {
-	--cal-scale: 1;
-}
 .section-calendar-buttons {
 	padding-inline: 13px;
 }
@@ -158,7 +155,7 @@ along with Grevillea. If not, see <https://www.gnu.org/licenses/>.
 .calendar-buttons {
 	display: flex;
 	flex-flow: column nowrap;
-	font-size: calc(1rem * var(--cal-scale));
+	font-size: 1rem;
 	gap: 0.5em;
 	align-items: center;
 	justify-content: center;
@@ -174,8 +171,8 @@ along with Grevillea. If not, see <https://www.gnu.org/licenses/>.
 	.event-square-outer {
 		width: 100%;
 	}
-	:root {
-		--cal-scale: 0.7;
+	.calendar-buttons {
+		font-size: 0.7rem
 	}
 	.section-image-credit div {
 		width: 97%;
