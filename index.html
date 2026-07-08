@@ -111,7 +111,7 @@
 				</section>
 				<section class="section-calendar-buttons" v-if="urlHashLoaded" v-cloak>
 					<div class="calendar-buttons-display">
-						<calendar-buttons :event="event"></calendar-buttons>
+						<calendar-buttons :event="event" :event-url="eventUrl?.fullUrl"></calendar-buttons>
 					</div>
 				</section>
 				<links-section v-if="!createModeInitially" :event-url="eventUrl" :event-url-smallest-encoded="eventUrlSmallestEncoded" :url-faq-callback="showUrlsFaq"></links-section>
