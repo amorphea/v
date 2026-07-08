@@ -232,7 +232,7 @@ const calendarButtonsComponent = {
 				// see https://www.rfc-editor.org/info/rfc5545/#section-3
 				// Carriage returns, line feeds, and backslashes are escaped with backslashes
 				
-				line = line.replace(/\\/g, "\\").replace(/\r/g, "\\r").replace(/\n/g, "\\n");
+				line = line.replace(/\\/g, "\\").replace(/,/g, "\\,").replace(/:/g, "\\:").replace(/\r/g, "\\r").replace(/\n/g, "\\n");
 				let foldedLine = "";
 				while (line !== "") {
 					if (foldedLine !== "") foldedLine += "\r\n ";
