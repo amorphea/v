@@ -21,6 +21,22 @@ along with Grevillea. If not, see <https://www.gnu.org/licenses/>.
 	padding-inline: 13px;
 }
 
+.section-edit .input-row {
+	display: flex;
+	flex-flow: row wrap;
+	gap: 1.25rem;
+	margin-bottom: 0.625rem;
+}
+.section-edit .input-col {
+	flex: 1 1 0%;
+}
+@media screen and (max-width: 35rem) {
+	.section-edit .input-col {
+		flex-basis: 100%;
+		max-width: 100%;
+	}
+}
+
 .input-clearable {
 	display: flex;
 	flex-direction: row;
@@ -43,6 +59,10 @@ along with Grevillea. If not, see <https://www.gnu.org/licenses/>.
     width: calc(2em + 12px);
 	min-width: calc(2em + 12px);
 	max-width: calc(2em + 12px);
+}
+
+.section-edit .input-col.title {
+	flex-grow: 2;
 }
 
 .timezone-input-collapsible {
@@ -150,10 +170,10 @@ along with Grevillea. If not, see <https://www.gnu.org/licenses/>.
 	height: 1.3em;
     width: 1.3em;
 }
-.row.background-inputs .image-url, .row.background-inputs .theme {
+.section-edit .input-col.image-url, .section-edit .input-col.theme {
 	flex-grow: 10;
 }
-.row.background-inputs .rng {
+.section-edit .input-col.rng {
 	flex-grow: 1;
 }
 
@@ -165,12 +185,12 @@ along with Grevillea. If not, see <https://www.gnu.org/licenses/>.
     -webkit-appearance: none;
 }
 
-.row.result-button .col {
+.section-edit .result-button .input-col {
 	display: flex;
 	flex-flow: row nowrap;
 	justify-content: center;
 }
-.row.result-button .col .button {
+.section-edit .result-button .input-col .button {
 	min-width: 50%;
 	padding: 6px 20px;
 }
