@@ -22,7 +22,7 @@ footer {
 	color: white;
 	font-size: 0.8em;
 	padding-top: 3rem;
-    padding-bottom: 4rem;
+	padding-bottom: 4rem;
 }
 
 .footer-content {
@@ -36,8 +36,8 @@ footer {
 .footer-content .footer-text {
 	flex: 1 1 20rem;
 	display: flex;
-    flex-flow: column nowrap;
-    gap: 1rem;
+	flex-flow: column nowrap;
+	gap: 1rem;
 }
 .footer-content .footer-text a {
 	color: white;
@@ -63,17 +63,17 @@ footer {
 }
 .footer-content .footer-links > span:before {
 	content: "";
-    position: absolute;
-    background-color: white;
-    border-radius: 1em;
-    width: 0.34em;
-    height: 0.34em;
-    left: calc(-0.8em + -0.15rem);
+	position: absolute;
+	background-color: white;
+	border-radius: 1em;
+	width: 0.34em;
+	height: 0.34em;
+	left: calc(-0.8em + -0.15rem);
 	/* vertically center the bullet */
-    margin-top: auto;
-    margin-bottom: auto;
-    top: 50%;
-    bottom: 50%;
+	margin-top: auto;
+	margin-bottom: auto;
+	top: 50%;
+	bottom: 50%;
 }
 .footer-content .footer-icons-area {
 	flex: 0 100 max-content;
@@ -93,12 +93,12 @@ footer {
 	flex: 0 0 auto;
 	width: 5rem;
 	align-items: center;
-    justify-content: center;
+	justify-content: center;
 }
 .footer-content .footer-icon svg {
 	border-radius: 0.5rem;
-    height: calc((325 / 512) * 4rem);
-    width: calc((512 / 512) * 4rem);
+	height: calc((325 / 512) * 4rem);
+	width: calc((512 / 512) * 4rem);
 }
 .footer-content .footer-icon-rect {
 	height: 3rem;
@@ -110,5 +110,5 @@ footer {
 }
 .footer-content a.footer-icon:hover, .footer-content a.footer-icon:visited {
 	color: inherit;
-    border-bottom: none;
+	border-bottom: none;
 }
