@@ -78,10 +78,11 @@ along with Grevillea. If not, see <https://www.gnu.org/licenses/>.
 	flex-flow: row wrap;
 	justify-content: center;
 	align-items: center;
-	max-width: 100%;
 }
 .event-square-inner * {
 	overflow-wrap: break-word; /* forcibly break any excessively-long words */
+	white-space: pre-wrap; /* preserve consecutive spaces, but also wrap long words */
+	max-width: 100%;
 	text-align: center;
 }
 .event-square-inner .title h1 {
@@ -123,11 +124,6 @@ along with Grevillea. If not, see <https://www.gnu.org/licenses/>.
 }
 .event-square-inner .description {
 	margin-top: 0.7em;
-}
-.event-square-inner .description div {
-	white-space: pre-wrap;
-	text-align: center;
-	max-width: 100%;
 }
 
 .section-image-credit {
