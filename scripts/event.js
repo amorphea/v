@@ -124,10 +124,10 @@ class Event {
     addComputed('whimsicalEndTime'  , () => s.endDateObj   && (s.endOnTheHour   ? whimsicalMinutelessTimeFormatter.format(s.endDateObj)   : whimsicalMinutefulTimeFormatter.format(s.endDateObj)));
 
     addComputed('rsvpString', () => (
-      ((s.rsvp || s.rsvpDate) && "RSVP ")
-      + (s.rsvp && "to " + s.rsvp)
-      + (s.rsvp && s.rsvpDate && " ")
-      + (s.rsvpDate && "by\xa0" + (s.rsvpMultiYear ? yearfulDateFormatter.format(s.rsvpDateObj) : yearlessDateFormatter.format(s.rsvpDateObj))) // '\xa0' == non-breaking space, i.e. keep the word 'by' on the same line as the date
+      ((s.rsvp || s.rsvpDate) ? "RSVP " : "")
+      + (s.rsvp ? "to " + s.rsvp : "")
+      + (s.rsvp ? s.rsvpDate && " " : "")
+      + (s.rsvpDate ? "by\xa0" + (s.rsvpMultiYear ? yearfulDateFormatter.format(s.rsvpDateObj) : yearlessDateFormatter.format(s.rsvpDateObj)) : "") // '\xa0' == non-breaking space, i.e. keep the word 'by' on the same line as the date
     ));
 
     addWriteableComputed(
