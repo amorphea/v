@@ -188,7 +188,10 @@
 							</div>
 							<div class="input-col">
 								<label for="rsvp-date">RSVP Date</label>
-								<input type="date" id="rsvp-date" name="rsvp-date" v-model="event.rsvpDate" placeholder="2026-01-01">
+								<div class="input-clearable">
+									<input type="date" id="rsvp-date" name="rsvp-date" v-model="event.rsvpDate" placeholder="2026-01-01">
+									<button type="button" class="icon-button button-light" aria-label="Clear RSVP date" title="Clear" v-on:click="event.rsvpDate = null"><icon-x></icon-x></button>
+								</div>
 							</div>
 						</div>
 						<div class="input-row background-inputs">
