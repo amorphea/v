@@ -104,7 +104,11 @@
 					</div>
 				</section>
 				<section v-if="!createModeCurrently && imageCredit" class="section-image-credit" v-cloak>
-					<div class="caption">Image credit: <span v-text="imageCredit"></span></div>
+					<div class="caption">
+						Image credit: <span v-text="imageCredit"></span>
+						<a v-if="imageLicense.licenseUrl" :href="imageLicense.licenseUrl" v-text="imageLicense.license"></a>
+						<span v-if="!imageLicense.licenseUrl" v-text="imageLicense.license"></span>
+					</div>
 				</section>
 				<section v-if="!createModeCurrently && imageSource" class="section-image-credit" v-cloak>
 					<div class="caption">Image source: <a :href="imageSource.href" v-text="imageSource.text"></a></div>
