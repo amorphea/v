@@ -367,7 +367,13 @@ const app = Vue.createApp({
       if (this.custombackgroundImage) return null; // don't display image credit when displaying an image source instead
       if (!this.themeAppearance?.image) return null; // don't display image credit when there's no image
       if (!this.imageInfo?.author) return "Unknown"; // display 'Unknown' whenever the regex match inside imageInfo fails
-      return this.imageInfo?.author + " " + this.imageInfo?.year + ", " + this.imageInfo?.license;
+      return this.imageInfo?.author + " " + this.imageInfo?.year + ", ";
+    },
+    imageLicense() {
+      if (this.custombackgroundImage) return null; // only display image license when displaying an image credit (see above)
+      if (!this.themeAppearance?.image) return null; // don't display image license when there's no image
+      if (!this.imageInfo?.author) return null; // don't display image license when author is unknown
+      return { license: this.imageInfo?.license, licenseUrl: this.imageInfo?.licenseUrl };
     },
     imageSource() {
       if (!this.custombackgroundImage) return null;
