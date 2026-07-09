@@ -98,12 +98,19 @@ along with Grevillea. If not, see <https://www.gnu.org/licenses/>.
 
 .url-stats {
 	display: flex;
-	flex-flow: row wrap;
+	flex-flow: row-reverse wrap-reverse; /* unhinged. this makes it so that the 'compatibility' heading will wrap *first* and display on its own line separately on small screens */
 	align-items: center;
 	justify-content: center;
 	font-size: 0.8em;
-	gap: 0.3125rem;
+	column-gap: 0.4em;
 	margin-block-end: 0.5em;
+}
+.url-stats .url-stats-items {
+	column-gap: 0.4em;
+	display: flex;
+	flex-flow: row wrap;
+	align-items: center;
+	justify-content: center;
 }
 .url-stats .caption {
 	margin-block-start: 0.1em; /* add a tiny bit of space for better vertical centering */
