@@ -149,6 +149,7 @@ along with Grevillea. If not, see <https://www.gnu.org/licenses/>.
 }
 .theme-rng-regenerable button.icon-button.floating-regenerate-button {
 	position: fixed;
+	z-index: 10;
 	aspect-ratio: 1;
     margin: 0;
 	bottom: 1rem;
