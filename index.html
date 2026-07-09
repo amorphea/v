@@ -453,12 +453,14 @@
 					</button>
 				</div>
 				<div class="url-stats">
-					<div class="caption">Compatibility:</div>
-					<div><span v-text="url?.charCount"></span> chars</div>
-					<div>&bull;</div>
-					<div>Instagram: <span v-if="url?.compatibleWithIG">Yea</span><span v-else>Nay</span></div>
-					<div>&bull;</div>
-					<div>ASCII: <span v-if="url?.ascii">Yea</span><span v-else>Nay</span></div>
+					<div class="url-stats-items">
+						<div><span v-text="url?.charCount"></span> chars</div>
+						<div>&bull;</div>
+						<div>Instagram: <span v-if="url?.compatibleWithIG">Yea</span><span v-else>Nay</span></div>
+						<div>&bull;</div>
+						<div>ASCII: <span v-if="url?.ascii">Yea</span><span v-else>Nay</span></div>
+					</div>
+					<div class="caption">Compatibility:</div> <!-- This is displayed first, before .url-stats-items, using flex-flow -->
 				</div>
 			</div>
 		</template>
