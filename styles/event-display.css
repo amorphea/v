@@ -57,7 +57,7 @@ along with Grevillea. If not, see <https://www.gnu.org/licenses/>.
 		0 8.0cqw 25.6cqw hsl(0deg 0% 0% / 0.15);
 }
 .event-square-font-baseline {
-	font-size: 3.4cqw;
+	font-size: 4cqw;
 	width: 100%;
 }
 .event-square-font-rescaled {
@@ -90,7 +90,7 @@ along with Grevillea. If not, see <https://www.gnu.org/licenses/>.
 	font-family: inherit;
 	font-weight: bold;
 	line-height: 1.2;
-	font-size: 2.3em;
+	font-size: 2em;
 }
 .event-square-inner .date-and-time {
 	column-gap: 1.4em;
