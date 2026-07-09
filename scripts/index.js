@@ -332,7 +332,36 @@ const app = Vue.createApp({
       );
     },
     imageInfo() {
-      return this.themeAppearance?.image?.url?.match(/(?<group>\d\d\d+)-(?<number>\d\d\d+) (?<author>[^ ]+)-(?<year>\d\d\d\d) (?<license>[^ ]+) (?<size>[^ ]+)/u)?.groups
+      let info = this.themeAppearance?.image?.url?.match(/(?<group>\d\d\d+)-(?<number>\d\d\d+) (?<author>[^ ]+)-(?<year>\d\d\d\d) (?<license>[^ ]+) (?<size>[^ ]+)/u)?.groups
+      if (!info) return undefined;
+      
+      switch (info.license) {
+        case 'CC0-1.0':
+          info.license = 'CC0 1.0';
+          info.licenseUrl = 'https://creativecommons.org/publicdomain/zero/1.0/';
+          break;
+        case 'CC-BY-4.0':
+          info.license = 'CC BY 4.0';
+          info.licenseUrl = 'https://creativecommons.org/licenses/by/4.0/';
+          break;
+        case 'CC-BY-SA-4.0':
+          info.license = 'CC BY-SA 4.0';
+          info.licenseUrl = 'https://creativecommons.org/licenses/by-sa/4.0/';
+          break;
+        case 'AI0-1.0':
+          info.licenseUrl = 'https://www.humanscommons.org/license/ai0/1.0';
+          break;
+        case 'AI0-BY-1.0':
+          info.licenseUrl = 'https://www.humanscommons.org/license/ai0-by/1.0';
+          break;
+        case 'AI0-BY-SA-1.0':
+          info.licenseUrl = 'https://www.humanscommons.org/license/ai0-by-sa/1.0';
+          break;
+        default:
+          info.licenseUrl = undefined;
+      }
+      
+      return info;
     },
     imageCredit() {
       if (this.custombackgroundImage) return null; // don't display image credit when displaying an image source instead
