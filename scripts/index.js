@@ -15,6 +15,7 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with Grevillea. If not, see <https://www.gnu.org/licenses/>.
 
+
 "use strict";
 
 addEventListener("hashchange", (event) => { // if the user manually edits the URL hash, reload the page to apply the new URL hash
