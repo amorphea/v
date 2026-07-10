@@ -106,8 +106,14 @@ const app = Vue.createApp({
         else if (char === "|") newStr += "~7C"; // escape pipes
         else if (char === "+") newStr += "~2B"; // escape pluses
         else if (char === " ") newStr += "+"; // replace spaces with pluses
+        else if (char === "%") newStr += "~25"; // escape percent signs
+        else if (char === "#") newStr += "~23"; // escape hashes
+        else if (char === "?") newStr += "~3F"; // escape question marks
+        else if (char === "&") newStr += "~26"; // escape ampersands
         else if (char === "`") newStr += "~60"; // escape backticks (needed for some reason, not sure why)
-        else if (/\!\@\$\%\^\&\*\(\)\_\+\-\=\[\]\{\}\\\:\'\"\,\<\.\>\/\?/.test(char)) newStr += char; // keep these symbols
+        else if (char === ":") newStr += "~3A"; // escape colons (if there's a colon in the url hash for a url with no 'http://' prefix, then Firefox sometimes converts everything before the colon to lowercase)
+        else if (char === "!") newStr += "~21"; // escape exclamation marks (if there's one at the end of a url, it'll sometimes be ignored by software that detects urls in plaintext)
+        else if (/\@\$\^\*\(\)\_\-\=\[\]\{\}\\\'\"\,\<\.\>\//.test(char)) newStr += char; // keep these symbols
         else if (/\p{Letter}|\p{Number}|\p{Mark}|\p{Symbol}|\p{Punctuation}/u.test(char)) newStr += char; // keep everything in unicode other than control/separator characters
         else newStr += encodeURIComponent(char).replace("%", "~"); // escape all other fancy symbols like newlines, tabs, em spaces, RTL control characters, etc
       }
