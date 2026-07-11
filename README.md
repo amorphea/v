@@ -23,7 +23,7 @@ You're very welcome to help out by making new background art, ready for everyone
  - Artwork will be released under a [Creative Commons](https://creativecommons.org/cc-licenses/) or [Human Commons](https://www.humanscommons.org/) license, allowing for both commercial and non-commercial use and adaptive reuse/derivative works. You can choose the license from a list [here](https://github.com/amorphea/v/blob/main/images/000-000%20licenses-and-format.md).
  - The artwork should be uploaded as a 1080px by 1080px JPG file
  - The event details will display across the middle of the artwork, so please keep that area uncluttered
- - The event details text doesn't stretch all the way to the edge of the square, so you're welcome to make the margin around the edges as busy & cluttered as you like. You can customise how large this margin is, so that the text is constrained to only occupy a smaller area
+ - The event details won't stretch all the way to the edge of the artwork, so you're welcome to make the margin around the edges as busy & cluttered as you like. You can customise how large this margin is, so that the text is constrained to only occupy a smaller area
  - You can customise the font colour and text shadow, to help the text stand out on different colour backgrounds
  - You can't customise the font itself -- each background image is combined with multiple randomly-chosen fonts, based on the theme selected by the user
 
