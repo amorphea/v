@@ -14,7 +14,7 @@ Full website: [amorphea.github.io/v](https://amorphea.github.io/v/)
 
 ## Contribution guide
 
-*This is a work-in-progress, currently very incomplete*
+*Note: This is a work-in-progress*
 
 ### Adding new backgrounds
 
@@ -33,7 +33,7 @@ Strangers: Please submit a [Ticket](https://github.com/amorphea/v/issues) or a [
 
 ### Adding new themes
 
-You're welcome to add new themes!
+You're welcome to suggest & add new themes!
 
 When making an event, the user selects a theme from a dropdown. Each theme defines a range of background artworks and fonts. The user can then click a 'regenerate' button several times, to choose a random combination that they like.
 
