@@ -5,11 +5,11 @@ relevant legal documents.**
 **Images are named according to the following format:**\
 `<group>-<number> <author>-<year> <license> <size>.<format>`
 
-Everyone who contributes images should choose a unique `<group>` number, and then number all images
-images they contribute using `<number>`. The images contributed should not be AI-generated. Each image
-should be attributed to an `<author>` (and a `<year>`) who produced the image. Images should generally
-be 1080 pixels tall by 1080 pixels wide (i.e. `<size>` = `1080`), and should generally be in `.jpg`
-format at e.g. 80% quality. The `<license>` may be any of the following:
+Multiple people/teams may contribute images, so to avoid naming collisions, each team can choose a unique
+`<group>` number. They can then give each of their images a different `<number>`. The images contributed
+should not be AI-generated. Each image should be attributed to an `<author>` (and a `<year>`) who produced
+the image. Images should generally be 1080 pixels tall by 1080 pixels wide (i.e. `<size>` = `1080`), and
+should generally be in `.jpg` format at e.g. 80% quality. The `<license>` may be any of the following:
 
 ## Licenses
 
