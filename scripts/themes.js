@@ -45,7 +45,7 @@ class ThemesDB {
     ThemesDB.#logEntry(23, '2026-01-01', 'preview-pen-sketch', ['images/001-013 amorphea-2026 CC-BY-SA-4.0 1080.jpg', '--theme-color: black; padding: 12% 18% 26% 18%;'], null),
     ThemesDB.#logEntry(39, '2026-01-01', 'preview-pen-sketch', ['images/001-021 Cez-2022 CC-BY-SA-4.0 1080.jpg', '--theme-color: black; padding: 15% 13% 15% 13%;'], null),
     ThemesDB.#logEntry(51, '2026-01-01', 'preview-pen-sketch', ['images/001-024 Cez-2020 CC-BY-SA-4.0 1080.jpg', '--theme-color: black; padding: 15% 13% 15% 13%;'], null),
-    ThemesDB.#logEntry(95, '2026-01-01', 'preview-pen-sketch', ['images/001-033 Snail-2026 CC-BY-SA-4.0 1080.jpg', '--theme-color: black; padding: 16% 15% 16% 15%;'], null),
+    ThemesDB.#logEntry(95, '2026-01-01', 'preview-pen-sketch', ['images/001-033 snail-2026 CC-BY-SA-4.0 1080.jpg', '--theme-color: black; padding: 16% 15% 16% 15%;'], null),
     ThemesDB.#logEntry( 2, '2026-01-01', 'preview-pride', null, ['Life Savers', 'https://fonts.googleapis.com/css2?family=Life+Savers:wght@400;700;800&display=swap']),
     ThemesDB.#logEntry(41, '2026-01-01', 'preview-pride', null, ['Metamorphous', 'https://fonts.googleapis.com/css2?family=Metamorphous&display=swap']),
     ThemesDB.#logEntry(42, '2026-01-01', 'preview-pride', null, ['Indie Flower', 'https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap']),
