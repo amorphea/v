@@ -116,7 +116,12 @@ class ThemesDB {
     ThemesDB.#logEntry(92, '2026-01-01', 'preview-snail-comic', null, ['Piedra', 'https://fonts.googleapis.com/css2?family=Piedra&display=swap']),
     ThemesDB.#logEntry(93, '2026-01-01', 'preview-snail-comic', null, ['Miniver', 'https://fonts.googleapis.com/css2?family=Miniver&display=swap']),
     ThemesDB.#logEntry(94, '2026-01-01', 'preview-snail-comic', null, ['Unkempt', 'https://fonts.googleapis.com/css2?family=Unkempt:wght@400;700&display=swap']),
-    // Next number: 99
+    ThemesDB.#logEntry(99, '2026-01-01', 'preview-flower-pressings', ['images/001-041 Sarah~20R.-2026 CC-BY-SA-4.0 1080.jpg', '--theme-color: #6c3a22; padding: 5% 18% 13% 18%;'], null),
+    ThemesDB.#logEntry(100, '2026-01-01', 'preview-flower-pressings', null, ['Indie Flower', 'https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap']),
+    ThemesDB.#logEntry(101, '2026-01-01', 'preview-flower-pressings', null, ['Style Script', 'https://fonts.googleapis.com/css2?family=Style+Script&display=swap']),
+    ThemesDB.#logEntry(102, '2026-01-01', 'preview-flower-pressings', null, ['Unkempt', 'https://fonts.googleapis.com/css2?family=Unkempt:wght@400;700&display=swap']),
+    ThemesDB.#logEntry(103, '2026-01-01', 'preview-flower-pressings', null, ['Mystery Quest', 'https://fonts.googleapis.com/css2?family=Mystery+Quest&display=swap']),
+    // Next number: 104
   ];
 
   static #possibleThemes = null;
