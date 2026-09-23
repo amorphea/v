@@ -20,8 +20,26 @@ along with Grevillea. If not, see <https://www.gnu.org/licenses/>.
 .section-faq {
 	padding-inline: 13px;
 }
-.section-faq p {
+.section-faq p,
+.section-faq ul,
+.section-faq ol,
+.section-faq table {
 	font-size: 0.8em;
 	margin-top: 0rem;
     margin-bottom: 1rem;
 }
+.section-faq table th {
+	text-align: start;
+}
+.section-faq table {
+	border-collapse: collapse;
+}
+.section-faq table td, .section-faq table th {
+	border-bottom: 3px solid #ccafd4;
+	padding-top: 0.4em;
+	padding-bottom: 0.4em;
+}
+.section-faq table th {
+	padding-right: 1.5em;
+}
+
