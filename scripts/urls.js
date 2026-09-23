@@ -24,7 +24,9 @@ class EventUrlInfo {
     this.fullUrl = this.urlBase + '/#' + this.urlHash;
     this.extendedUrl = 'https://' + this.urlBase + '/#' + this.urlHash;
     this.charCount = this.fullUrl.length;
-    this.compatibleWithIG = this.charCount <= 245;
+    this.compatibleWithBluesky = this.charCount <= 299;
+    this.compatibleWithMastodon = this.charCount <= 500; // by default; different servers may increase the limit
+    this.compatibleWithInstagram = this.charCount <= 200; // an approx guess; it handles unicode unpredictably
     this.ascii = /^[\x20-\x7E]*$/.test(this.urlHash);
   }
 }

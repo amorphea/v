@@ -596,13 +596,19 @@
 					</button>
 				</div>
 				<div class="url-stats">
-					<div class="caption">Compatibility:</div>
-					<div class="url-stats-items">
-						<div><span v-text="url?.charCount"></span> chars</div>
-						<div>&bull;</div>
-						<div>Instagram: Unknown</div>
-						<div>&bull;</div>
-						<div>ASCII: <span v-if="url?.ascii">Yea</span><span v-else>Nay</span></div>
+					<div class="url-stats-box">					
+						<div class="caption">Compatibility:</div>
+						<div class="url-stats-items" class="emoji">
+							<div><span v-text="url?.charCount"></span> chars</div>
+							<div>&bull;</div>
+							<div>Bluesky: <span v-if="url?.compatibleWithBluesky">✅</span><span v-else>❌</span></div>
+							<div>&bull;</div>
+							<div>Mastodon: <span v-if="url?.compatibleWithMastodon">✅</span><span v-else>❔</span></div>
+							<div>&bull;</div>
+							<div>Instagram: <span v-if="url?.compatibleWithInstagram">✅</span><span v-else>❔</span></div>
+							<div>&bull;</div>
+							<div>ASCII: <span v-if="url?.ascii">✅</span><span v-else>❌</span></div>
+						</div>
 					</div>
 				</div>
 			</div>

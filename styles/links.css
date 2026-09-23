@@ -102,17 +102,26 @@ along with Grevillea. If not, see <https://www.gnu.org/licenses/>.
 	align-items: center;
 	justify-content: center;
 	font-size: 0.8em;
-	column-gap: 0.4em;
-	margin-block-start: 0.5em;
+	margin-block-start: 0.7em;
 	margin-block-end: 0.5em;
 }
-.url-stats .url-stats-items {
+.url-stats-box {
+	display: flex;
+	flex-flow: row wrap;
+	align-items: center;
+	justify-content: center;
+	column-gap: 0.4em;
+	border: 1px solid #9a9a9a;
+	border-radius: 5px;
+	padding: 0.65em 1em 0.7em 1em;
+}
+.url-stats-box .url-stats-items {
 	column-gap: 0.4em;
 	display: flex;
 	flex-flow: row wrap;
 	align-items: center;
 	justify-content: center;
 }
-.url-stats .caption {
+.url-stats-box .caption {
 	margin-block-start: 0.1em; /* add a tiny bit of space for better vertical centering */
 }
