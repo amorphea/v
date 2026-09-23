@@ -59,6 +59,13 @@ a:hover {
 	border-bottom: 2px solid #982c61;
 }
 
+.emoji {
+	font-variant-emoji: emoji;
+}
+.no-emoji {
+	font-variant-emoji: text;
+}
+
 [v-cloak] {
 	display: none !important;
 }
