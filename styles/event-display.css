@@ -38,7 +38,7 @@ along with Grevillea. If not, see <https://www.gnu.org/licenses/>.
 	grid-column: 1 / 2;
 	width: 80%;
 	aspect-ratio: 1;
-	border: 0.4cqw solid #777777;
+	border: none;
 	display: flex;
 	flex-flow: column nowrap;
 	justify-content: center;
@@ -141,6 +141,7 @@ along with Grevillea. If not, see <https://www.gnu.org/licenses/>.
 	font-size: 0.6rem;
 	text-align: right;
 	font-style: italic;
+	margin-top: 0.3rem;
 }
 
 .section-calendar-buttons {
