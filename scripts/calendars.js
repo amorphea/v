@@ -28,6 +28,7 @@ const calendarButtonsComponent = {
 	props: {
 		event: Event,
 		eventUrl: EventUrlInfo,
+    urlHashLoaded: Boolean,
 	},
 	data() {
 		return { }
@@ -72,6 +73,15 @@ const calendarButtonsComponent = {
 			}
 			return end;
 		},
+    downloadImage() {
+      let eventSquare = document.querySelector('.event-square-outer');
+      snapdom(eventSquare, { width: 1080 }).then(
+        result => result.download({
+          format: 'jpeg',
+          filename: this.imageFileName
+        })
+      );
+    },
 		googleCalendarLinkPrefix() {
 			return 'calendar.google.com/calendar/render?action=TEMPLATE&';
 			// Other options, which didn't work well on mobile:
@@ -107,7 +117,7 @@ const calendarButtonsComponent = {
 		extendedDescription() {
 			return this.joinTruthyStrings(". ", this.event.rsvpString, this.event.description, this.eventUrl ? "View online: " + this.eventUrl.extendedUrl : null);
 			// Note: If the URL is added to google calendar with just a '#' instead of a '/#', then it sometimes doesn't get recognised as a URL
-      // The extendedUrl variable includes a '/' to prevent this issue
+      // The extendedUrl variable includes both a 'https://' and a '/#' to prevent any issues like this
 		},
 		multilineExtendedDescription() {
 			return this.joinTruthyStrings("\n\n", this.event.rsvpString, this.event.description, this.eventUrl ? "View online: " + this.eventUrl.extendedUrl : null);
@@ -115,6 +125,9 @@ const calendarButtonsComponent = {
 		isAndroid() {
 			return navigator.userAgent.toLowerCase().indexOf('android') > -1;
 		},
+    canDownloadImage() {
+      return !!this.event;
+    },
 		googleCalendarLink() {
 			return this.googleCalendarLinkParams && 'https://' + this.googleCalendarLinkPrefix() + this.googleCalendarLinkParams;
 		},
@@ -216,23 +229,26 @@ const calendarButtonsComponent = {
 				(this.multilineExtendedDescription ? "&DESC=" + this.encode(this.multilineExtendedDescription) : "")
 			);
 		},
-		icsFileUri() {
-			return this.icsFileContents && "data:text/calendar;charset=UTF-8," + encodeURIComponent(this.icsFileContents);
+    downloadFileName() {
+      // Give .ics and image files a name which includes the start date of the event and the title
+			// Remove all unfriendly characters from the title (allow all unicode letters and numbers, replace all other unicode symbols and whitespaces with hyphens)
+			// Limit the title to 50 characters
+			if (!this.event.startDate) return "";
+      return this.joinTruthyStrings(
+        "-",
+        "Event",
+        this.event.startDate,
+        this.event.title?.replace(/[^\p{Ll}\p{Lu}\p{Lt}\p{Lo}\p{Nd}]+/ug, '-').substring(0, 50)
+      );
+    },
+    imageFileName() {
+			return this.downloadFileName ? this.downloadFileName + ".jpg" : "";
 		},
 		icsFileName() {
-			// Give the .ics file a name which includes the start date of the event and the title
-			// Remove all unfriendly characters from the title (allow all unicode letters and numbers, disallow other unicode symbols, and replace whitespaces with hyphens)
-			// Limit the title to 30 characters
-			return (
-				this.event.startDate
-				? this.joinTruthyStrings(
-					"-",
-					"Event",
-					this.event.startDate,
-					this.event.title?.replace(/[^\p{Ll}\p{Lu}\p{Lt}\p{Lo}\p{Nd}]+/ug, '-').substring(0, 50)
-				) + ".ics"
-				: ""
-			);
+			return this.downloadFileName ? this.downloadFileName + ".ics" : "";
+		},
+		icsFileUri() {
+			return this.icsFileContents && "data:text/calendar;charset=UTF-8," + encodeURIComponent(this.icsFileContents);
 		},
 		icsFileContents() {
 			// See: https://icalendar.org/
