@@ -75,12 +75,34 @@ const calendarButtonsComponent = {
 		},
     downloadImage() {
       let eventSquare = document.querySelector('.event-square-outer');
-      snapdom(eventSquare, { width: 1080 }).then(
-        result => result.download({
-          format: 'jpeg',
-          filename: this.imageFileName
-        })
+      
+      let zeroth = {};
+      let exif = {};
+      zeroth[piexif.ImageIFD.Copyright] = "Copyright";
+      zeroth[piexif.ImageIFD.Artist] = "Artist";
+      zeroth[piexif.ImageIFD.Software] = "Grevillea";
+      zeroth[piexif.ImageIFD.ImageDescription] = this.multilineExtendedDescription.substring(0, 250);
+      exif[piexif.ExifIFD.UserComment] = "UserComment";
+      let exifObj = { "0th": zeroth, "Exif": exif };
+      let exifStr = piexif.dump(exifObj);
+      
+      let name = this.imageFileName;
+      
+      snapdom(eventSquare, { width: 1080, reconcile: true }).then(result => result.toJpeg()).then(
+        function (jpeg) {
+          let inserted = piexif.insert(exifStr, jpeg.src);
+          jpeg.src = inserted;
+          
+          var link = document.createElement('a');
+          link.setAttribute('href', jpeg.src);
+          link.setAttribute('download', name);
+          link.style.visibility = 'hidden';
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+        }
       );
+      
     },
 		googleCalendarLinkPrefix() {
 			return 'calendar.google.com/calendar/render?action=TEMPLATE&';
