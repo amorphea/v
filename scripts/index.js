@@ -449,6 +449,22 @@ const app = Vue.createApp({
         text: hostname
       };
     },
+    imageCopyrightInfo() {
+      // Return plain-text copyright and author strings (to be used e.g. in the metadata when downloading a JPEG of the event),
+      // based on the copyright info above in imageCredit(), imageLicense() and imageSource()
+      
+      if (this.custombackgroundImage) return {
+        copyright: this.imageSource?.hostname,
+        author: this.imageSource?.hostname
+      };
+      
+      if (!this.themeAppearance?.image) return null; // return nothing if there's no image
+      
+      return {
+        copyright: this.imageCredit + this.imageLicense?.license,
+        author: this.imageInfo?.author
+      };
+    },
   },
   asyncComputed: {
     async eventStringCompressedEncoded() { return await this.compressAndEncode(this.eventString); },
