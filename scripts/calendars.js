@@ -77,30 +77,27 @@ const calendarButtonsComponent = {
     downloadImage() {
       let eventSquare = document.querySelector('.event-square-outer');
       
-      let altTextShort = this.joinTruthyStrings(
+      let altText = this.joinTruthyStrings(
         ". ",
         this.event.title,
         this.event.location,
         (this.joinTruthyStrings(" ", this.event.shortStartTime, this.event.startYearfulDate) || "?")
         + " - " +
         (this.joinTruthyStrings(" ", this.event.shortEndTime, this.event.endYearfulDate) || "?"),
-        this.event.timezone
-      );
-      let altTextLong = this.joinTruthyStrings(
-        ". ",
-        altTextShort,
+        (this.event.timezone ? "Time zone: " + this.event.timezone : ""),
         this.extendedDescription
       );
       
-      // Put the alt text in both the ImageDescription and UserComment fields
-      //  - In the ImageDescription, only ASCII characters are allowed. It's unclear if there's a length limit, so we arbitrarily limit it to 250 chars to be safe
-      //  - In the UserComment, all characters are allowed. In theory there's no length limit, but we still limit it to 2000 chars to be safe
+      // Put the alt text in the UserComment field
+      // All characters are allowed, and in theory there's no length limit, but we still limit it
+      // to 2000 chars to be safe.
+      //
+      // We could also use the ImageDescription field, but it doesn't support unicode well and it
+      // also displayed messily on Windows anyway when testing it out.
       //
       // Ideally we'd also use the IPTC Alt-Text field, however I don't know how to edit IPTC data
       // See: https://iptc.org/std/photometadata/specification/IPTC-PhotoMetadata-2025.1.html#alt-text-accessibility
-      let imageDescription = altTextShort.replace(/[^0-9a-zA-Z`~!@#$%^&*\(\)_\+\-=\[\]\{\};':"\\\|,\.\/<>\?]+/ug, '-').substring(0, 250);
-      let userComment = altTextLong.substring(0, 2000);
-      
+      let userComment = altText.substring(0, 2000);
       
       // write EXIF metadata to embed copyright/etc info inside the downloaded imagew
       let zeroth = {};
@@ -109,9 +106,6 @@ const calendarButtonsComponent = {
       zeroth[piexif.ImageIFD.Artist] = this.imageCopyrightInfo.author;
       zeroth[piexif.ImageIFD.Software] = "Grevillea v" + $grevillea_version.value;
       zeroth[piexif.ImageIFD.DocumentName] = this.event.title.replace(/[^0-9a-zA-Z-]+/ug, '-').substring(0, 100);
-      zeroth[piexif.ImageIFD.XPTitle] = [zeroth[piexif.ImageIFD.DocumentName]];
-      zeroth[piexif.ImageIFD.XPSubject] = [zeroth[piexif.ImageIFD.DocumentName]];
-      zeroth[piexif.ImageIFD.ImageDescription] = imageDescription;
       exif[piexif.ExifIFD.UserComment] = userComment;
       let exifObj = { "0th": zeroth, "Exif": exif };
       let exifStr = piexif.dump(exifObj);
