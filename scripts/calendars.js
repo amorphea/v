@@ -62,6 +62,17 @@ const calendarButtonsComponent = {
 			// Example: 2026-06-26T11%3A45%3A00
 			return dateISOStr ? dateISOStr.replace(/\.\d\d\d/, "").replace(/:/g, "%3A") : "";
 		},
+    encodeUnicodeStringForExif(unicodeString) {
+      // Encodes the string as UTF-8. Explanation:
+      // piexif uses the inbiult btoa() function to convert strings to base64
+      // However the btoa() function can't handle unicode
+      // We therefore use some code from MDN to re-encode the string in UTF-8 so that btoa() handles it nicely
+      // See: https://developer.mozilla.org/en-US/docs/Web/API/Window/btoa
+      return Array.from(
+        new TextEncoder().encode(unicodeString),
+        b => String.fromCodePoint(b)
+      ).join("");
+    },
 		joinTruthyStrings(separator, ...strings) {
 			return strings.filter(x => !!x).join(separator);
 		},
@@ -102,11 +113,11 @@ const calendarButtonsComponent = {
       // write EXIF metadata to embed copyright/etc info inside the downloaded imagew
       let zeroth = {};
       let exif = {};
-      zeroth[piexif.ImageIFD.Copyright] = "Background image credit: " + this.imageCopyrightInfo.copyright;
-      zeroth[piexif.ImageIFD.Artist] = this.imageCopyrightInfo.author;
+      zeroth[piexif.ImageIFD.Copyright] = "Background image credit: " + this.imageCopyrightInfo.copyright?.replace(/[^!-~ -]+/ug, '-'); // EXIF format: only printable ascii characters are allowed
+      zeroth[piexif.ImageIFD.Artist] = this.imageCopyrightInfo.author?.replace(/[^!-~ -]+/ug, '-'); // EXIF format: only printable ascii characters are allowed
       zeroth[piexif.ImageIFD.Software] = "Grevillea v" + $grevillea_version.value;
-      zeroth[piexif.ImageIFD.DocumentName] = this.event.title.replace(/[^0-9a-zA-Z-]+/ug, '-').substring(0, 100);
-      exif[piexif.ExifIFD.UserComment] = userComment;
+      zeroth[piexif.ImageIFD.DocumentName] = this.event.title.replace(/[^0-9a-zA-Z-]+/ug, '-').substring(0, 100); // only ascii letters, numbers, and hyphens are allowed
+      exif[piexif.ExifIFD.UserComment] = this.encodeUnicodeStringForExif(userComment); // all unicode characters are allowed (but must first be specially-encoded)
       let exifObj = { "0th": zeroth, "Exif": exif };
       let exifStr = piexif.dump(exifObj);
       
