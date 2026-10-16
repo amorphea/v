@@ -99,7 +99,7 @@
 											<div v-text="event.rsvpString"></div>
 										</div>
 										<div class="description">
-											<div v-text="event.description"></div>
+											<div v-html="event.descriptionHtml"></div>
 										</div>
 									</div>
 									<div class="event-square" v-if="urlHashLoadFailed" v-cloak>

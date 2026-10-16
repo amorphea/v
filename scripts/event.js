@@ -150,6 +150,39 @@ class Event {
 
     addComputed('startDateTimeWithOffset', () => s.utcStartDateObj && new Intl.DateTimeFormat(undefined, {timeZone: s.timezone, dateStyle: 'short', timeStyle: 'long'}).format(s.utcStartDateObj));
     addComputed('endDateTimeWithOffset', () => s.utcEndDateObj && new Intl.DateTimeFormat(undefined, {timeZone: s.timezone, dateStyle: 'short', timeStyle: 'long'}).format(s.utcEndDateObj));
+    
+    
+    // Render event description in a Markdown-like format
+    const escapeHtmlTags = function(str) {
+      return str.replace(
+        /(&)|(<)|(>)/g,
+        (m, amp, lt, gt) => amp && "&amp;" || lt && "&lt;" || gt && "&gt;"
+      );
+    };
+    const renderLinkOrColor = function(node) {
+      if (/#[0-9a-f]{3}|#[0-9a-f]{6}/.test(node.href))
+        return `<span style="color: ${node.href}">${node.children}</span>`;
+      else
+        return `<a href="${node.href}">${node.children}</a>`;
+    }
+    const renderMarkdown = function(str) {
+      return mdLite.render(mdLite.parse(str), {
+        fragment: node => node.children.join(''),
+        text: node => escapeHtmlTags(node.content),
+        bold: node => `<b>${node.children}</b>`,
+        italic: node => `<i>${node.children}</i>`,
+        strike: node => `<s>${node.children}</s>`,
+        code: node => `<code>${node.content}</code>`,
+        link: renderLinkOrColor,
+        image: node => escapeHtmlTags(unescape(node.source)),
+        paragraph: node => `<p>${node.children.join('')}</p>`,
+      });
+    };
+    
+    addComputed('descriptionHtml', () => {
+      // TODO: Use DOMPurify for safety
+      return renderMarkdown(s.description);
+    })
   }
 
   get title() { return this.state.title; }
