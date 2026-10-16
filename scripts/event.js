@@ -180,8 +180,9 @@ class Event {
     };
     
     addComputed('descriptionHtml', () => {
-      // TODO: Use DOMPurify for safety
-      return renderMarkdown(s.description);
+      return DOMPurify.sanitize(renderMarkdown(s.description));
+      // ^ use DOMPurify to protect against XSS links and any bugs in the
+      //   rendering code that might allow unexpected additional HTML through
     })
   }
 
