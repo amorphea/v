@@ -126,6 +126,17 @@ along with Grevillea. If not, see <https://www.gnu.org/licenses/>.
 .event-square-inner .description {
 	margin-top: 0.7em;
 }
+.event-square-inner a {
+	color: inherit;
+	border-bottom: 1px solid var(--theme-color);
+}
+a:visited {
+	color: inherit;
+}
+a:hover {
+	color: inherit;
+	border-bottom: 2px solid var(--theme-color);
+}
 
 .section-image-credit {
 	width: 100%;
