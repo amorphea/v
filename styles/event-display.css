@@ -132,6 +132,7 @@ along with Grevillea. If not, see <https://www.gnu.org/licenses/>.
 .event-square-inner a {
 	color: inherit;
 	border-bottom: 1px solid var(--theme-color);
+	padding-bottom: 1px; /* when a <code> block is used inside a link, this makes them display more nicely together */
 }
 .event-square-inner a:visited {
 	color: inherit;
