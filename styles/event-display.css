@@ -140,6 +140,13 @@ along with Grevillea. If not, see <https://www.gnu.org/licenses/>.
 	color: inherit;
 	border-bottom: 2px solid var(--theme-color);
 }
+.event-square-inner code {
+	background-color: rgba(170, 170, 170, 0.8);
+	padding: 0.2em 0.5em 0.2em 0.5em;
+	color: inherit;
+	border-radius: 3px;
+	font-family: 'Courier Prime', 'Courier New', monospace;
+}
 
 .section-image-credit {
 	width: 100%;
